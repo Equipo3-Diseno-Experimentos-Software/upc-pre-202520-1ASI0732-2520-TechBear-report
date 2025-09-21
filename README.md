@@ -246,9 +246,9 @@ Visión: Queremos ser la empresa lider en gestión y mantenimiento de equipos de
 
 | **Integrante** | **** |
 |----------------|----------------------------------|
-| **Código del Estudiante** | Uxxx |
+| **Código del Estudiante** | U20211G499 |
 | **Carrera** | Ingeniería de Software |
-| **Descripción** | xxx |
+| **Descripción** | Tengo 20 años estoy estudiando actualmente en la Univeridad Peruana de Ciencias Aplicadas. Me ha interasado mucho la creación de paginas web para diversos objetivos. Manejo algunos lenguajes de programación como javascript, C++, C+, Python, entre otros. Considero que tengo las habilidades de comunicación efectiva, organización, proactividad, resolución de problemas, entre otras. Espero aportar de manera satisfactoria en mi grupo para terminar de manera exitosa el proyecto. |
 | **Foto** | <img src="assets/chapter01/Picture.jpg" alt="Picture" width="200" height="200"> |
 
 ---
@@ -1139,3 +1139,4 @@ Desde la perspectiva del usuario, este mapa nos permite visualizar su situación
 
 
 19. **Notification (Notificación):** Mensajes enviados automáticamente para informar sobre mantenimientos, fallas o cambios importantes.
+
