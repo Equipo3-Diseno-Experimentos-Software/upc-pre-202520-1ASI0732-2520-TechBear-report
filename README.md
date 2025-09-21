@@ -244,7 +244,7 @@ Visión: Queremos ser la empresa lider en gestión y mantenimiento de equipos de
 
 ---
 
-| **Integrante** | **** |
+| **Integrante** | **Angelo Stephano Moscoso Bejar** |
 |----------------|----------------------------------|
 | **Código del Estudiante** | U20211G499 |
 | **Carrera** | Ingeniería de Software |
@@ -1139,4 +1139,5 @@ Desde la perspectiva del usuario, este mapa nos permite visualizar su situación
 
 
 19. **Notification (Notificación):** Mensajes enviados automáticamente para informar sobre mantenimientos, fallas o cambios importantes.
+
 
