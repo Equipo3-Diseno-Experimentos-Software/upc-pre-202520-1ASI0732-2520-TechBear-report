@@ -1299,3 +1299,1126 @@ A continuación se presenta el Product Backlog con las historias de usuario prio
 | 36    | US-36         | Registrar evento de alerta manual      | Como desarrollador, quiero permitir registrar una alerta manual vía API para que los técnicos puedan ingresar incidentes detectados en campo.     | 3            |
 | 37    | US-37         | Evaluar servicio (API)                 | Como desarrollador, quiero implementar un endpoint RESTful que permita a los clientes registrar y actualizar una evaluación de servicio.           | 8            |
 
+  ## Capítulo IV: Product Design <a id="c4"></a>
+
+### 4.1. Style Guidelines
+#### 4.1.1. General Style Guidelines
+
+Se busca que el tono sea equilibrado, entre lo profesional y lo accesible, con un lenguaje claro, empático y respetuoso para atraer usuarios potenciales y mantener a nuestros usuarios.
+Se eligió una paleta de colores fría pero amigable, y una tipografía moderna que combine profesionalismo y accesibilidad.
+
+**Branding**
+
+La identidad visual de OsitoPolar busca transmitir seguridad, innovación y cercanía.
+
+**Logo:** Representa un oso polar con un ícono de refrigeración, combinando lo técnico con lo amigable. Disponible en versiones para fondos claros y oscuros, monocromático, horizontal y vertical.
+
+
+**Typography**
+
+Para mantener la formalidad y accesibilidad de la interfaz de usuario de OsitoPolar se establecerá las tipografías Helvetica y Open Sans por sus características funcionales, estéticas y por su alta compatibilidad en interfaces digitales, siendo Helvetica la primaria.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Helvetica-typography.png"
+       alt="Ejemplo de la tipografía Helvetica, mostrando su uso y características."
+       style="max-width: 90%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 1:</strong> Tipografía Helvetica.
+  </figcaption>
+</figure>
+
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Open-sans-typography.png"
+       alt="Ejemplo de la tipografía Open Sans, mostrando sus características y uso."
+       style="max-width: 90%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 2:</strong> Tipografía Open Sans.
+  </figcaption>
+</figure>
+
+
+**Colors**
+
+La paleta fue diseñada para representar ambientes fríos y tecnológicos, transmitiendo confianza y limpieza visual.
+
+El color principal elegido es el celeste, pues es el que más se acopla a las características que describimos. Se optó por los colores negro, blanco y gris como neutros, los cuales serán utilizados para fondos o textos.
+Se eligieron variantes de color verde, rojo, azul y amarillo para ciertos fondos y estados (alertas, servicio, calificaciones).
+
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Colors-General%20Style%20Guidelines.png"
+       alt="Guías Generales de Estilo de Colores: Paleta principal y secundaria de la marca."
+       style="max-width: 95%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 3:</strong> Guías Generales de Estilo - Colores.
+  </figcaption>
+</figure>
+
+
+
+**Spacing**
+
+Se establecerá un espaciado de 8 px y un margen mínimo de 16 px. Para el diseño modular, se implementarán grids flexibles que se adaptarán tanto a web como a dispositivos móviles, utilizando configuraciones de 12 y 4 columnas respectivamente.
+
+
+#### 4.1.2. Web Style Guidelines
+
+En esta sección definimos los estándares visuales y de interacción para la versión web de OsitoPolar, asegurando una experiencia de usuario coherente, profesional y accesible en todos los dispositivos.
+Es necesario que las interfaces web sean responsivas porque nos trae muchas ventajas tanto para el usuario como para el equipo desarrollador, entre las cuales tenemos: usabilidad en cualquier dispositivo, mejor eficiencia de costos y tiempo en el desarrollo y satisfacción del usuario.
+
+Adoptando un enfoque mobile-first, usamos un sistema de grid de 12 columnas para que la interfaz se adapte a cualquier dispositivo.
+
+**Tipografía**
+Tomando en cuenta la guía de estilos, se usará la tipografía Helvetica en la mayoría de los textos de la aplicación, pues esta proyecta profesionalismo y claridad. Para que la visualización de los textos sea óptima, el tamaño de la fuente debe ajustarse automáticamente y adaptarse al dispositivo que se esté usando.
+
+
+**Colores**
+De acuerdo al rubro al que está orientado OsitoPolar, los colores deben reflejar tecnología, frescura y confianza. La elección de colores es la siguiente:
+
+- Celeste (#0884C4): Se usará para el header y algunos botones.
+- Blanco (#FFFFFF): Se usará para fondos neutros.
+- Negro (#000000): Se usará en algunos botones y bordes.
+- Gris claro (#808080): Se usará para líneas, bordes, separadores y botones deshabilitados.
+- Blanco azul mar (#F4FCFC): Se usará para algunos fondos.
+- Verde medio primavera (#00CC66): Se usará para notificaciones y estados positivos.
+- Rojo claro (#FF4B4B): Se usará para alertas, errores y fallas críticas.
+- Amarillo mandarina (#FFCC00): Se usará para ciertos agregados (notificaciones, calificaciones).
+
+Sin embargo, la variación de botones y fondos que tendrá la plataforma hace que no siempre se elija la misma tonalidad, por lo que optamos por una paleta de celeste.
+
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Sky_blue-color-Web%20Style%20Guidelines.png"
+       alt="Guías de Estilo Web: Muestra del color Sky Blue con sus códigos hexadecimales y RGB."
+       style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 1:</strong> Guías de Estilo Web - Color Sky Blue.
+  </figcaption>
+</figure>
+
+
+
+De la misma forma se opta por una paleta de rojo claro para diferenciar ventanas, fondos o íconos que muestren algún tipo de error en el sistema, alertas o estados.
+
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Red-color-Web%20Style%20Guidelines.png"
+       alt="Guías de Estilo Web: Muestra del color Rojo con sus códigos hexadecimales y RGB."
+       style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 22:</strong> Guías de Estilo Web - Color Rojo.
+  </figcaption>
+</figure>
+
+
+#### 4.1.3. Mobile Style Guidelines.
+
+##### 4.1.3.1. iOS Mobile Style Guidelines.
+
+##### 4.1.3.2. Android Mobile Style Guidelines.
+
+### 4.2. Information Architecture
+
+#### 4.2.1. Organization Systems
+
+En esta sección, hemos implementado diferentes sistemas de organización basados en los grupos de información relevantes. La disposición visual del contenido se ha realizado de las siguientes maneras:
+
+- **Jerárquica (visual hierarchy)**: Para resaltar los elementos más importantes, facilitando que los usuarios accedan de manera intuitiva a la información clave.
+
+- **Organización secuencial (step-by-step)**: Utilizada en procesos que requieren una guía detallada, como la compra de maquinas, asegurando un flujo lógico y fácil de seguir.
+
+- **Organización matricial**: Aplicada en áreas donde es necesario comparar o analizar datos relacionados, proporcionando al usuario una visión clara y estructurada de las opciones disponibles.
+
+#### 4.2.2. Labeling Systems
+
+En nuestra empresa, aplicamos estos sistemas de organización visual de la siguiente manera:
+
+Jerarquía Visual: Destacamos información clave como el estado de los equipos y alertas críticas para facilitar su rápida identificación.
+
+Organización Secuencial: El proceso de agendar mantenimiento o visitas técnicas se organiza paso a paso para guiar al usuario.
+
+Organización Matricial: Usamos tablas comparativas para mostrar claramente las diferencias entre planes de suscripción y servicios, facilitando la elección del usuario.
+
+#### 4.2.3. SEO Tags and Meta Tags
+
+**Landing Page**
+-Title: OsitoPolar - Monitorea y Gestiona tus Equipos de Congelación en Tiempo Real
+-Meta Description: OsitoPolar te permite monitorear y gestionar el estado de tus equipos de congelación, optimizando su rendimiento y evitando fallas. Mantén tu inventario seguro con alertas y mantenimiento predictivo.
+-Meta Keywords: monitoreo de congeladoras, gestión de equipos de frío, mantenimiento preventivo, OsitoPolar, alerta de fallas, eficiencia energética
+-Meta Author: OsitoPolar
+
+**Aplicación Web**
+-Title: OsitoPolar - Plataforma de Gestión de Equipos de Congelación
+-Meta Description: OsitoPolar facilita el monitoreo, mantenimiento y eficiencia de tus equipos de congelación. Gestiona en tiempo real el estado y rendimiento de tus equipos con facilidad.
+-Meta Keywords: gestión de equipos de frío, monitoreo en tiempo real, mantenimiento predictivo, OsitoPolar, alerta de fallas, reporte de eficiencia
+-Meta Author: OsitoPolar
+
+#### 4.2.4. Searching Systems
+
+Estas decisiones están orientadas a facilitar la navegación eficiente, evitando que los usuarios se sientan abrumados por grandes volúmenes de datos y asegurando que encuentren rápidamente lo que necesitan.
+
+**Opciones de Búsqueda**  
+**Barra de Búsqueda**  
+La barra de búsqueda permite a los usuarios ingresar términos específicos, como el nombre de un equipo, tipo de servicio o estado del equipo, para encontrar rápidamente información relevante. Los resultados se muestran instantáneamente a medida que se escriben los términos.
+
+**Categorías**  
+Los usuarios pueden seleccionar entre diferentes categorías de servicios y equipos, como "Congeladoras", "Refrigeradores", "Mantenimiento Preventivo", "Alertas de Fallas" y "Historial de Consumo", para limitar los resultados a un grupo específico.
+
+**Etiquetas Populares**  
+Las etiquetas populares, como "Mantenimiento Programado" o "Alertas Críticas", permiten a los usuarios buscar servicios o equipos relacionados con términos comunes, facilitando la localización de opciones populares o especializadas.
+
+**Filtros Disponibles**  
+**Filtros por Tipo de Equipo**
+- Congeladoras
+- Refrigeradores
+- Equipos de Frío Industrial
+
+**Filtros por Estado del Equipo**
+- En Funcionamiento
+- En Reparación
+- Necesita Mantenimiento
+
+**Filtro por Fecha de Última Revisión**  
+Los usuarios pueden ajustar el filtro para ver los equipos que han sido revisados en un periodo específico, como "Últimos 7 días", "Últimos 30 días", etc.
+
+**Filtro por Consumo Energético**  
+Los usuarios pueden ajustar el rango de consumo energético para encontrar equipos dentro de un rango de eficiencia energética deseado.
+
+**Apariencia de los Datos Después de la Búsqueda**  
+**Listados de Resultados**  
+Los resultados de búsqueda se muestran en una lista ordenada con información clave, como el nombre del equipo, estado actual, próximas fechas de mantenimiento y consumo energético. Además, se incluyen opciones para ver más detalles o agendar visitas de mantenimiento.
+
+**Resumen y Descripción**  
+Cada resultado incluye un resumen que resalta la información más relevante, como el historial de mantenimiento o las alertas generadas, permitiendo a los usuarios realizar una evaluación rápida.
+
+**Opciones de Ordenación y Filtros Aplicados**  
+Los resultados pueden ordenarse por criterios como relevancia, estado del equipo o consumo energético. Los filtros aplicados se muestran claramente para que los usuarios puedan ajustar su búsqueda según sea necesario.
+
+**Revisiones y Comentarios**  
+Los usuarios pueden ver un resumen de las revisiones y comentarios de los técnicos o clientes anteriores sobre el equipo o servicio, lo que les ayuda a evaluar la calidad del servicio y tomar decisiones informadas.
+
+#### 4.2.5. Navigation Systems
+
+La estructura de navegación y las opciones disponibles en **OsitoPolar** están diseñadas para ofrecer una experiencia de usuario fluida y eficiente. A continuación, se resumen las secciones y elementos clave:
+
+1. **Páginas Principales**
+    - **Inicio**: Página principal del sitio web.
+    - **Funcionalidades**: Detalles sobre las herramientas y servicios que ofrece OsitoPolar.
+    - **Beneficios**: Información sobre las ventajas para empresas y proveedores.
+    - **Nosotros**: Información sobre la empresa y su misión.
+    - **Contacto**: Información de contacto y formulario.
+
+2. **Opciones de Usuario**
+    - **Login**: Acceso a cuentas de usuario.
+    - **Sign-up**: Registro de nuevos usuarios.
+    - **Iniciar sesión / Registrarse**: Alternativa para acceso o creación de cuenta.
+
+3. **Búsqueda y Navegación**
+    - **Búsqueda**: Barra de búsqueda para encontrar equipos, servicios o reportes.
+    - **Categorías**: Filtros por tipo de equipo (Congeladoras, Refrigeradores, etc.).
+    - **Explorar**: Opciones para navegar por diferentes secciones de la plataforma.
+
+4. **Branding y Identidad**
+    - **OsitoPolar**: Logo y nombre de la marca, repetidos en varias secciones para mantener la identidad visual de la plataforma.
+
+### 4.3. Landing Page UI Design
+#### 4.3.1. Landing Page Wireframe
+
+El wireframe de la página de inicio de OsitoPolar organiza los elementos clave para ofrecer una navegación intuitiva. Incluye un encabezado con el logo y un menú de navegación, seguido de una propuesta de valor clara con botones de acción destacados como "Solicitar Demo" y "¿Cómo Funciona?". La página cuenta con secciones para describir a los usuarios objetivo, las funcionalidades clave del sistema, y los beneficios que ofrece OsitoPolar. Al final, se encuentra un formulario de contacto para que los usuarios soliciten una demo, junto con enlaces legales en el pie de página.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/LandingPageWireframe.png"
+       alt="Wireframe de la Landing Page: Diseño de baja fidelidad de la página principal."
+       style="max-width: 95%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 1:</strong> Wireframe de la Landing Page.
+  </figcaption>
+</figure>
+
+
+#### 4.3.2. Landing Page Mockup
+
+El Landing Page Mock-up de OsitoPolar muestra un diseño limpio y organizado, con una estructura intuitiva que guía a los usuarios a través de la plataforma. Incluye una propuesta de valor destacada en la parte superior, seguida de secciones clave como las funcionalidades del sistema, los beneficios para empresas y proveedores, y una explicación clara de cómo funciona el servicio. También cuenta con testimonios de clientes, detalles sobre la empresa y un formulario para solicitar una demo, todo con un enfoque en facilitar la conversión de visitantes a usuarios activos.
+
+- Esta es la primera sección, llamada "Inicio". En esta se puede ver la propuesta de valor que ofrece nuestra plataforma junto con un "Call to Action" que se agregará a futuro.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup1.png"
+       alt="Mockup 1 de la Landing Page: Diseño visual de la sección superior."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 1:</strong> Mockup 1 - Inicio - Landing Page.
+  </figcaption>
+</figure>
+
+
+- Esta segunda sección hace una breve descripción de a quiénes está dirigido la plataforma.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup2.png"
+       alt="Mockup 2 de la Landing Page: Diseño visual de la sección de características."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 2:</strong> Mockup 2  - ¿Para quién es? - Landing Page.
+  </figcaption>
+</figure>
+
+
+- En "Funcionalidades Clave" se presentan las principales funcionalidades que ofrece la plataforma.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup3.png"
+       alt="Mockup 3 de la Landing Page: Diseño visual de la sección de testimonios."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 3:</strong> Mockup 3 - Funcionalidades - Landing Page.
+  </figcaption>
+</figure>
+
+
+- En "Beneficios" se presentan los beneficios que ofrece la plataforma para empresas y proveedores.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup4.png"
+       alt="Mockup 4 de la Landing Page: Diseño visual de la sección de precios."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 4:</strong> Mockup 4 - Beneficios para negocios - Landing Page.
+  </figcaption>
+</figure>
+
+
+- En "Beneficios" se presentan los beneficios que ofrece la plataforma para proveedores.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup5.png"
+       alt="Mockup 5 de la Landing Page: Diseño visual de la sección de preguntas frecuentes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 5:</strong> Mockup 5 - Beneficios para proveedores - Landing Page.
+  </figcaption>
+</figure>
+
+
+- En "Como funciona" se describe el flujo del funcionamiento de la plataforma.
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup6.png"
+       alt="Mockup 6 de la Landing Page: Diseño visual del pie de página."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 6:</strong> Mockup 6 - ¿Como funciona? - Landing Page.
+  </figcaption>
+</figure>
+
+
+- En "Sobre Nosotros" se presenta nuestra Misión y Visión como startup. 
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup7.png"
+       alt="Mockup 7 de la Landing Page: Vista detallada de un elemento interactivo."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 7:</strong> Mockup 7 - Sobre Nosotros - Landing Page.
+  </figcaption>
+</figure>
+
+
+- En "Lo que dicen nuestros clientes" se visualizan las reseñas de los usuarios que usaron nuestra plataforma.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup8.png"
+       alt="Mockup 8 de la Landing Page: Vista detallada de un formulario de contacto."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 8:</strong> Mockup 8 - Lo que dicen nuestros clientes - Landing Page.
+  </figcaption>
+</figure>
+
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup9.png"
+       alt="Mockup 9 de la Landing Page: Sección de llamada a la acción."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 9:</strong> Mockup 9 - Lo que dicen nuestros clientes - Landing Page.
+  </figcaption>
+</figure>
+
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup10.png"
+       alt="Mockup 10 de la Landing Page: Vista de la navegación superior."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 10:</strong> Mockup 10 - Lo que dicen nuestros clientes - Landing Page.
+  </figcaption>
+</figure>
+
+
+- En "Contacto" se presenta un formulario de contacto para que los usuarios puedan solicitar una demo.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Landing%20Page%20Mockups/mockup11.png"
+       alt="Mockup 11 de la Landing Page: Vista de la sección de beneficios clave."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 11:</strong> Mockup 11 - Contacto - Landing Page.
+  </figcaption>
+</figure>
+
+
+
+## 4.4. Mobile Applications UX/UI Design
+
+#### 4.4.1. Mobile Applications Wireframes
+
+Los wireframes de las aplicaciones web de OsitoPolar delinean la estructura y organización de las pantallas principales, especificando la ubicación de los elementos de la interfaz de usuario y la navegación. Estos esquemas visuales sirven como una guía precisa para el diseño final, asegurando una experiencia de usuario fluida e intuitiva. Los wireframes están enfocados en la funcionalidad y facilidad de uso, permitiendo que diseñadores y desarrolladores visualicen cómo los usuarios interactúan con la aplicación, optimizando la disposición de los elementos para crear una experiencia eficiente y atractiva.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/AlquilarEquipos-Clientes.png"
+       alt="Wireframe: Interfaz de alquiler de equipos para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 1:</strong> Wireframe - Alquilar Equipos (Clientes).
+  </figcaption>
+</figure>
+
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Contacto-Clientes.png"
+       alt="Wireframe: Pantalla de contacto para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 2:</strong> Wireframe - Contacto (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Contacto-Empresa.png"
+       alt="Wireframe: Pantalla de contacto para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 3:</strong> Wireframe - Contacto (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Control-Clientes.png"
+       alt="Wireframe: Panel de control para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 4:</strong> Wireframe - Control (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/EstadoCuenta-Clientes.png"
+       alt="Wireframe: Vista de estado de cuenta para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 5:</strong> Wireframe - Estado de Cuenta (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/EstadoCuenta-Empresa.png"
+       alt="Wireframe: Vista de estado de cuenta para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 6:</strong> Wireframe - Estado de Cuenta (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Full%20Analiticas-Clientes.png"
+       alt="Wireframe: Pantalla de analíticas completas para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 7:</strong> Wireframe - Analíticas Completas (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Inicio-Clientes.png"
+       alt="Wireframe: Pantalla de inicio para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 8:</strong> Wireframe - Inicio (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Inicio-Empresa.png"
+       alt="Wireframe: Pantalla de inicio para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 9:</strong> Wireframe - Inicio (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Inicio%20App.png"
+       alt="Wireframe: Pantalla de inicio de la aplicación."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 10:</strong> Wireframe - Inicio de la Aplicación.
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Inicio%20Sesion%20-%20Clientes.png"
+       alt="Wireframe: Pantalla de inicio de sesión para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 11:</strong> Wireframe - Inicio de Sesión (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Inicio%20Sesion%20-%20Empresa.png"
+       alt="Wireframe: Pantalla de inicio de sesión para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 12:</strong> Wireframe - Inicio de Sesión (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/MiCuenta-Clientes.png"
+       alt="Wireframe: Pantalla 'Mi Cuenta' para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 13:</strong> Wireframe - Mi Cuenta (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/MiCuenta-Empresa.png"
+       alt="Wireframe: Pantalla 'Mi Cuenta' para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 14:</strong> Wireframe - Mi Cuenta (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/MisClientes%2CT%C3%A9cnicos-Empresa.png"
+       alt="Wireframe: Gestión de clientes y técnicos para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 15:</strong> Wireframe - Mis Clientes y Técnicos (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/MisEquipos-Clientes.png"
+       alt="Wireframe: Vista de 'Mis Equipos' para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 16:</strong> Wireframe - Mis Equipos (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/MisEquipos-Clientes-1.png"
+       alt="Wireframe: Detalle 1 de 'Mis Equipos' para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 17:</strong> Wireframe - Mis Equipos (Clientes, Detalle 1).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/MisEquipos-Clientes-2.png"
+       alt="Wireframe: Detalle 2 de 'Mis Equipos' para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 18:</strong> Wireframe - Mis Equipos (Clientes, Detalle 2).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/MisEquipos-Empresa.png"
+       alt="Wireframe: Vista de 'Mis Equipos' para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 19:</strong> Wireframe - Mis Equipos (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Notificaciones-Clientes.png"
+       alt="Wireframe: Pantalla de notificaciones para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 20:</strong> Wireframe - Notificaciones (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Notificaciones-Empresa.png"
+       alt="Wireframe: Pantalla de notificaciones para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 21:</strong> Wireframe - Notificaciones (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Registro-Clientes.png"
+       alt="Wireframe: Pantalla de registro para clientes."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 22:</strong> Wireframe - Registro (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Registro-Empresa.png"
+       alt="Wireframe: Pantalla de registro para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 23:</strong> Wireframe - Registro (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/Solicitudes-Empresa.png"
+       alt="Wireframe: Pantalla de gestión de solicitudes para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 24:</strong> Wireframe - Solicitudes (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Apps%20Wireframes/%C3%93rdenesDeTrabajo-Empresa.png"
+       alt="Wireframe: Pantalla de órdenes de trabajo para la empresa."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 25:</strong> Wireframe - Órdenes de Trabajo (Empresa).
+  </figcaption>
+</figure>
+
+
+#### 4.4.2. Mobile Applications Wireflow Diagrams
+En esta sección se presentan los Wireflows para cada objetivo del usuario, teniendo en cuenta los User Personas relevantes. Cada diagrama ilustra el flujo de interacción del usuario y cómo las acciones realizadas afectan las pantallas dentro de la aplicación.
+
+
+### **User Goal 1**: 
+Como dueño de un negocio que utiliza equipos de refrigeración quiero estar pendiente del estado de cada equipo registrado.
+
+**Task Flow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/taskflow1.png"
+       alt="Diagrama de Taskflow 1: Flujo de tareas para una acción específica del usuario."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 1:</strong> Taskflow 1.
+  </figcaption>
+</figure>
+
+
+**Wireflow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/wireflow1.png"
+       alt="Diagrama de Wireflow 1: Combinación de wireframes y flujo de interacción del usuario."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 2:</strong> Wireflow 1.
+  </figcaption>
+</figure>
+
+
+### **User Goal 2**:
+Como dueño de un negocio que utiliza equipos de refrigeración quiero lograr administrar los nuevos equipos que registre.
+
+**Task Flow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/taskflow2.png"
+       alt="Diagrama de Taskflow 2: Flujo de tareas para un proceso de usuario."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 3:</strong> Taskflow 2.
+  </figcaption>
+</figure>
+
+
+**Wireflow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/wireflow2.png"
+       alt="Diagrama de Wireflow 2: Representación visual del flujo de usuario entre pantallas."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 4:</strong> Wireflow 2.
+  </figcaption>
+</figure>
+
+
+### **User Goal 3**:
+Como dueño de un negocio que utiliza equipos de refrigeración quiero revisar las estadísticas completas de mis equipos.
+
+**Task Flow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/taskflow3.png"
+       alt="Diagrama de Taskflow 3: Secuencia de tareas para una interacción compleja."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 5:</strong> Taskflow 3.
+  </figcaption>
+</figure>
+
+
+**Wireflow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/wireflow3.png"
+       alt="Diagrama de Wireflow 3: Detalle del flujo de usuario con elementos de la interfaz."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 6:</strong> Wireflow 3.
+  </figcaption>
+</figure>
+
+
+### **User Goal 4**:
+Como dueño de un negocio que utiliza equipos de refrigeración quiero pedir nuevos equipos a un proveedor de manera sencilla.
+
+**Task Flow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/taskflow4.png"
+       alt="Diagrama de Taskflow 4: Flujo de tareas para un caso de uso específico."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 7:</strong> Taskflow 4.
+  </figcaption>
+</figure>
+
+
+**Wireflow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/wireflow4.png"
+       alt="Diagrama de Wireflow 4: Visión general del flujo de navegación y pantallas."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 8:</strong> Wireflow 4.
+  </figcaption>
+</figure>
+
+
+### **User Goal 5**:
+Como proveedor de equipos de refrigeración quiero estar pendiente de los ordenes de pedios de mis clientes.
+
+**Task Flow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/taskflow5.png"
+       alt="Diagrama de Taskflow 5: Flujo de tareas para la interacción del usuario con el sistema."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 9:</strong> Taskflow 5.
+  </figcaption>
+</figure>
+
+
+**Wireflow**
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/wireflows/wireflow5.png"
+       alt="Diagrama de Wireflow 5: Resumen visual del flujo de interacción y las pantallas clave."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 10:</strong> Wireflow 5.
+  </figcaption>
+</figure>
+
+
+#### 4.4.3. Mobile Applications Mock-ups
+En esta sección se presentan y detallan los mock-ups de las aplicaciones de OsitoPolar. Se resalta la aplicación de los principios de diseño, la arquitectura de la información, el diseño inclusivo y el Design System implementado en los productos digitales. Cada mock-up muestra cómo estos conceptos se integran en la interfaz de usuario. A continuación, se mostrarán las maquetas de la aplicación web, que representan visualmente cómo se verá y funcionará la plataforma OsitoPolar. Estas maquetas son fundamentales para comunicar el diseño a los desarrolladores y clientes, asegurando que la experiencia del usuario se alinee con la visión del proyecto.
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Inicio%20App.png"
+       alt="Mockup: Pantalla de inicio general de la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 1:</strong> Mockup - Inicio General de la App.
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Registro-Clientes.png"
+       alt="Mockup: Pantalla de registro para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 2:</strong> Mockup - Registro (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Inicio%20Sesion%20-%20Clientes.png"
+       alt="Mockup: Pantalla de inicio de sesión para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 3:</strong> Mockup - Inicio de Sesión (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Inicio-Clientes.png"
+       alt="Mockup: Pantalla de inicio del panel de clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 4:</strong> Mockup - Inicio (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/MisEquipos-Clientes.png"
+       alt="Mockup: Vista de 'Mis Equipos' para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 5:</strong> Mockup - Mis Equipos (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/MisEquipos-Clientes-1.png"
+       alt="Mockup: Vista detallada 1 de 'Mis Equipos' para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 6:</strong> Mockup - Mis Equipos (Clientes, Detalle 1).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/MisEquipos-Clientes-2.png"
+       alt="Mockup: Vista detallada 2 de 'Mis Equipos' para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 7:</strong> Mockup - Mis Equipos (Clientes, Detalle 2).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/AlquilarEquipos-Clientes.png"
+       alt="Mockup: Proceso de alquiler de equipos para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 8:</strong> Mockup - Alquilar Equipos (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Contacto-Clientes.png"
+       alt="Mockup: Pantalla de contacto y soporte para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 9:</strong> Mockup - Contacto (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Notificaciones-Clientes.png"
+       alt="Mockup: Centro de notificaciones para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 10:</strong> Mockup - Notificaciones (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Control-Clientes.png"
+       alt="Mockup: Panel de control o vista de actividad para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 11:</strong> Mockup - Control (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/EstadoCuenta-Clientes.png"
+       alt="Mockup: Vista de estado de cuenta y facturación para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 12:</strong> Mockup - Estado de Cuenta (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/MiCuenta-Clientes.png"
+       alt="Mockup: Configuración de perfil y cuenta para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 13:</strong> Mockup - Mi Cuenta (Clientes).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Full%20Analiticas-Clientes.png"
+       alt="Mockup: Panel de analíticas completas para clientes en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 14:</strong> Mockup - Analíticas Completas (Clientes).
+  </figcaption>
+</figure>
+
+
+- **Mockups Empresa:**
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Inicio%20Sesion%20-%20Empresa.png"
+       alt="Mockup: Pantalla de inicio de sesión para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 15:</strong> Mockup - Inicio de Sesión (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Registro-Empresa.png"
+       alt="Mockup: Pantalla de registro para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 16:</strong> Mockup - Registro (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Inicio-Empresa.png"
+       alt="Mockup: Pantalla de inicio del panel de la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 17:</strong> Mockup - Inicio (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Contacto-Empresa.png"
+       alt="Mockup: Pantalla de contacto y soporte para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 18:</strong> Mockup - Contacto (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/EstadoCuenta-Empresa.png"
+       alt="Mockup: Vista de estado de cuenta y facturación para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 19:</strong> Mockup - Estado de Cuenta (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/MiCuenta-Empresa.png"
+       alt="Mockup: Configuración de perfil y cuenta para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 20:</strong> Mockup - Mi Cuenta (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/MisClientes%2CT%C3%A9cnicos-Empresa.png"
+       alt="Mockup: Gestión de clientes y técnicos para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 21:</strong> Mockup - Mis Clientes y Técnicos (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/MisEquipos-Empresa.png"
+       alt="Mockup: Vista de 'Mis Equipos' para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 22:</strong> Mockup - Mis Equipos (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Notificaciones-Empresa.png"
+       alt="Mockup: Centro de notificaciones para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 23:</strong> Mockup - Notificaciones (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/Solicitudes-Empresa.png"
+       alt="Mockup: Gestión de solicitudes entrantes para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 24:</strong> Mockup - Solicitudes (Empresa).
+  </figcaption>
+</figure>
+
+<figure style="page-break-inside: avoid; text-align: center;">
+  <img src="assets/chapter04/Web%20Applications%20Mock-ups/%C3%93rdenesDeTrabajo-Empresa.png"
+       alt="Mockup: Gestión de órdenes de trabajo para la empresa en la aplicación web."
+       style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    <strong>Figura 25:</strong> Mockup - Órdenes de Trabajo (Empresa).
+  </figcaption>
+</figure>
+
+
+Link de los mockups: https://shorturl.at/jMDBY
+
+#### 4.4.4. Mobile Applications User Flow Diagrams
+### User Goal 1: 
+- Como dueño de un negocio que utiliza equipos de refrigeración quiero estar pendiente del estado de cada equipo registrado.
+![userflow1.png]( assets/chapter04/userflows/userflow1.png)
+
+### User Goal 2:
+- Como dueño de un negocio que utiliza equipos de refrigeración quiero revisar las estadisticas completas de mis equipos.
+  ![userflow2.png]( assets/chapter04/userflows/userflow2.png)
+
+### User Goal 3:
+- Como dueño de un negocio que utiliza equipos de refrigeración quiero lograr administrar los nuevos equipos que registre.
+  ![userflow3.png]( assets/chapter04/userflows/userflow3.png)
+
+
+
+### 4.5. Mobile Applications Prototyping
+A continuación se presenta el prototipo de la aplicación web de OsitoPolar, el cual permite a los usuarios interactuar con la interfaz y explorar las diversas secciones de la plataforma. Este prototipo incluye las funcionalidades clave y características de la aplicación, proporcionando una vista preliminar de la experiencia del usuario. Además, facilita la evaluación y prueba de la interfaz antes de su implementación final, asegurando que el diseño sea intuitivo y eficiente.
+Link del prototipo: https://shorturl.at/oIUJN
+
+#### 4.5.1 Android Mobile Applications Prototyping
+
+#### 4.5.2. iOS Mobile Applications Prototyping.
+
+### 4.6. Web Applications UX/UI Design.
+
+#### 4.6.1. Web Applications Wireframes.
+
+#### 4.6.2. Web Applications Wireflow Diagrams
+
+#### 4.6.3. Web Applications Mock-ups.
+
+#### 4.6.4. Web Applications User Flow Diagrams.
+
+### 4.7. Web Applications Prototyping.
+ 
+### 4.8 Domain Driven Software Architecture
+En esta sección se presenta la arquitectura de software basada en el dominio para OsitoPolar. Se detallan los diferentes diagramas que ilustran la estructura y organización del sistema, así como los componentes clave que lo integran, mostrando cómo se interconectan para proporcionar una solución eficiente y escalable.
+
+#### 4.8.1. Software Architecture Context Diagram
+Este diagrama muestra cómo interactúan los usuarios (Clientes y Empresas Proveedoras) con OsitoPolar. Los usuarios usan la plataforma para gestionar y monitorear equipos de refrigeración. Además, OsitoPolar se conecta con los servicios de correo para enviar notificaciones y con el servicio de pago para procesar transacciones.
+
+![OsitoPolar-SystemContext.png]( assets/chapter04/Domain-Driven%20Software%20Architecture/OsitoPolar-SystemContext.png)
+
+#### 4.8.2. Software Architecture Container Diagrams
+Este diagrama ilustra los diferentes contenedores dentro de OsitoPolar y cómo interactúan entre sí. Los contenedores representan las diferentes capas y servicios que componen la plataforma, como la interfaz de usuario (webapp), la API y la base de datos.
+
+![OsitoPolar-Container.png](<assets/chapter04/Domain-Driven Software Architecture/OsitoPolar-Container.jpeg>)
+
+#### 4.8.3. Software Architecture Components Diagrams
+
+**Mi Equipo Bounded Context**
+
+Este diagrama representa los componentes encargados de la gestión de equipos. Los usuarios pueden agregar equipos, monitorearlos en tiempo real y ver el estado de los mismos.
+
+![OsitoPolar-Component-MiEquipo.png]( assets/chapter04/Domain-Driven%20Software%20Architecture/OsitoPolar-Component-MiEquipo.png)
+
+**Notificaciones Bounded Context**
+
+Este diagrama describe los componentes que gestionan las notificaciones, esenciales para mantener a los usuarios informados sobre el estado de los equipos y otros eventos importantes.
+
+![OsitoPolar-Component-Notificaciones.png]( assets/chapter04/Domain-Driven%20Software%20Architecture/OsitoPolar-Component-Notificaciones.png)
+
+**Ordenes de trabajo Bounded Context**
+
+Este diagrama se centra en la gestión de las órdenes de trabajo. Aquí se muestran los componentes involucrados en el proceso de crear, gestionar y completar órdenes de trabajo.
+
+![OsitoPolar-Component-OrdenesTrabajo.png]( assets/chapter04/Domain-Driven%20Software%20Architecture/OsitoPolar-Component-OrdenesTrabajo.png)
+
+### 4.9. Software Object-Oriented Design.
+En esta sección se presenta el diseño de software orientado a objetos para OsitoPolar. Se incluyen diagramas de clases y un diccionario de clases que detallan la estructura y los atributos de las principales entidades del sistema, ofreciendo una visión clara de cómo se organizan y gestionan los componentes clave dentro de la plataforma.
+
+#### 4.9.1. Class Diagrams.
+
+El diagrama de clases proporciona una representación visual de las clases del sistema, sus atributos y las relaciones entre ellas.
+
+![Class-UML.png]( assets/chapter04/Class-UML.png)
+
+#### 4.9.2. Class Dictionary.
+
+## Clase: Solicitud
+| Nº | Nombre de atributo | Descripción                                              | Tipo de dato      |
+|----|--------------------|----------------------------------------------------------|-------------------|
+| 1  | name_equipo        | Almacena el nombre del equipo solicitado.                | Equipo            |
+| 2  | name_usuario       | Almacena el nombre del usuario que realiza la solicitud. | Usuario           |
+| 3  | orden              | Almacena el número de orden de la solicitud.             | unsigned long int |
+| 4  | description        | Almacena la descripción de la solicitud.                 | varchar           |
+| 5  | time               | Almacena el tiempo estimado o requerido.                 | float             |
+| 6  | status             | Almacena el estado de la solicitud.                      | char              |
+
+## Clase: Equipo
+| Nº | Nombre de atributo | Descripción                             | Tipo de dato      |
+|----|--------------------|-----------------------------------------|-------------------|
+| 1  | name               | Almacena el nombre del equipo.          | string            |
+| 2  | cost               | Almacena el costo del equipo.           | float             |
+| 3  | details_tecnicos   | Almacena detalles técnicos del equipo.  | varchar           |
+| 4  | serie              | Almacena el número de serie del equipo. | unsigned long int |
+| 5  | code               | Almacena el código del equipo.          | unsigned long int |
+| 6  | status             | Almacena el estado del equipo.          | char              |
+| 7  | notes              | Almacena notas adicionales del equipo.  | varchar           |
+
+## Clase: Cliente
+| Nº | Nombre de atributo | Descripción                                | Tipo de dato |
+|----|--------------------|--------------------------------------------|--------------|
+| 1  | name               | Almacena el nombre del cliente.            | string       |
+| 2  | email              | Almacena el correo del cliente.            | string       |
+| 3  | password           | Almacena la contraseña del cliente.        | string       |
+| 4  | username           | Almacena el nombre de usuario del cliente. | string       |
+| 5  | phone              | Almacena el teléfono del cliente.          | string       |
+| 6  | user_type          | Almacena el tipo de usuario.               | char         |
+
+## Clase: Company
+| Nº | Nombre de atributo | Descripción                                     | Tipo de dato |
+|----|--------------------|-------------------------------------------------|--------------|
+| 1  | name               | Almacena el nombre de la empresa.               | string       |
+| 2  | email              | Almacena el correo electrónico de la empresa.   | string       |
+| 3  | password           | Almacena la contraseña de la empresa.           | string       |
+| 4  | username           | Almacena el nombre de usuario de la empresa.    | string       |
+| 5  | plan               | Almacena el tipo de plan que posee la empresa.  | char         |
+| 6  | phone              | Almacena el teléfono de contacto de la empresa. | string       |
+| 7  | business_type      | Almacena el tipo de negocio de la empresa.      | char         |
+| 8  | location           | Almacena la ubicación física de la empresa.     | string       |
+
+##  Clase: Cuenta
+| Nº | Nombre de atributo | Descripción                                         | Tipo de dato |
+|----|--------------------|-----------------------------------------------------|--------------|
+| 1  | name (company)     | Almacena el nombre de la empresa asociada.          | Company      |
+| 2  | name (usuario)     | Almacena el nombre del usuario asociado.            | Usuario      |
+| 3  | cost               | Almacena el costo del equipo vinculado a la cuenta. | Equipo       |
+| 4  | status             | Almacena el estado de la cuenta.                    | char         |
+
+##  Clase: Mantenimiento
+| Nº | Nombre de atributo | Descripción                                     | Tipo de dato |
+|----|--------------------|-------------------------------------------------|--------------|
+| 1  | name               | Almacena el nombre del equipo en mantenimiento. | Equipo       |
+| 2  | status             | Almacena el estado del mantenimiento.           | char         |
+
+##  Clase: Notificación
+| Nº | Nombre de atributo | Descripción                                                  | Tipo de dato |
+|----|--------------------|--------------------------------------------------------------|--------------|
+| 1  | name               | Almacena el nombre de la notificación.                       | varchar      |
+| 2  | description        | Almacena la descripción de la notificación.                  | varchar      |
+| 3  | name_company       | Almacena el nombre de la empresa asociada a la notificación. | Company      |
+| 4  | name_cliente       | Almacena el nombre del cliente destinatario.                 | Cliente      |
+| 5  | status             | Indica si la notificación ha sido leída o procesada.         | bool         |
+
+### 4.10. Database Design.
+
+Esta sección presenta la estructura lógica del sistema desde el punto de vista de almacenamiento y organización de los datos. Se describen las entidades principales del sistema, sus atributos, tipos de datos y relaciones entre ellas. El modelo de base de datos ha sido diseñado para garantizar integridad, consistencia y eficiencia en el acceso a la información.
+
+
+
+#### 4.10.1. Relational/Non-Relational Database Diagram.
+
+El diagrama de base de datos ilustra gráficamente cómo se relacionan las tablas dentro del sistema, incluyendo sus claves primarias, claves foráneas y los tipos de relaciones existentes (uno a uno, uno a muchos o muchos a muchos).
+
+<p align="center"><img src="assets/chapter04/diagrama-clase.png" alt="TO-BE-2" />
+</p>
