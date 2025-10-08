@@ -6050,13 +6050,147 @@ del código.
 ### 7.1. Continuous Integration
 #### 7.1.1. Tools and Practices.
 
+En el ámbito del desarrollo y pruebas de software, es esencial contar con herramientas y métodos que 
+aseguren tanto la calidad del código como la productividad del equipo. En nuestro proceso de trabajo, 
+empleamos una variedad de herramientas que optimizan tanto la creación como la validación de la 
+funcionalidad y el comportamiento previsto de la aplicación. Estas herramientas abarcan distintas fases 
+del ciclo de vida del software, desde la escritura del código hasta la ejecución de pruebas y la 
+automatización de tareas.
+Seguimos las metodologías de Desarrollo Orientado por Comportamiento (BDD) y Desarrollo Orientado 
+por Pruebas (TDD) para asegurar que nuestras soluciones no solo cumplan con los requerimientos del 
+cliente, sino que también mantengan altos niveles de calidad técnica. Algunas de las herramientas 
+principales que utilizamos son:
+
+<table style="width:100%; border-collapse: collapse; text-align: center;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th style="border: 1px solid black; padding: 8px;">Herramienta</th>
+      <th style="border: 1px solid black; padding: 8px;">Tipo</th>
+      <th style="border: 1px solid black; padding: 8px;">Descripción</th>
+      <th style="border: 1px solid black; padding: 8px;">Propósito</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 8px;"><strong>J Unit</strong></td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+        Herramienta para pruebas (TDD)
+      </td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+       Es un programa que ayuda a probar pequeñas partes de aplicaciones en Java.
+      </td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+        <ul>
+          Hace más fácil crear y ejecutar pruebas para asegurarse de que las funciones de los componentes funcionen como deberían.
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 8px;"><strong>Mockito</strong></td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+        Herramienta de simulaciones (TDD)
+      </td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+       Permite crear versiones simuladas de otros componentes para hacer pruebas sin usar las versiones reales.
+      </td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+        <ul>
+         Imitar cómo se comportan objetos externos, lo cual es útil para hacer pruebas de forma efectiva.
+        </ul>
+      </td>
+    </tr>
+     <tr>
+      <td style="border: 1px solid black; padding: 8px;"><strong>Cucumber </strong></td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+       Herramienta de BDD
+      </td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+       Ayuda a desarrollar programas centrándose en el comportamiento, usando un lenguaje simple llamado Gherkin para escribir ejemplos que todos entienden.
+      </td>
+      <td style="border: 1px solid black; padding: 8px;" align="justify">
+        <ul>
+          Crea y prueba ejemplos basados en cómo debería comportarse el sistema, asegurando que el desarrollo esté alineado con lo que necesita el negocio.
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #### 7.1.2. Build & Test Suite Pipeline Components.
 ### 7.2. Continuous Delivery
+Su objetivo es el de automatizar la integración y pruebas del código, manteniendo todo listo para un 
+despliegue cuando sea necesario.
+
+
 #### 7.2.1. Tools and Practices.
+
+
+##### Tools: 
+Github Actions/GitLab Cli: Son herramientas que te permiten automatizar todo el pipeline de 
+CI/CD, pero en el caso de Continuous Delivery, podemos configurar una etapa donde el 
+despliegue final sea manual. Esto asegura que el software está listo, pero no se despliega 
+automáticamente, pues esa es función del Continuous Deployment. 
+Trello: Se usan para gestionar el proceso de aprobación del despliegue. Puedes configurar un 
+sistema donde, después de la validación del pipeline, un administrador o gerente de proyecto 
+debe revisar y aprobar el despliegue a producción.
+Docker: Igual que en Continuous Deployment, Docker se usa para contenerizar la aplicación y 
+asegurar que tanto el entorno de desarrollo como de producción sean consistentes. Esto facilita 
+el proceso de validación en entornos intermedios, como staging.
+
+##### Practices (Prácticas):
+###### Feature Branching y Merge Requests:
+Al igual que en Continuous Deployment, las nuevas funcionalidades o cambios se desarrollan en 
+ramas separadas. Sin embargo, en Continuous Delivery, el código se fusiona a una rama estable 
+después de pasar pruebas automáticas, pero el despliegue a producción puede requerir una 
+aprobación manual.
+###### Pipeline de Validación en Staging:
+Antes de desplegar a producción, los cambios suelen pasar por un entorno de staging, donde el 
+código se valida en condiciones similares a las de producción. Aquí, el equipo puede ejecutar 
+pruebas manuales o recibir retroalimentación de usuarios clave antes del despliegue definitivo.
+###### Despliegue Semiautomático:
+El pipeline prepara la aplicación para ser desplegada, pero el despliegue final solo se realiza 
+cuando un desarrollador o administrador lo aprueba. Esto es clave en Continuous Delivery, donde 
+no se automatiza completamente el despliegue en producción.
+###### Aprobación Manual:
+Antes de hacer el despliegue en producción, el pipeline puede requerir que un responsable del 
+proyecto revise los resultados de las pruebas y apruebe el despliegue. Esto reduce el riesgo de 
+lanzar código no deseado en producción.
+###### Rollback Manual:
+Aunque el pipeline puede estar configurado para realizar rollbacks automáticos en caso de 
+errores graves, en Continuous Delivery, los rollbacks suelen ser manuales y controlados por el 
+equipo de operaciones o desarrollo.
 #### 7.2.2. Stages Deployment Pipeline Components. 
+
+###### Integración Continua (CI):
+Al hacer un commit en una rama de desarrollo, el pipeline ejecuta pruebas automáticas y valida 
+que la aplicación esté lista para ser desplegada. Este paso garantiza que el código siempre esté 
+en un estado "desplegable".
+Validación en Staging:
+Una parte importante es tambien la validación del código en un entorno de staging antes de 
+desplegar a producción. Aquí se simulan escenarios de producción y se pueden realizar pruebas 
+adicionales, incluyendo pruebas manuales, de carga o seguridad.
+Despliegue Manual:
+Aunque el código puede estar preparado para su despliegue automático, el paso final del 
+despliegue requiere la aprobación de una persona. Esto permite una mayor supervisión antes de 
+afectar a los usuarios finales.
+Monitoreo y Feedback:
+El pipeline de CD incluye herramientas de monitoreo y análisis que permiten observar cómo el 
+nuevo código afecta el rendimiento de la aplicación antes de hacer el despliegue completo.
+Aprobación del Despliegue:
+En este componente, el pipeline queda en espera hasta que un desarrollador, administrador o 
+equipo de operaciones apruebe el despliegue a producción.
 ### 7.3. Continuous deployment
+
+El objetivo de Continuous Deployment (CD) es que los cambios aprobados en el código pasen 
+automáticamente desde el desarrollo hasta la producción, garantizando que cada nueva versión sea 
+entregada sin intervención manual, siempre y cuando pase todas las pruebas de validación.
+
+
 #### 7.3.1. Tools and Practices.
+
+En este apartado, se detallan las herramientas y prácticas que aseguran un despliegue automatizado y 
+confiable en producción.
+
 #### 7.3.2. Production Deployment Pipeline Components.
 
 
@@ -6134,4 +6268,5 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
