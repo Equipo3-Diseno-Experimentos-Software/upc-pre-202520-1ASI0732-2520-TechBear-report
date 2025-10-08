@@ -6034,11 +6034,31 @@ Video about the product: [Video about the product](https://upcedupe-my.sharepoin
 
 ## Capítulo VI: : Product Verification & Validation <a id="c5"></a>
 
-## 6.1. Testing Suites & Validation
-### 6.1.1. Core Entities Unit Tests
-### 6.1.2. Core Integration Tests.
-### 6.1.3. Core Behavior-Driven Development
-### 6.1.4. Core System Tests.
+### 6.1. Testing Suites & Validation
+#### 6.1.1. Core Entities Unit Tests
+
+Los Core Entities Unit Tests son esenciales en el desarrollo de software, ya que garantizan la calidad y 
+correcto funcionamiento de las entidades centrales, previniendo errores y facilitando el mantenimiento 
+del código.
+
+#### 6.1.2. Core Integration Tests.
+#### 6.1.3. Core Behavior-Driven Development
+#### 6.1.4. Core System Tests.
+
+
+## Capítulo VII:DevOps Practices <a id="c5"></a>
+### 7.1. Continuous Integration
+#### 7.1.1. Tools and Practices.
+
+
+#### 7.1.2. Build & Test Suite Pipeline Components.
+### 7.2. Continuous Delivery
+#### 7.2.1. Tools and Practices.
+#### 7.2.2. Stages Deployment Pipeline Components. 
+### 7.3. Continuous deployment
+#### 7.3.1. Tools and Practices.
+#### 7.3.2. Production Deployment Pipeline Components.
+
 
 
 ## Conclusiones
@@ -6114,3 +6134,4 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
