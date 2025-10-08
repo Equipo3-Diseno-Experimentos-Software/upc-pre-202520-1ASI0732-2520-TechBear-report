@@ -3265,6 +3265,48 @@ En la sección siguiente se detallará el proceso de implementación, documentac
 </tr>
 </table>
 
+### 5.2.2 Evidencia de Landing Page Implementada
+
+En esta sección se presentan las evidencias del Landing Page desarrollado por el equipo durante el sprint correspondiente.  
+El objetivo principal de esta página es introducir el propósito del producto, captar la atención del usuario y guiarlo hacia el registro o descarga de la aplicación.
+
+**Objetivo del entregable**  
+- Mostrar la propuesta de valor del producto y su impacto.  
+- Facilitar el acceso al sitio principal y a las plataformas de contacto.  
+- Servir como punto de entrada para potenciales usuarios o clientes.  
+- Demostrar el cumplimiento de criterios de diseño, responsividad y performance.
+
+**Descripción general**  
+El Landing Page fue desarrollado utilizando React + Vite y hospedado en GitHub Pages, siguiendo principios de Responsive Design.  
+Se estructuró en secciones informativas claras y con contenido optimizado para SEO:
+
+- Encabezado con logotipo, navegación y botón de registro.  
+- Sección “Sobre nosotros” y “Beneficios principales”.  
+- Presentación visual del producto (mockups y demostraciones).  
+- Testimonios o validaciones de usuarios.  
+- Pie de página con enlaces a redes sociales y medios de contacto.  
+
+**Enlaces de despliegue**  
+- Sitio en producción: [Landing Page](https://inteligencia-artesanal-aplicaciones-web.github.io/Landing-Page)  
+- Repositorio de GitHub: [Repositorio](https://github.com/Inteligencia-Artesanal-Aplicaciones-Web/Landing-Page)
+
+**Evidencias visuales**  
+A continuación se muestran las captura de pantalla completa del Landing Page desplegado:
+
+<img src="./images/Landing Page.png" alt="Landing Page.png" width="100%">
+
+
+
+*Todas las capturas corresponden al entorno en producción y fueron tomadas luego del despliegue exitoso en la semana 5.*
+
+**Características técnicas relevantes**  
+- Arquitectura basada en componentes reutilizables de React.  
+- Implementación de Hooks para manejo de estado y eventos.  
+- Uso de TailwindCSS para estilos responsivos y consistentes.  
+- Validación de performance con Lighthouse Score ≥ 90.  
+- Conexión inicial hacia la API principal mediante endpoints públicos de prueba.  
+- Integración continua (CI/CD) con GitHub Actions.
+
 
 ##### 5.2.1.2. Aspect Leaders and Collaborators
 
@@ -6268,5 +6310,6 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
