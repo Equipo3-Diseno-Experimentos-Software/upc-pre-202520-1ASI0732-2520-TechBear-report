@@ -3354,6 +3354,51 @@ A continuación se presentan las principales capturas de pantalla que muestran e
 - Validación y control de formularios reactivos.  
 - Implementación de CI/CD con GitHub Actions y Firebase CLI.  
 
+### 5.2.5 Implemented RESTful API and/or Serverless Backend Evidence
+
+En esta sección se presentan las evidencias del Backend implementado para el proyecto, que proporciona los servicios RESTful necesarios para la comunicación entre el frontend y la base de datos.  
+El propósito de este componente es gestionar los datos de la aplicación, exponer endpoints seguros y mantener la lógica de negocio del sistema.
+
+**Objetivo del entregable**  
+- Desarrollar una API REST funcional y estable que brinde servicios al frontend.  
+- Implementar controladores, rutas y servicios que gestionen las entidades principales del sistema.  
+- Integrar la capa de persistencia con la base de datos seleccionada.  
+- Garantizar la seguridad mediante autenticación, validación y manejo de errores.  
+
+**Descripción general**  
+El backend fue desarrollado utilizando Node.js con el framework Express.js y desplegado en Firebase Functions bajo un esquema serverless, garantizando escalabilidad y disponibilidad.  
+Se diseñaron controladores y rutas RESTful siguiendo las buenas prácticas de la arquitectura de tres capas (controlador, servicio y modelo).  
+El entorno de despliegue se configuró con integración continua (CI/CD) a través de GitHub Actions.
+
+Las principales características implementadas fueron:  
+- CRUD completo para las entidades del sistema.  
+- Autenticación y autorización de usuarios mediante JWT.  
+- Validación de datos de entrada con librerías como `express-validator`.  
+- Conexión segura con la base de datos Firestore.  
+- Manejo de errores centralizado y respuestas estandarizadas.  
+- Configuración de variables de entorno seguras.  
+
+**Enlaces de despliegue**  
+- Endpoint base de la API (producción): [Backend](https://ositopolar-platform.onrender.com/)  
+
+**Evidencias visuales**  
+A continuación se muestran capturas que validan la correcta ejecución de los endpoints principales:
+
+- Figura 1. Ejecución del método **GET /products** retornando listado de productos.  
+- Figura 2. Prueba del método **POST /auth/login** con credenciales válidas (HTTP 200).  
+- Figura 3. Resultado del método **POST /products** creando nuevo registro (HTTP 201).  
+- Figura 4. Respuesta de error controlado en una solicitud inválida (HTTP 400).  
+
+*Todas las pruebas fueron realizadas en Postman dentro del entorno de producción configurado en Firebase Functions.*
+
+**Características técnicas relevantes**  
+- Lenguaje y entorno: Node.js 20 con Express.js 5.  
+- Base de datos: Firestore (Firebase).  
+- Arquitectura: serverless con microservicios desplegados en Firebase Functions.  
+- Autenticación basada en JWT con middleware personalizado.  
+- Documentación API: Swagger / Postman Collection compartida.  
+- Pipeline automatizado para despliegue continuo con GitHub Actions.  
+
 ##### 5.2.1.2. Aspect Leaders and Collaborators
 
 Durante este primer Sprint, el equipo se enfocó principalmente en el desarrollo, la mejora estructural y visual de la Landing Page de OsitoPolar, asegurando su visualización en distintos dispositivos (diseño responsive), la integración armoniosa de imágenes y textos, y la implementación de un cambio de idioma dinámico mediante un botón.
@@ -6356,6 +6401,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
