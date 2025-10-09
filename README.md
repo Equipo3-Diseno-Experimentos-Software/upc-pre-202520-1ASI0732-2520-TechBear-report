@@ -7801,9 +7801,54 @@ entregada sin intervención manual, siempre y cuando pase todas las pruebas de v
 En este apartado, se detallan las herramientas y prácticas que aseguran un despliegue automatizado y 
 confiable en producción.
 
+Tools (Herramientas):
+<p>• GitHub Actions o GitLab CI: Para automatizar el pipeline de CI/CD. Estas herramientas permiten 
+configurar workflows que incluyen la ejecución de pruebas y el despliegue automático a 
+diferentes entornos (desarrollo, staging, producción).</p>
+<p>• Docker: Para contenerizar la aplicación backend (Spring Boot). Docker permite empaquetar la 
+aplicación con todas sus dependencias, asegurando consistencia en los entornos de desarrollo y 
+producción.</p>
+<p>• Railway: Como plataforma para la base de datos MySQL, Railway permite gestionar el 
+despliegue de forma automatizada, con soporte para migraciones y backups.</p>
+<p>• Render: Esta plataforma se encargará del despliegue automático del backend en Spring Boot, 
+ofreciendo monitoreo y escalabilidad automática.</p>
+<p>• Firebase Hosting: Para el frontend en Angular, Firebase Hosting automatiza los despliegues de 
+la aplicación web y asegura un despliegue rápido y seguro.</p>
+
+Feature Branching:
+<p>• Utilizamos una estrategia de ramas en Git donde los desarrolladores trabajan en nuevas 
+funcionalidades dentro de ramas separadas. Una vez completadas y probadas, estas ramas se 
+fusionan a la rama develop, que es la encargada de gestionar los despliegues a producción.</p>
+<p>• Commit-based deployment (Despliegue basado en commits): Cada vez que se realiza un 
+commit en la rama develop, el pipeline de CI/CD se activa automáticamente para ejecutar los 
+procesos de construcción, pruebas y despliegue. Esta rama es la que usamos para que los 
+cambios se desplieguen directamente, manteniendo el flujo de trabajo ágil y automatizado.
+<p>• Rollback automático: En caso de detectar fallos en producción después del despliegue, el 
+pipeline está configurado para realizar un rollback automático, restaurando la versión anterior 
+del software y notificando al equipo sobre el error. Esto garantiza estabilidad y una rápida 
+recuperación de fallos.
+
 #### 7.3.2. Production Deployment Pipeline Components.
 
 
+Este apartado describe los componentes que forman parte del pipeline de despliegue a producción y 
+cómo se integran para automatizar todo el proceso.
+
+Componentes del Pipeline de la Base de Datos (Railway):
+
+<p>Este apartado describe los componentes que forman parte del pipeline de despliegue a producción para 
+la base de datos MySQL gestionada en Railway.
+
+1.- Gestión de Migraciones Automáticas: Al realizar cambios en el modelo de datos del backend 
+(Spring Boot), este gestiona automáticamente las migraciones de la base de datos. Cuando se 
+modifican las entidades, Spring Boot aplica automáticamente los cambios a la base de datos en 
+Railway, asegurando que la estructura de la base de datos esté sincronizada con los cambios en 
+el código.
+
+2.-Backup Automático: Railway crea automáticamente copias de seguridad de la base de datos antes 
+de aplicar cualquier migración crítica. Esto asegura que, en caso de que algo falle durante el 
+proceso de migración, se pueda restaurar la base de datos a su estado anterior sin pérdida de 
+datos.
 
 ## Conclusiones
 
