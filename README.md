@@ -3337,46 +3337,46 @@ Entre las principales características implementadas se incluyen:
 A continuación se presentan las principales capturas de pantalla que muestran el funcionamiento de la aplicación web:
 
 - **Vista principal del Home del sistema.**  
-  <img src="./images/Front1.png" alt="Vista principal del Home del sistema" width="100%">
+  <img src="./images/front1.png" alt="Vista principal del Home del sistema" width="100%">
 
 - **Módulo “My Equipments”.**  
-  <img src="./images/Front2.png" alt="Módulo My Equipments" width="100%">
+  <img src="./images/front2.png" alt="Módulo My Equipments" width="100%">
 
 - **Panel de control de equipos individuales.**  
-  <img src="./images/Front3.png" alt="Panel de control de equipos individuales" width="100%">
+  <img src="./images/front3.png" alt="Panel de control de equipos individuales" width="100%">
 
 - **Vista analítica del equipo.**  
-  <img src="./images/Front4.png" alt="Vista analítica del equipo" width="100%">
+  <img src="./images/front4.png" alt="Vista analítica del equipo" width="100%">
 
 - **Módulo de solicitudes de servicio (Service Requests).**  
-  <img src="./images/Front5.png" alt="Módulo de solicitudes de servicio" width="100%">
+  <img src="./images/front5.png" alt="Módulo de solicitudes de servicio" width="100%">
 
 - **Creación de solicitud de servicio – Selección del equipo.**  
-  <img src="./images/Front6-Step1.png" alt="Selección del equipo para nueva solicitud de servicio" width="100%">
+  <img src="./images/front6-Step1.png" alt="Selección del equipo para nueva solicitud de servicio" width="100%">
 
 - **Creación de solicitud de servicio – Programación.**  
-  <img src="./images/Front7.png" alt="Programación de la solicitud de servicio" width="100%">
+  <img src="./images/front7.png" alt="Programación de la solicitud de servicio" width="100%">
 
 - **Creación de solicitud de servicio – Confirmación.**  
-  <img src="./images/Front8.png" alt="Confirmación de la solicitud de servicio" width="100%">
+  <img src="./images/front8.png" alt="Confirmación de la solicitud de servicio" width="100%">
 
 - **Módulo “Rent Equipment”.**  
-  <img src="./images/Front9.png" alt="Módulo Rent Equipment" width="100%">
+  <img src="./images/front9.png" alt="Módulo Rent Equipment" width="100%">
 
 - **Configuración del alquiler seleccionado.**  
-  <img src="./images/Front10.png" alt="Configuración del alquiler seleccionado" width="100%">
+  <img src="./images/front10.png" alt="Configuración del alquiler seleccionado" width="100%">
 
 - **Sección “Upgrade Your Plan” para usuarios.**  
-  <img src="./images/Front11.png" alt="Sección Upgrade Your Plan para usuarios" width="100%">
+  <img src="./images/front11.png" alt="Sección Upgrade Your Plan para usuarios" width="100%">
 
 - **Sección “Upgrade Your Plan” para proveedores.**  
-  <img src="./images/Front12.png" alt="Sección Upgrade Your Plan para proveedores" width="100%">
+  <img src="./images/front12.png" alt="Sección Upgrade Your Plan para proveedores" width="100%">
 
 - **Sección de notificaciones.**  
-  <img src="./images/Front13.png" alt="Sección de notificaciones" width="100%">
+  <img src="./images/front13.png" alt="Sección de notificaciones" width="100%">
 
 - **Sección de contacto.**  
-  <img src="./images/Front14.png" alt="Sección de contacto" width="100%">
+  <img src="./images/front14.png" alt="Sección de contacto" width="100%">
 
 *Las capturas fueron tomadas del entorno en producción tras el despliegue exitoso del frontend en Firebase Hosting.*
 
@@ -6436,6 +6436,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
