@@ -6285,10 +6285,1376 @@ Los Core Entities Unit Tests son esenciales en el desarrollo de software, ya que
 correcto funcionamiento de las entidades centrales, previniendo errores y facilitando el mantenimiento 
 del código.
 
+Se realizaron **pruebas unitarias** sobre el agregado `Equipment` del módulo **Equipment Management** para validar que sus propiedades se inicializan correctamente según los requisitos del negocio.  
+
+Se utilizaron **xUnit** para las pruebas y **FluentAssertions** para las aserciones. Las pruebas cubren constructor, tipos enumerados (`EEquipmentType`, `EOwnershipType`), propiedades de temperatura, ubicación, consumo de energía, estado y propiedad del equipo.  
+
+Se ejecutaron **12 tests**, todos pasaron correctamente, confirmando que la entidad funciona como se espera **en aislamiento**, sin depender de bases de datos ni servicios externos.  
+
+**Conclusión:** `Equipment` cumple con los requisitos de inicialización de datos y es confiable para integrarse con otras capas del sistema.
+
+
+
+    [Fact]
+    public void Constructor_Should_Create_Equipment_With_Valid_Data()
+    {
+        // Arrange
+        var command = CreateValidCommand();
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.Should().NotBeNull();
+        equipment.Name.Should().Be("Freezer Industrial FZ-500");
+        equipment.Model.Should().Be("FZ-500-XL");
+        equipment.Manufacturer.Should().Be("CoolTech");
+        equipment.SerialNumber.Should().Be("SN-2024-001");
+        equipment.Code.Should().Be("EQ-FZ-001");
+        equipment.Cost.Should().Be(15000.00m);
+        equipment.TechnicalDetails.Should().Be("Capacidad 500L, -25°C");
+        equipment.Notes.Should().Be("Equipo de alta prioridad");
+    }
+
+    [Theory]
+    [InlineData("Freezer", EEquipmentType.Freezer)]
+    [InlineData("ColdRoom", EEquipmentType.ColdRoom)]
+    [InlineData("Refrigerator", EEquipmentType.Refrigerator)]
+    public void Constructor_Should_Parse_EquipmentType_Correctly(string typeString, EEquipmentType expectedType)
+    {
+        // Arrange
+        var command = CreateValidCommand() with { Type = typeString };
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.Type.Should().Be(expectedType);
+    }
+
+    [Fact]
+    public void Equipment_Should_Store_Temperature_Values_Correctly()
+    {
+        // Arrange
+        var command = CreateValidCommand();
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.CurrentTemperature.Should().Be(-18.5m);
+        equipment.SetTemperature.Should().Be(-18.0m);
+        equipment.OptimalTemperatureMin.Should().Be(-20.0m);
+        equipment.OptimalTemperatureMax.Should().Be(-15.0m);
+    }
+
+    [Fact]
+    public void Equipment_Should_Store_Location_Information()
+    {
+        // Arrange
+        var command = CreateValidCommand();
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.Location.Should().NotBeNull();
+        equipment.Location.Name.Should().Be("Almacén Central");
+        equipment.Location.Address.Should().Be("Av. Industrial 500, Lima");
+        equipment.Location.Coordinates.Should().NotBeNull();
+        equipment.Location.Coordinates.Latitude.Should().Be(-12.0464m);
+        equipment.Location.Coordinates.Longitude.Should().Be(-77.0428m);
+    }
+
+    [Fact]
+    public void Equipment_Should_Store_EnergyConsumption_Information()
+    {
+        // Arrange
+        var command = CreateValidCommand();
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.EnergyConsumption.Should().NotBeNull();
+        equipment.EnergyConsumption.Current.Should().Be(2.5m);
+        equipment.EnergyConsumption.Unit.Should().Be("kWh");
+        equipment.EnergyConsumption.Average.Should().Be(2.3m);
+    }
+
+    [Theory]
+    [InlineData("Owned", EOwnershipType.Owned)]
+    [InlineData("Rented", EOwnershipType.Rented)]
+    [InlineData("Leased", EOwnershipType.Leased)]
+    public void Constructor_Should_Parse_OwnershipType_Correctly(string ownershipString, EOwnershipType expectedType)
+    {
+        // Arrange
+        var command = CreateValidCommand() with { OwnershipType = ownershipString };
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.OwnershipType.Should().Be(expectedType);
+    }
+
+    [Fact]
+    public void Equipment_Should_Have_Default_Active_Status()
+    {
+        // Arrange
+        var command = CreateValidCommand();
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.Status.Should().Be(EEquipmentStatus.Active);
+        equipment.IsPoweredOn.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Equipment_Should_Store_Owner_Information()
+    {
+        // Arrange
+        var command = CreateValidCommand();
+
+        // Act
+        var equipment = new Equipment(command);
+
+        // Assert
+        equipment.OwnerId.Should().Be(1);
+        equipment.OwnerType.Should().Be("Company");
+        equipment.OwnershipType.Should().Be(EOwnershipType.Owned);
+    }
+
+<img src="images/prueba1.png" alt="prueba1" width="100%">
+
+Se realizaron **pruebas unitarias** sobre el agregado `ServiceRequest` del módulo **Service Requests**, enfocadas en los métodos principales: `AssignTechnician`, `UpdateStatus`, `Reject`, `Cancel`, `AddResolutionDetails` y `AddCustomerFeedback`.  
+
+Se utilizaron **xUnit** y **FluentAssertions**. Las pruebas verifican la correcta inicialización, asignación de técnicos, actualización de estado, resolución de solicitudes, cancelación, rechazos y registro de feedback del cliente.  
+
+Todos los tests se ejecutaron correctamente, validando que el agregado se comporta como se espera **en aislamiento**, sin depender de bases de datos ni servicios externos.  
+
+**Conclusión:** `ServiceRequest` cumple con los requerimientos funcionales y asegura la consistencia y confiabilidad de la lógica de negocio relacionada con la gestión de solicitudes de servicio.
+
+    [Fact]
+    public void Constructor_Should_Create_ServiceRequest_With_Pending_Status()
+    {
+        // Arrange & Act
+        var serviceRequest = new ServiceRequest(
+            title: "Freezer no enfría correctamente",
+            description: "El equipo no alcanza la temperatura óptima",
+            issueDetails: "Temperatura actual: -10°C, debería estar a -18°C",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.CorrectiveMaintenance,
+            priority: EPriority.High,
+            urgency: EUrgency.Urgent,
+            isEmergency: false,
+            scheduledDate: null,
+            timeSlot: "09:00-12:00",
+            serviceAddress: "Av. Industrial 500"
+        );
+
+        // Assert
+        serviceRequest.Should().NotBeNull();
+        serviceRequest.Title.Should().Be("Freezer no enfría correctamente");
+        serviceRequest.Description.Should().Be("El equipo no alcanza la temperatura óptima");
+        serviceRequest.IssueDetails.Should().Be("Temperatura actual: -10°C, debería estar a -18°C");
+        serviceRequest.Status.Should().Be(EServiceRequestStatus.Pending);
+        serviceRequest.ClientId.Should().Be(1);
+        serviceRequest.CompanyId.Should().Be(1);
+        serviceRequest.EquipmentId.Should().Be(1);
+        serviceRequest.ServiceType.Should().Be(EServiceType.CorrectiveMaintenance);
+        serviceRequest.Priority.Should().Be(EPriority.High);
+        serviceRequest.Urgency.Should().Be(EUrgency.Urgent);
+        serviceRequest.IsEmergency.Should().BeFalse();
+        serviceRequest.TimeSlot.Should().Be("09:00-12:00");
+        serviceRequest.ServiceAddress.Should().Be("Av. Industrial 500");
+        serviceRequest.AssignedTechnicianId.Should().BeNull();
+    }
+
+    [Fact]
+    public void AssignTechnician_Should_Set_Technician_And_Change_Status_To_Accepted()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Mantenimiento preventivo",
+            description: "Revisión general",
+            issueDetails: "Mantenimiento programado",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.PreventiveMaintenance
+        );
+
+        // Act
+        serviceRequest.AssignTechnician(5);
+
+        // Assert
+        serviceRequest.AssignedTechnicianId.Should().Be(5);
+        serviceRequest.Status.Should().Be(EServiceRequestStatus.Accepted);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    [InlineData(-10)]
+    public void AssignTechnician_Should_Throw_Exception_For_Invalid_TechnicianId(int invalidTechnicianId)
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+
+        // Act
+        var act = () => serviceRequest.AssignTechnician(invalidTechnicianId);
+
+        // Assert
+        act.Should().Throw<ArgumentException>()
+            .WithMessage("*Technician ID must be positive*");
+    }
+
+    [Fact]
+    public void AssignTechnician_Should_Throw_Exception_If_Not_Pending()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        serviceRequest.AssignTechnician(5); // Now status is Accepted
+
+        // Act
+        var act = () => serviceRequest.AssignTechnician(10);
+
+        // Assert
+        act.Should().Throw<InvalidOperationException>()
+            .WithMessage("*Only pending service requests can be assigned a technician*");
+    }
+
+    [Theory]
+    [InlineData(EServiceRequestStatus.InProgress)]
+    [InlineData(EServiceRequestStatus.Resolved)]
+    [InlineData(EServiceRequestStatus.Cancelled)]
+    public void UpdateStatus_Should_Change_Status_Correctly(EServiceRequestStatus newStatus)
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+
+        // Act
+        serviceRequest.UpdateStatus(newStatus);
+
+        // Assert
+        serviceRequest.Status.Should().Be(newStatus);
+    }
+
+    [Fact]
+    public void UpdateStatus_Should_Set_ActualCompletionDate_When_Resolved()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        var beforeUpdate = DateTimeOffset.UtcNow;
+
+        // Act
+        serviceRequest.UpdateStatus(EServiceRequestStatus.Resolved);
+
+        // Assert
+        serviceRequest.Status.Should().Be(EServiceRequestStatus.Resolved);
+        serviceRequest.ActualCompletionDate.Should().NotBeNull();
+        serviceRequest.ActualCompletionDate.Should().BeOnOrAfter(beforeUpdate);
+    }
+
+    [Fact]
+    public void Reject_Should_Change_Status_To_Rejected_When_Pending()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+
+        // Act
+        serviceRequest.Reject();
+
+        // Assert
+        serviceRequest.Status.Should().Be(EServiceRequestStatus.Rejected);
+    }
+
+    [Theory]
+    [InlineData(EServiceRequestStatus.Accepted)]
+    [InlineData(EServiceRequestStatus.InProgress)]
+    [InlineData(EServiceRequestStatus.Resolved)]
+    public void Reject_Should_Throw_Exception_For_Terminal_States(EServiceRequestStatus terminalStatus)
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        serviceRequest.UpdateStatus(terminalStatus);
+
+        // Act
+        var act = () => serviceRequest.Reject();
+
+        // Assert
+        act.Should().Throw<InvalidOperationException>()
+            .WithMessage("*cannot be rejected from its current status*");
+    }
+
+    [Fact]
+    public void Cancel_Should_Change_Status_To_Cancelled_When_Pending()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+
+        // Act
+        serviceRequest.Cancel();
+
+        // Assert
+        serviceRequest.Status.Should().Be(EServiceRequestStatus.Cancelled);
+    }
+
+    [Theory]
+    [InlineData(EServiceRequestStatus.Resolved)]
+    [InlineData(EServiceRequestStatus.Cancelled)]
+    [InlineData(EServiceRequestStatus.Rejected)]
+    public void Cancel_Should_Throw_Exception_For_Terminal_States(EServiceRequestStatus terminalStatus)
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        serviceRequest.UpdateStatus(terminalStatus);
+
+        // Act
+        var act = () => serviceRequest.Cancel();
+
+        // Assert
+        act.Should().Throw<InvalidOperationException>()
+            .WithMessage("*cannot be cancelled from its current status*");
+    }
+
+    [Fact]
+    public void AddResolutionDetails_Should_Set_Resolution_And_Mark_Resolved()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        var resolutionDetails = "Se reemplazó el compresor";
+        var technicianNotes = "Compresor defectuoso, reemplazado con modelo nuevo";
+        var cost = 1500.00m;
+
+        // Act
+        serviceRequest.AddResolutionDetails(resolutionDetails, technicianNotes, cost);
+
+        // Assert
+        serviceRequest.ResolutionDetails.Should().Be(resolutionDetails);
+        serviceRequest.TechnicianNotes.Should().Be(technicianNotes);
+        serviceRequest.Cost.Should().Be(cost);
+        serviceRequest.Status.Should().Be(EServiceRequestStatus.Resolved);
+    }
+
+    [Fact]
+    public void AddResolutionDetails_Should_Accept_Null_Cost()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+
+        // Act
+        serviceRequest.AddResolutionDetails("Resolved", "Notes", null);
+
+        // Assert
+        serviceRequest.Cost.Should().BeNull();
+        serviceRequest.Status.Should().Be(EServiceRequestStatus.Resolved);
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(3)]
+    [InlineData(5)]
+    public void AddCustomerFeedback_Should_Set_Rating_And_Submission_Date(int rating)
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        serviceRequest.UpdateStatus(EServiceRequestStatus.Resolved);
+        var beforeFeedback = DateTimeOffset.UtcNow;
+
+        // Act
+        serviceRequest.AddCustomerFeedback(rating);
+
+        // Assert
+        serviceRequest.CustomerFeedbackRating.Should().Be(rating);
+        serviceRequest.FeedbackSubmissionDate.Should().NotBeNull();
+        serviceRequest.FeedbackSubmissionDate.Should().BeOnOrAfter(beforeFeedback);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(6)]
+    [InlineData(-1)]
+    [InlineData(10)]
+    public void AddCustomerFeedback_Should_Throw_Exception_For_Invalid_Rating(int invalidRating)
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        serviceRequest.UpdateStatus(EServiceRequestStatus.Resolved);
+
+        // Act
+        var act = () => serviceRequest.AddCustomerFeedback(invalidRating);
+
+        // Assert
+        act.Should().Throw<ArgumentOutOfRangeException>()
+            .WithMessage("*Rating must be between 1 and 5*");
+    }
+
+    [Fact]
+    public void AddCustomerFeedback_Should_Throw_Exception_If_Not_Resolved()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+
+        // Act
+        var act = () => serviceRequest.AddCustomerFeedback(5);
+
+        // Assert
+        act.Should().Throw<InvalidOperationException>()
+            .WithMessage("*Cannot add feedback to an unresolved service request*");
+    }
+
+<img src="images/prueba2.png" alt="prueba1" width="100%">
+
 #### 6.1.2. Core Integration Tests.
+
+Se realizaron pruebas de integración del repositorio `ServiceRequestRepository` usando una base de datos en memoria.  
+Se verificó que las operaciones de persistencia —crear, actualizar, cancelar, rechazar, registrar resolución y feedback— funcionan correctamente.  
+Los resultados confirman que los datos se mantienen consistentes entre la capa de dominio y la base de datos.
+
+    private readonly AppDbContext _context;
+    private readonly ServiceRequestRepository _repository;
+
+    public ServiceRequestIntegrationTests()
+    {
+        var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: $"TestDb_{Guid.NewGuid()}")
+            .Options;
+
+        _context = new AppDbContext(options);
+        _repository = new ServiceRequestRepository(_context);
+    }
+
+    [Fact]
+    public async Task Repository_Should_Save_And_Retrieve_ServiceRequest()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Freezer con falla eléctrica",
+            description: "El equipo no enciende",
+            issueDetails: "Se detectó problema en el sistema eléctrico",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.CorrectiveMaintenance,
+            priority: EPriority.High,
+            urgency: EUrgency.Urgent
+        );
+
+        // Act
+        await _repository.AddAsync(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        var retrieved = await _repository.FindByIdAsync(serviceRequest.Id);
+
+        // Assert
+        retrieved.Should().NotBeNull();
+        retrieved!.Title.Should().Be("Freezer con falla eléctrica");
+        retrieved.Description.Should().Be("El equipo no enciende");
+        retrieved.Status.Should().Be(EServiceRequestStatus.Pending);
+        retrieved.ServiceType.Should().Be(EServiceType.CorrectiveMaintenance);
+        retrieved.Priority.Should().Be(EPriority.High);
+        retrieved.Urgency.Should().Be(EUrgency.Urgent);
+    }
+
+    [Fact]
+    public async Task Repository_Should_Update_ServiceRequest_With_Technician()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Mantenimiento preventivo",
+            description: "Revisión trimestral",
+            issueDetails: "Mantenimiento programado",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 2,
+            serviceType: EServiceType.PreventiveMaintenance
+        );
+        await _repository.AddAsync(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        // Act
+        serviceRequest.AssignTechnician(10);
+        _repository.Update(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        var updated = await _repository.FindByIdAsync(serviceRequest.Id);
+
+        // Assert
+        updated.Should().NotBeNull();
+        updated!.AssignedTechnicianId.Should().Be(10);
+        updated.Status.Should().Be(EServiceRequestStatus.Accepted);
+    }
+
+    [Fact]
+    public async Task Repository_Should_Persist_Status_Changes()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        await _repository.AddAsync(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        // Act
+        serviceRequest.UpdateStatus(EServiceRequestStatus.InProgress);
+        _repository.Update(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        var updated = await _repository.FindByIdAsync(serviceRequest.Id);
+
+        // Assert
+        updated.Should().NotBeNull();
+        updated!.Status.Should().Be(EServiceRequestStatus.InProgress);
+    }
+
+    [Fact]
+    public async Task Repository_Should_Save_Resolution_Details()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Reparación de compresor",
+            description: "Compresor defectuoso",
+            issueDetails: "Compresor no funciona",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 3,
+            serviceType: EServiceType.CorrectiveMaintenance
+        );
+        await _repository.AddAsync(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        // Act
+        serviceRequest.AddResolutionDetails(
+            "Se reemplazó el compresor completamente",
+            "Compresor modelo XYZ instalado y probado",
+            2500.00m
+        );
+        _repository.Update(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        var updated = await _repository.FindByIdAsync(serviceRequest.Id);
+
+        // Assert
+        updated.Should().NotBeNull();
+        updated!.ResolutionDetails.Should().Be("Se reemplazó el compresor completamente");
+        updated.TechnicianNotes.Should().Be("Compresor modelo XYZ instalado y probado");
+        updated.Cost.Should().Be(2500.00m);
+        updated.Status.Should().Be(EServiceRequestStatus.Resolved);
+    }
+
+    [Fact]
+    public async Task Repository_Should_Persist_Customer_Feedback()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        serviceRequest.UpdateStatus(EServiceRequestStatus.Resolved);
+        await _repository.AddAsync(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        // Act
+        serviceRequest.AddCustomerFeedback(5);
+        _repository.Update(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        var updated = await _repository.FindByIdAsync(serviceRequest.Id);
+
+        // Assert
+        updated.Should().NotBeNull();
+        updated!.CustomerFeedbackRating.Should().Be(5);
+        updated.FeedbackSubmissionDate.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task Repository_Should_Handle_Rejection()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        await _repository.AddAsync(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        // Act
+        serviceRequest.Reject();
+        _repository.Update(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        var updated = await _repository.FindByIdAsync(serviceRequest.Id);
+
+        // Assert
+        updated.Should().NotBeNull();
+        updated!.Status.Should().Be(EServiceRequestStatus.Rejected);
+    }
+
+    [Fact]
+    public async Task Repository_Should_Handle_Cancellation()
+    {
+        // Arrange
+        var serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        await _repository.AddAsync(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        // Act
+        serviceRequest.Cancel();
+        _repository.Update(serviceRequest);
+        await _context.SaveChangesAsync();
+
+        var updated = await _repository.FindByIdAsync(serviceRequest.Id);
+
+        // Assert
+        updated.Should().NotBeNull();
+        updated!.Status.Should().Be(EServiceRequestStatus.Cancelled);
+    }
+
+    [Fact]
+    public async Task Repository_Should_List_Multiple_ServiceRequests()
+    {
+        // Arrange
+        var request1 = new ServiceRequest("Test 1", "Desc 1", "Issue 1", 1, 1, 1, EServiceType.Diagnostic);
+        var request2 = new ServiceRequest("Test 2", "Desc 2", "Issue 2", 1, 1, 2, EServiceType.Installation);
+        var request3 = new ServiceRequest("Test 3", "Desc 3", "Issue 3", 1, 1, 3, EServiceType.PreventiveMaintenance);
+
+        await _repository.AddAsync(request1);
+        await _repository.AddAsync(request2);
+        await _repository.AddAsync(request3);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var allRequests = await _repository.ListAsync();
+
+        // Assert
+        allRequests.Should().HaveCount(3);
+        allRequests.Should().Contain(r => r.Title == "Test 1");
+        allRequests.Should().Contain(r => r.Title == "Test 2");
+        allRequests.Should().Contain(r => r.Title == "Test 3");
+    }
+
+    public void Dispose()
+    {
+        _context?.Dispose();
+    }
+
+<img src="images/prueba3.png" alt="prueba1" width="100%">
+
 #### 6.1.3. Core Behavior-Driven Development
+
+Se implementaron pruebas de comportamiento (BDD) para el agregado `ServiceRequest` usando SpecFlow.  
+Se definieron escenarios **Given-When-Then** que simulan flujos de usuario: creación de solicitudes, asignación de técnicos, actualización de estados, resolución, cancelación, rechazo y registro de feedback.  
+Las pruebas confirman que el sistema responde correctamente a acciones válidas e inválidas, garantizando que el comportamiento del negocio se cumpla según los requisitos.
+
+    private ServiceRequest? _serviceRequest;
+    private Exception? _exception;
+    private string? _title;
+    private string? _description;
+    private string? _issueDetails;
+
+    [Given(@"que tengo los datos de una nueva solicitud de servicio")]
+    public void GivenQueTengoLosDatosDeUnaNuevaSolicitudDeServicio()
+    {
+        _title = "Freezer no enfría correctamente";
+        _description = "El equipo no alcanza la temperatura óptima";
+        _issueDetails = "Temperatura actual: -10°C, debería estar a -18°C";
+    }
+
+    [When(@"creo la solicitud de servicio")]
+    public void WhenCreoLaSolicitudDeServicio()
+    {
+        _serviceRequest = new ServiceRequest(
+            title: _title!,
+            description: _description!,
+            issueDetails: _issueDetails!,
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.CorrectiveMaintenance,
+            priority: EPriority.High,
+            urgency: EUrgency.Urgent
+        );
+    }
+
+    [Then(@"la solicitud debe estar en estado Pendiente")]
+    public void ThenLaSolicitudDebeEstarEnEstadoPendiente()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.Status.Should().Be(EServiceRequestStatus.Pending);
+    }
+
+    [Then(@"debe tener un número de orden generado automáticamente")]
+    public void ThenDebeTenerUnNumeroDeOrdenGeneradoAutomaticamente()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.OrderNumber.Should().NotBeNullOrEmpty();
+    }
+
+    [Given(@"que existe una solicitud de servicio pendiente")]
+    public void GivenQueExisteUnaSolicitudDeServicioPendiente()
+    {
+        _serviceRequest = new ServiceRequest(
+            title: "Test Service Request",
+            description: "Test Description",
+            issueDetails: "Test Issue",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+    }
+
+    [When(@"asigno un técnico con ID (.*) a la solicitud")]
+    public void WhenAsignoUnTecnicoConIDALaSolicitud(int technicianId)
+    {
+        try
+        {
+            _serviceRequest!.AssignTechnician(technicianId);
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
+
+    [Then(@"la solicitud debe cambiar a estado Aceptado")]
+    public void ThenLaSolicitudDebeCambiarAEstadoAceptado()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.Status.Should().Be(EServiceRequestStatus.Accepted);
+    }
+
+    [Then(@"debe tener el técnico asignado con ID (.*)")]
+    public void ThenDebeTenerElTecnicoAsignadoConID(int technicianId)
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.AssignedTechnicianId.Should().Be(technicianId);
+    }
+
+    [When(@"intento asignar un técnico con ID (.*)")]
+    public void WhenIntentoAsignarUnTecnicoConID(int technicianId)
+    {
+        try
+        {
+            _serviceRequest!.AssignTechnician(technicianId);
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
+
+    [Then(@"debe lanzar una excepción de argumento inválido")]
+    public void ThenDebeLanzarUnaExcepcionDeArgumentoInvalido()
+    {
+        _exception.Should().NotBeNull();
+        _exception.Should().BeOfType<ArgumentException>();
+    }
+
+    [Then(@"el mensaje debe indicar ""(.*)""")]
+    public void ThenElMensajeDebeIndicar(string expectedMessage)
+    {
+        _exception.Should().NotBeNull();
+        _exception!.Message.Should().Contain(expectedMessage);
+    }
+
+    [Given(@"que existe una solicitud de servicio en estado Aceptado")]
+    public void GivenQueExisteUnaSolicitudDeServicioEnEstadoAceptado()
+    {
+        _serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        _serviceRequest.AssignTechnician(5); // Changes status to Accepted
+    }
+
+    [When(@"intento asignar un nuevo técnico")]
+    public void WhenIntentoAsignarUnNuevoTecnico()
+    {
+        try
+        {
+            _serviceRequest!.AssignTechnician(10);
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
+
+    [Then(@"debe lanzar una excepción de operación inválida")]
+    public void ThenDebeLanzarUnaExcepcionDeOperacionInvalida()
+    {
+        _exception.Should().NotBeNull();
+        _exception.Should().BeOfType<InvalidOperationException>();
+    }
+
+    [Given(@"que existe una solicitud de servicio")]
+    public void GivenQueExisteUnaSolicitudDeServicio()
+    {
+        _serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+    }
+
+    [When(@"actualizo el estado a ""(.*)""")]
+    public void WhenActualizoElEstadoA(string estado)
+    {
+        var status = Enum.Parse<EServiceRequestStatus>(estado);
+        _serviceRequest!.UpdateStatus(status);
+    }
+
+    [Then(@"la solicitud debe tener el estado ""(.*)""")]
+    public void ThenLaSolicitudDebeTenerElEstado(string estado)
+    {
+        var expectedStatus = Enum.Parse<EServiceRequestStatus>(estado);
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.Status.Should().Be(expectedStatus);
+    }
+
+    [Given(@"que existe una solicitud de servicio en progreso")]
+    public void GivenQueExisteUnaSolicitudDeServicioEnProgreso()
+    {
+        _serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        _serviceRequest.UpdateStatus(EServiceRequestStatus.InProgress);
+    }
+
+    [When(@"agrego detalles de resolución con costo de (.*) soles")]
+    public void WhenAgregoDetallesDeResolucionConCostoDeSoles(decimal cost)
+    {
+        _serviceRequest!.AddResolutionDetails(
+            "Se reemplazó el compresor",
+            "Compresor modelo XYZ instalado",
+            cost
+        );
+    }
+
+    [Then(@"la solicitud debe cambiar a estado Resuelto")]
+    public void ThenLaSolicitudDebeCambiarAEstadoResuelto()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.Status.Should().Be(EServiceRequestStatus.Resolved);
+    }
+
+    [Then(@"debe tener los detalles de resolución guardados")]
+    public void ThenDebeTenerLosDetallesDeResolucionGuardados()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.ResolutionDetails.Should().NotBeNullOrEmpty();
+        _serviceRequest.TechnicianNotes.Should().NotBeNullOrEmpty();
+    }
+
+    [Then(@"debe tener el costo de (.*) soles")]
+    public void ThenDebeTenerElCostoDeSoles(decimal expectedCost)
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.Cost.Should().Be(expectedCost);
+    }
+
+    [Given(@"que existe una solicitud de servicio resuelta")]
+    public void GivenQueExisteUnaSolicitudDeServicioResuelta()
+    {
+        _serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        _serviceRequest.UpdateStatus(EServiceRequestStatus.Resolved);
+    }
+
+    [When(@"el cliente agrega un feedback con calificación (.*)")]
+    public void WhenElClienteAgregaUnFeedbackConCalificacion(int rating)
+    {
+        try
+        {
+            _serviceRequest!.AddCustomerFeedback(rating);
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
+
+    [Then(@"la solicitud debe tener la calificación (.*)")]
+    public void ThenLaSolicitudDebeTenerLaCalificacion(int expectedRating)
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.CustomerFeedbackRating.Should().Be(expectedRating);
+    }
+
+    [Then(@"debe tener fecha de envío de feedback registrada")]
+    public void ThenDebeTenerFechaDeEnvioDeFeedbackRegistrada()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.FeedbackSubmissionDate.Should().NotBeNull();
+    }
+
+    [When(@"el cliente intenta agregar feedback con calificación (.*)")]
+    public void WhenElClienteIntentaAgregarFeedbackConCalificacion(int rating)
+    {
+        try
+        {
+            _serviceRequest!.AddCustomerFeedback(rating);
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
+
+    [Then(@"debe lanzar una excepción de rango fuera de límites")]
+    public void ThenDebeLanzarUnaExcepcionDeRangoFueraDeLimites()
+    {
+        _exception.Should().NotBeNull();
+        _exception.Should().BeOfType<ArgumentOutOfRangeException>();
+    }
+
+    [When(@"rechazo la solicitud")]
+    public void WhenRechazoLaSolicitud()
+    {
+        _serviceRequest!.Reject();
+    }
+
+    [Then(@"la solicitud debe cambiar a estado Rechazado")]
+    public void ThenLaSolicitudDebeCambiarAEstadoRechazado()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.Status.Should().Be(EServiceRequestStatus.Rejected);
+    }
+
+    [When(@"cancelo la solicitud")]
+    public void WhenCanceloLaSolicitud()
+    {
+        try
+        {
+            _serviceRequest!.Cancel();
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
+
+    [Then(@"la solicitud debe cambiar a estado Cancelado")]
+    public void ThenLaSolicitudDebeCambiarAEstadoCancelado()
+    {
+        _serviceRequest.Should().NotBeNull();
+        _serviceRequest!.Status.Should().Be(EServiceRequestStatus.Cancelled);
+    }
+
+    [Given(@"que existe una solicitud de servicio en estado ""(.*)""")]
+    public void GivenQueExisteUnaSolicitudDeServicioEnEstado(string estado)
+    {
+        _serviceRequest = new ServiceRequest(
+            title: "Test",
+            description: "Test",
+            issueDetails: "Test",
+            clientId: 1,
+            companyId: 1,
+            equipmentId: 1,
+            serviceType: EServiceType.Diagnostic
+        );
+        var status = Enum.Parse<EServiceRequestStatus>(estado);
+        _serviceRequest.UpdateStatus(status);
+    }
+
+    [When(@"intento cancelar la solicitud")]
+    public void WhenIntentoCancelarLaSolicitud()
+    {
+        try
+        {
+            _serviceRequest!.Cancel();
+        }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
+
+<img src="images/prueba4.png" alt="prueba1" width="100%">
+
 #### 6.1.4. Core System Tests.
 
+En esta sección, el equipo realiza pruebas de sistema para validar que la aplicación
+funciona correctamente en su totalidad, tanto en entorno web como móvil. Estas
+pruebas cubren funcionalidades completas, incluyendo navegación, interacción con
+APIs y la respuesta del sistema en diferentes escenarios.
+
+Pruebas funcionales de la API de Service Requests utilizando `WebApplicationFactory<Program>`
+
+    private readonly WebApplicationFactory<Program> _factory;
+    private readonly HttpClient _client;
+
+    public ServiceRequestsApiTests(WebApplicationFactory<Program> factory)
+    {
+        _factory = factory.WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureServices(services =>
+            {
+                // Remove ALL DbContext-related services (DbContextOptions and DbContext itself)
+                var descriptorsToRemove = services
+                    .Where(d => d.ServiceType == typeof(DbContextOptions<AppDbContext>) ||
+                                d.ServiceType == typeof(AppDbContext))
+                    .ToList();
+                
+                foreach (var descriptor in descriptorsToRemove)
+                {
+                    services.Remove(descriptor);
+                }
+
+                // Add InMemory database for testing
+                services.AddDbContext<AppDbContext>(options =>
+                {
+                    options.UseInMemoryDatabase($"TestDb_{Guid.NewGuid()}");
+                });
+            });
+        });
+
+        _client = _factory.CreateClient();
+    }
+
+    [Fact]
+    public async Task POST_ServiceRequests_Should_Create_New_ServiceRequest()
+    {
+        // Arrange
+        var createResource = new CreateServiceRequestResource(
+            Title: "Freezer con falla eléctrica",
+            Description: "El equipo no enciende",
+            IssueDetails: "Se detectó problema en el sistema eléctrico",
+            ClientId: 1,
+            CompanyId: 1,
+            EquipmentId: 1,
+            ServiceType: EServiceType.CorrectiveMaintenance,
+            ReportedByUserId: null,
+            Priority: EPriority.High,
+            Urgency: EUrgency.Urgent, // <-- Cambiado de "Urgent" (string) a EUrgency.Urgent (enum)
+            IsEmergency: true,
+            ScheduledDate: null,
+            TimeSlot: "09:00-12:00",
+            ServiceAddress: "Av. Industrial 500"
+        );
+
+        // Act
+        var response = await _client.PostAsJsonAsync("/api/v1/servicerequests", createResource);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var serviceRequest = await response.Content.ReadFromJsonAsync<ServiceRequestResource>();
+        serviceRequest.Should().NotBeNull();
+        serviceRequest!.Title.Should().Be("Freezer con falla eléctrica");
+        serviceRequest.Status.Should().Be("Pending");
+    }
+
+    [Fact]
+    public async Task GET_ServiceRequests_Should_Return_All_ServiceRequests()
+    {
+        // Arrange - Create some service requests first
+        var request1 = new CreateServiceRequestResource(
+            "Test Request 1", "Description 1", "Issue 1",
+            1, 1, 1, EServiceType.Diagnostic, null, EPriority.Medium, EUrgency.Normal, // <-- Cambiado
+            false, null, "", ""
+        );
+
+        var request2 = new CreateServiceRequestResource(
+            "Test Request 2", "Description 2", "Issue 2",
+            1, 1, 2, EServiceType.Installation, null, EPriority.High, EUrgency.Urgent, // <-- Cambiado
+            false, null, "", ""
+        );
+
+        await _client.PostAsJsonAsync("/api/v1/servicerequests", request1);
+        await _client.PostAsJsonAsync("/api/v1/servicerequests", request2);
+
+        // Act
+        var response = await _client.GetAsync("/api/v1/servicerequests");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var serviceRequests = await response.Content.ReadFromJsonAsync<List<ServiceRequestResource>>();
+        serviceRequests.Should().NotBeNull();
+        serviceRequests!.Should().HaveCountGreaterOrEqualTo(2);
+    }
+
+    [Fact]
+    public async Task POST_ServiceRequests_Should_Return_BadRequest_For_Invalid_Data()
+    {
+        // Arrange - Empty title is invalid
+        var invalidResource = new CreateServiceRequestResource(
+            "", "Test", "Test",
+            1, 1, 1, EServiceType.Diagnostic, null, EPriority.Medium, EUrgency.Normal, // <-- Cambiado
+            false, null, "", ""
+        );
+
+        // Act
+        var response = await _client.PostAsJsonAsync("/api/v1/servicerequests", invalidResource);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+    }
+
+    [Fact]
+    public async Task GET_ServiceRequests_ById_Should_Return_ServiceRequest()
+    {
+        // Arrange - Create a service request
+        var createResource = new CreateServiceRequestResource(
+            "Test Request", "Test Description", "Test Issue",
+            1, 1, 1, EServiceType.Diagnostic, null, EPriority.Medium, EUrgency.Normal, // <-- Cambiado
+            false, null, "", ""
+        );
+
+        var createResponse = await _client.PostAsJsonAsync("/api/v1/servicerequests", createResource);
+        var created = await createResponse.Content.ReadFromJsonAsync<ServiceRequestResource>();
+
+        // Act
+        var response = await _client.GetAsync($"/api/v1/servicerequests/{created!.Id}");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var serviceRequest = await response.Content.ReadFromJsonAsync<ServiceRequestResource>();
+        serviceRequest.Should().NotBeNull();
+        serviceRequest!.Id.Should().Be(created.Id);
+        serviceRequest.Title.Should().Be("Test Request");
+    }
+
+    [Fact]
+    public async Task GET_ServiceRequests_ById_Should_Return_NotFound_For_Nonexistent_Id()
+    {
+        // Arrange
+        var nonexistentId = 99999;
+
+        // Act
+        var response = await _client.GetAsync($"/api/v1/servicerequests/{nonexistentId}");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Fact]
+    public async Task POST_ServiceRequests_Should_Generate_OrderNumber_Automatically()
+    {
+        // Arrange
+        var createResource = new CreateServiceRequestResource(
+            "Test for Order Number", "Test", "Test",
+            1, 1, 1, EServiceType.PreventiveMaintenance, null, EPriority.Low, EUrgency.Normal, // <-- Cambiado
+            false, null, "", ""
+        );
+
+        // Act
+        var response = await _client.PostAsJsonAsync("/api/v1/servicerequests", createResource);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var serviceRequest = await response.Content.ReadFromJsonAsync<ServiceRequestResource>();
+        serviceRequest.Should().NotBeNull();
+        serviceRequest!.OrderNumber.Should().NotBeNullOrEmpty();
+        // Verify it's a valid GUID format
+        Guid.TryParse(serviceRequest.OrderNumber, out _).Should().BeTrue();
+    }
+
+    [Theory]
+    [InlineData(EServiceType.CorrectiveMaintenance)]
+    [InlineData(EServiceType.PreventiveMaintenance)]
+    [InlineData(EServiceType.Installation)]
+    [InlineData(EServiceType.Diagnostic)]
+    public async Task POST_ServiceRequests_Should_Accept_Different_ServiceTypes(EServiceType serviceType)
+    {
+        // Arrange
+        var createResource = new CreateServiceRequestResource(
+            $"Test {serviceType}", "Test", "Test",
+            1, 1, 1, serviceType, null, EPriority.Medium, EUrgency.Normal, // <-- Cambiado
+            false, null, "", ""
+        );
+
+        // Act
+        var response = await _client.PostAsJsonAsync("/api/v1/servicerequests", createResource);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var serviceRequest = await response.Content.ReadFromJsonAsync<ServiceRequestResource>();
+        serviceRequest.Should().NotBeNull();
+        serviceRequest!.ServiceType.Should().Be(serviceType.ToString());
+    }
+
+    [Theory]
+    [InlineData(EPriority.Low)]
+    [InlineData(EPriority.Medium)]
+    [InlineData(EPriority.High)]
+    [InlineData(EPriority.Critical)]
+    public async Task POST_ServiceRequests_Should_Accept_Different_Priorities(EPriority priority)
+    {
+        // Arrange
+        var createResource = new CreateServiceRequestResource(
+            $"Test Priority {priority}", "Test", "Test",
+            1, 1, 1, EServiceType.Diagnostic, null, priority, EUrgency.Normal, // <-- Cambiado
+            false, null, "", ""
+        );
+
+        // Act
+        var response = await _client.PostAsJsonAsync("/api/v1/servicerequests", createResource);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var serviceRequest = await response.Content.ReadFromJsonAsync<ServiceRequestResource>();
+        serviceRequest.Should().NotBeNull();
+        serviceRequest!.Priority.Should().Be(priority.ToString());
+    }
+
+<img src="images/prueba5.png" alt="prueba1" width="100%">
 
 ## Capítulo VII:DevOps Practices <a id="c5"></a>
 ### 7.1. Continuous Integration
