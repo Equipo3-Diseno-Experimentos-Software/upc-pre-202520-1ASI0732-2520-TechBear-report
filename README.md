@@ -3445,6 +3445,71 @@ Las principales características implementadas fueron:
 - Documentación API: Swagger / Postman Collection compartida.  
 - Pipeline automatizado para despliegue continuo con GitHub Actions.  
 
+### 5.2.6. RESTful API documentation  
+
+**Enlace al repositorio de Web Services:** [https://github.com/Inteligencia-Artesanal-Aplicaciones-Web/OsitoPolar-Backend.git](https://github.com/Inteligencia-Artesanal-Aplicaciones-Web/OsitoPolar-Backend.git)  
+**Enlace al Backend desplegado:** [https://ositopolar-platform.onrender.com/](https://ositopolar-platform.onrender.com/)  
+
+| **Método** | **Endpoint** | **Descripción** |
+|-------------|---------------|-----------------|
+| **POST** | `/api/v1/work-orders` | Crea una nueva orden de trabajo en el sistema. |
+| **GET** | `/api/v1/work-orders` | Obtiene la lista completa de órdenes de trabajo. |
+| **GET** | `/api/v1/work-orders/{workOrderId}` | Obtiene una orden de trabajo por su ID. |
+| **PUT** | `/api/v1/work-orders/{workOrderId}/status` | Actualiza el estado de una orden de trabajo. |
+| **PUT** | `/api/v1/work-orders/{workOrderId}/resolution` | Añade los detalles de resolución de una orden de trabajo. |
+| **DELETE** | `/api/v1/work-orders/{workOrderId}` | Elimina una orden de trabajo del sistema. |
+| **GET** | `/api/v1/work-orders/technician/{id}` | Obtiene todas las órdenes asignadas a un técnico específico. |
+| **POST** | `/api/v1/service-requests` | Crea una nueva solicitud de servicio. |
+| **GET** | `/api/v1/service-requests` | Lista todas las solicitudes de servicio registradas. |
+| **GET** | `/api/v1/service-requests/{id}` | Obtiene una solicitud de servicio específica por ID. |
+| **PUT** | `/api/v1/service-requests/{id}` | Actualiza la información de una solicitud de servicio. |
+| **DELETE** | `/api/v1/service-requests/{id}` | Elimina una solicitud de servicio existente. |
+| **GET** | `/api/v1/equipments` | Obtiene la lista de equipos disponibles. |
+| **GET** | `/api/v1/equipments/{id}` | Devuelve la información de un equipo específico. |
+| **POST** | `/api/v1/equipments` | Registra un nuevo equipo en el sistema. |
+| **PUT** | `/api/v1/equipments/{id}` | Actualiza la información de un equipo existente. |
+| **DELETE** | `/api/v1/equipments/{id}` | Elimina un equipo de la base de datos. |
+| **GET** | `/api/v1/monitoring` | Devuelve el monitoreo en tiempo real de todos los equipos. |
+| **GET** | `/api/v1/monitoring/{equipmentId}` | Obtiene los datos históricos de monitoreo de un equipo. |
+| **GET** | `/api/v1/monitoring/alerts` | Lista todas las alertas de temperatura y energía registradas. |
+| **GET** | `/api/v1/alerts` | Devuelve la lista general de alertas activas o históricas. |
+| **PUT** | `/api/v1/alerts/{id}/resolve` | Marca una alerta como resuelta por un técnico. |
+| **DELETE** | `/api/v1/alerts/{id}` | Elimina una alerta del registro. |
+| **GET** | `/api/v1/rentals` | Lista los equipos disponibles para alquiler. |
+| **POST** | `/api/v1/rentals` | Crea una solicitud de alquiler de equipo. |
+| **PUT** | `/api/v1/rentals/{id}` | Actualiza los datos de una solicitud de alquiler. |
+| **DELETE** | `/api/v1/rentals/{id}` | Cancela o elimina una solicitud de alquiler. |
+| **POST** | `/api/v1/payments/create-checkout-session` | Crea una sesión de pago con Stripe. |
+| **POST** | `/api/v1/payments/webhook` | Procesa los eventos del webhook de Stripe. |
+| **GET** | `/api/v1/payments/history/{userId}` | Devuelve el historial de pagos de un usuario. |
+| **GET** | `/api/v1/payments/subscriptions` | Lista las suscripciones activas del sistema. |
+| **POST** | `/api/v1/users/sign-up` | Registra un nuevo usuario con correo y contraseña. |
+| **POST** | `/api/v1/users/sign-in` | Inicia sesión y devuelve el token de autenticación JWT. |
+| **GET** | `/api/v1/users` | Devuelve la lista de usuarios registrados. |
+| **GET** | `/api/v1/users/{id}` | Devuelve los datos de un usuario específico. |
+| **PUT** | `/api/v1/users/{id}` | Actualiza los datos de un usuario. |
+| **DELETE** | `/api/v1/users/{id}` | Elimina un usuario del sistema. |
+| **GET** | `/api/v1/notifications` | Devuelve las notificaciones del sistema. |
+| **POST** | `/api/v1/notifications` | Crea una nueva notificación para un usuario. |
+| **PUT** | `/api/v1/notifications/{id}/read` | Marca una notificación como leída. |
+| **DELETE** | `/api/v1/notifications/{id}` | Elimina una notificación. |
+| **GET** | `/api/v1/reports` | Devuelve reportes de mantenimiento o consumo energético. |
+| **GET** | `/api/v1/reports/{id}` | Devuelve un reporte detallado por ID. |
+| **POST** | `/api/v1/reports` | Genera un nuevo reporte desde datos recopilados. |
+| **DELETE** | `/api/v1/reports/{id}` | Elimina un reporte del historial. |
+
+---
+
+**Características técnicas relevantes**  
+- **Lenguaje y entorno:** Node.js 20 con Express.js 5.  
+- **Base de datos:** Firestore (Firebase).  
+- **Arquitectura:** Serverless (Firebase Functions) con microservicios modulares.  
+- **Autenticación:** Basada en JWT (JSON Web Token) con middleware de validación.  
+- **Documentación API:** Generada automáticamente con Swagger UI.  
+- **Despliegue:** Render + CI/CD configurado con GitHub Actions.  
+- **Estándares:** Convenciones RESTful y manejo centralizado de errores HTTP.
+
+
 ##### 5.2.1.2. Aspect Leaders and Collaborators
 
 Durante este primer Sprint, el equipo se enfocó principalmente en el desarrollo, la mejora estructural y visual de la Landing Page de OsitoPolar, asegurando su visualización en distintos dispositivos (diseño responsive), la integración armoniosa de imágenes y textos, y la implementación de un cambio de idioma dinámico mediante un botón.
@@ -6447,6 +6512,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
