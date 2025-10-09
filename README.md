@@ -3417,12 +3417,23 @@ Las principales características implementadas fueron:
 - Endpoint base de la API (producción): [Backend](https://ositopolar-platform.onrender.com/)  
 
 **Evidencias visuales**  
-A continuación se muestran capturas que validan la correcta ejecución de los endpoints principales:
+- **Listado de endpoints disponibles – Work Orders.**  
+  <img src="./images/WO.png" alt="Listado de endpoints disponibles – Work Orders" width="100%">
 
-- Figura 1. Ejecución del método **GET /products** retornando listado de productos.  
-- Figura 2. Prueba del método **POST /auth/login** con credenciales válidas (HTTP 200).  
-- Figura 3. Resultado del método **POST /products** creando nuevo registro (HTTP 201).  
-- Figura 4. Respuesta de error controlado en una solicitud inválida (HTTP 400).  
+- **Método POST /api/v1/work-orders – Creación de una orden de trabajo.**  
+  <img src="./images/WO1.png" alt="Método POST /api/v1/work-orders – Creación de una orden de trabajo" width="100%">
+
+- **Método GET /api/v1/work-orders – Listado de todas las órdenes de trabajo.**  
+  <img src="./images/WO2.png" alt="Método GET /api/v1/work-orders – Listado de todas las órdenes de trabajo" width="100%">
+
+- **Método PUT /api/v1/work-orders/{workOrderId}/status – Actualización del estado de una orden.**  
+  <img src="./images/WO3.png" alt="Método PUT /api/v1/work-orders/{workOrderId}/status – Actualización del estado de una orden" width="100%">
+
+- **Método POST /api/v1/payments/create-checkout-session – Integración con Stripe para pago de suscripción.**  
+  <img src="./images/P1.png" alt="Método POST /api/v1/payments/create-checkout-session – Integración con Stripe" width="100%">
+
+- **Método POST /api/v1/payments/webhook – Recepción de eventos de pago Stripe Webhook.**  
+  <img src="./images/P2.png" alt="Método POST /api/v1/payments/webhook – Recepción de eventos de pago Stripe Webhook" width="100%">
 
 *Todas las pruebas fueron realizadas en Postman dentro del entorno de producción configurado en Firebase Functions.*
 
@@ -6436,6 +6447,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
