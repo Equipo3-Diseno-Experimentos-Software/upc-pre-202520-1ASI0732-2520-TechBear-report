@@ -3265,7 +3265,7 @@ En la sección siguiente se detallará el proceso de implementación, documentac
 </tr>
 </table>
 
-### 5.2.2 Evidencia de Landing Page Implementada
+### 5.2.2 Implemented Landing Page Evidence
 
 En esta sección se presentan las evidencias del Landing Page desarrollado por el equipo durante el sprint correspondiente.  
 El objetivo principal de esta página es introducir el propósito del producto, captar la atención del usuario y guiarlo hacia el registro o descarga de la aplicación.
@@ -3307,6 +3307,52 @@ A continuación se muestran las captura de pantalla completa del Landing Page de
 - Conexión inicial hacia la API principal mediante endpoints públicos de prueba.  
 - Integración continua (CI/CD) con GitHub Actions.
 
+### 5.2.3 Implemented Frontend-Web Application Evidence
+
+En esta sección se presentan las evidencias del Frontend-Web Application desarrollado e implementado durante el sprint correspondiente.  
+El propósito principal de este entregable fue construir la interfaz web principal del sistema, permitiendo a los usuarios interactuar de manera intuitiva y fluida con las funcionalidades del producto.
+
+**Objetivo del entregable**  
+- Implementar la interfaz principal de la aplicación web con navegación funcional.  
+- Mostrar información dinámica obtenida desde el backend y/o base de datos.  
+- Validar la correcta comunicación entre los componentes del sistema.  
+- Cumplir con los principios de diseño centrado en el usuario y experiencia responsiva.
+
+**Descripción general**  
+La aplicación web fue desarrollada con Angular y desplegada en Firebase Hosting, asegurando alta disponibilidad y rendimiento en tiempo real.  
+Se aplicaron principios de arquitectura por componentes y buenas prácticas de usabilidad y rendimiento.
+
+Entre las principales características implementadas se incluyen:  
+- Sistema de autenticación de usuarios.  
+- Secciones dinámicas para visualización de contenido y registro de datos.  
+- Integración directa con servicios del backend (API REST y base de datos).  
+- Diseño adaptable a distintos tamaños de pantalla.  
+- Control de rutas seguras y manejo de estados de sesión.  
+
+**Enlaces de despliegue**  
+- Aplicación web en producción: [Frontend Web Application](https://osito-polar-v1.web.app/home)  
+- Repositorio de GitHub: [Repositorio](https://github.com/Inteligencia-Artesanal-Aplicaciones-Web/OsitoPolar-Frontend.git)
+
+**Evidencias visuales**  
+A continuación se presentan las principales capturas de pantalla que muestran el funcionamiento de la aplicación web:
+
+- Vista principal del Home del sistema.  
+<img src="./images/Front Home.jpeg" alt="Front Home.jpeg" width="100%">
+- Pantalla de autenticación de usuarios.  
+<img src="./images/UsuarioFront.jpeg" alt="UsuarioFront.jpeg" width="100%">
+- Figura 3. Vista de contacto.  
+<img src="./images/ContactWeb.jpeg" alt="ContactWeb.jpeg" width="100%">
+
+*Las capturas fueron tomadas del entorno en producción tras el despliegue exitoso del frontend en Firebase Hosting.*
+
+**Características técnicas relevantes**  
+- Framework principal: Angular 17 con TypeScript.  
+- Uso de servicios (Services) y componentes reutilizables.  
+- Integración con API REST mediante HttpClientModule.  
+- Configuración de enrutamiento con Lazy Loading para optimizar rendimiento.  
+- Aplicación de Material Design y estilos personalizados con SCSS.  
+- Validación y control de formularios reactivos.  
+- Implementación de CI/CD con GitHub Actions y Firebase CLI.  
 
 ##### 5.2.1.2. Aspect Leaders and Collaborators
 
@@ -6310,6 +6356,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
