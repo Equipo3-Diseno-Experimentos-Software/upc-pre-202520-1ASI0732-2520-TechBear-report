@@ -3445,6 +3445,23 @@ Las principales características implementadas fueron:
 - Documentación API: Swagger / Postman Collection compartida.  
 - Pipeline automatizado para despliegue continuo con GitHub Actions.  
 
+### 5.2.7. Team Collaboration Insights  
+
+En esta sección se evidencian los resultados de colaboración del equipo de desarrollo obtenidos a partir del repositorio de GitHub.  
+Durante el periodo comprendido entre septiembre y octubre de 2025, el equipo mantuvo una participación activa en commits, merges y pull requests, reflejando una adecuada distribución del trabajo y coordinación en las ramas del proyecto.  
+
+A continuación, se muestran los reportes generados automáticamente por GitHub que respaldan la actividad y los aportes individuales de los miembros del equipo:
+
+- **Gráfico de actividad general (Pulse View)**: Muestra el número de commits, merges y pull requests realizados en el periodo de trabajo.  
+- **Gráfico de contribuciones por miembro (Contributors View)**: Detalla la cantidad de commits, líneas de código añadidas y modificadas por cada integrante del equipo, evidenciando la participación conjunta y el progreso sostenido del desarrollo.
+
+**Evidencias visuales:**  
+- *Reporte general de actividad en GitHub (Pulse)*
+  <img src="./images/PulseGit.jpeg" alt="PulseGit.jpeg" width="100%">
+- *Contribuciones individuales y globales del equipo (Contributors)*
+- <img src="./images/Contributors.jpeg" alt="Contributors.jpeg" width="100%">
+
+
 ### 5.2.6. RESTful API documentation  
 
 **Enlace al repositorio de Web Services:** [https://github.com/Inteligencia-Artesanal-Aplicaciones-Web/OsitoPolar-Backend.git](https://github.com/Inteligencia-Artesanal-Aplicaciones-Web/OsitoPolar-Backend.git)  
@@ -7923,6 +7940,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
