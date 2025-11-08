@@ -8561,6 +8561,112 @@ de aplicar cualquier migración crítica. Esto asegura que, en caso de que algo 
 proceso de migración, se pueda restaurar la base de datos a su estado anterior sin pérdida de 
 datos.
 
+## 7.4. Continuous Monitoring
+
+### 7.4.1. Tools and Practices
+Para el monitoreo de la aplicación se hace uso de un paquete que anteriormente se instalo. Roslynator nos permite tener reportes continuos acerca de cambios que debemos hacer manualmente y posibles mejoras dentro del código. 
+
+![tools and practices](assets/Continuousmonitoring.png)
+
+Asimismo, Security Code Scan alerta acerca de los warning y permite que la aplicación no se compile con estos errores para que sean resueltos antes de esta acción.
+
+### 7.4.2. Monitoring Pipeline Components
+
+Dentro del pipeline de Azure, durante la compilación se encuentran algunos puntos importantes que verifican el código. Dentro de estos se utilizan el `.editoconfig` y Roslynator:
+
+```yml
+# verify .editorconfig
+
+  - script: dotnet format --verify-no-changes
+
+    displayName: "Verify code format"
+
+  
+
+  # Roslynator
+
+  - script: |
+
+      dotnet tool install --global roslynator.dotnet.cli --version 4.10.0
+
+      export PATH="$PATH:/home/vsts/.dotnet/tools"
+
+      roslynator analyze . --severity-level warning --output roslynator-report.txt
+
+    displayName: "Run Roslynator analysis"
+```
+
+### 7.4.3. Alerting Pipeline Components
+
+Las alertas del pipeline serán visibles una vez se escaneen las dependencias y Analyzer verifique las reglas compilando el código:
+
+```yml
+  # Vulnerable dependencies
+
+  - script: dotnet list package --vulnerable > vulnerable-packages.txt || true
+
+    displayName: "Scan for vulnerable NuGet dependencies"
+  # Analyzer for secutiry
+
+  - script: |
+
+      dotnet build --no-restore --configuration $(buildConfiguration) \
+
+      /p:TreatWarningsAsErrors=true \
+
+      /p:AnalysisMode=AllEnabledByDefault
+
+    displayName: "Build with analyzers (Quality & Security)"
+```
+
+### 7.4.4. Notification Pipeline Components
+
+Para el monitoreo de la aplicación gracias al pipeline, se toman las acciones de publicar reportes cada vez que se compila:
+
+```yml
+  # publish reports
+
+  - task: PublishBuildArtifacts@1
+
+    inputs:
+
+      PathtoPublish: 'roslynator-report.txt'
+
+      ArtifactName: 'analysis-reports'
+
+      publishLocation: 'Container'
+
+    displayName: "Publish Roslynator analysis report"
+
+  
+
+  - task: PublishBuildArtifacts@1
+
+    inputs:
+
+      PathtoPublish: 'vulnerable-packages.txt'
+
+      ArtifactName: 'dependency-scan'
+
+      publishLocation: 'Container'
+
+    displayName: "Publish dependency vulnerability report"
+
+  
+
+  - task: PublishBuildArtifacts@1
+
+    inputs:
+
+      PathtoPublish: 'gitleaks-report.json'
+
+      ArtifactName: 'security-scan'
+
+      publishLocation: 'Container'
+
+    displayName: "Publish secret scan report"
+```
+
 ## Conclusiones
 
 A lo largo del desarrollo del modelo de negocio digital OsitoPolar, hemos logrado validar la necesidad real y urgente de soluciones tecnológicas en el sector de refrigeración, tanto en los negocios que dependen de estos equipos como en las empresas proveedoras de servicios técnicos.
@@ -8634,6 +8740,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
