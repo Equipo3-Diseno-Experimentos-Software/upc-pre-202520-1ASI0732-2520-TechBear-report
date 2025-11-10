@@ -8667,6 +8667,2622 @@ Para el monitoreo de la aplicación gracias al pipeline, se toman las acciones d
     displayName: "Publish secret scan report"
 ```
 
+# Capítulo VIII: Experiment-Driven Development
+
+## 8.1. Experiment Planning
+
+### 8.1.1. As-Is Summary
+
+Actualmente, el modelo de negocio de **OsitoPolar** se ha construido sobre la base de suposiciones derivadas del análisis del mercado de refrigeración comercial en Lima, Perú. La plataforma ha sido diseñada para conectar negocios que dependen críticamente del frío (supermercados, minimarkets, laboratorios, restaurantes) con técnicos y proveedores especializados en refrigeración.
+
+**Estado Actual del Producto:**
+
+La plataforma **OsitoPolar** ofrece las siguientes funcionalidades clave implementadas en los sprints anteriores:
+
+- **Monitoreo en tiempo real** de temperatura, consumo energético y tiempo de uso de equipos de refrigeración
+- **Sistema de alertas automatizadas** por fallas o anomalías detectadas
+- **Generación de reportes técnicos** con historial de rendimiento
+- **Programación inteligente** de mantenimientos preventivos
+- **Gestión de múltiples ubicaciones y usuarios** con diferentes roles (administrador, técnico, proveedor)
+- **Módulo especializado para técnicos** que permite organizar visitas, gestionar clientes y acceder al historial técnico de equipos
+
+**Suposiciones Iniciales que Requieren Validación:**
+
+Durante el desarrollo del proyecto se han realizado múltiples suposiciones sobre el comportamiento de los usuarios, la viabilidad del modelo de negocio y la efectividad de las soluciones propuestas. Sin embargo, estas suposiciones aún no han sido validadas mediante experimentación sistemática con datos reales de uso.
+
+**Contexto del Mercado:**
+
+El sector de refrigeración comercial en Perú enfrenta desafíos significativos:
+
+- Pérdidas económicas estimadas entre **S/. 500 y S/. 5,000** por falla en equipos de refrigeración
+- Procesos de mantenimiento predominantemente **reactivos** en lugar de preventivos
+- Falta de **digitalización** en la gestión técnica de equipos
+- Ausencia de **trazabilidad** y registros históricos accesibles
+- Alta dependencia de intervenciones de emergencia con costos operativos elevados
+
+**Necesidad de Experimentación:**
+
+Para validar el Product-Market Fit y optimizar la propuesta de valor, es fundamental implementar un proceso estructurado de experimentación que permita:
+
+1. Confirmar o refutar las hipótesis sobre el comportamiento del usuario
+2. Medir el impacto real de las funcionalidades implementadas
+3. Identificar oportunidades de mejora basadas en datos
+4. Optimizar el modelo de negocio y las estrategias de adquisición
+5. Reducir el riesgo de inversión en características de bajo valor
+
+### 8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims
+
+En esta sección se presenta el material bruto que servirá como punto de partida para la generación de preguntas experimentales y el diseño de experimentos.
+
+#### **Assumptions (Suposiciones)**
+
+**Sobre los Usuarios y Segmentos Objetivo:**
+
+1. **A1**: Los negocios que dependen de equipos de refrigeración están dispuestos a adoptar una solución digital para monitorear sus equipos en tiempo real.
+
+2. **A2**: Los técnicos especializados en refrigeración valoran tener acceso centralizado al historial técnico de los equipos que atienden.
+
+3. **A3**: Los administradores de negocios consideran que el monitoreo preventivo reduce significativamente las pérdidas económicas por fallas inesperadas.
+
+4. **A4**: Los proveedores de equipos de refrigeración están interesados en ofrecer OsitoPolar como parte de sus paquetes de posventa.
+
+5. **A5**: Los usuarios están dispuestos a pagar una suscripción mensual por las funcionalidades premium de la plataforma.
+
+6. **A6**: Los negocios pequeños (minimarkets, restaurantes) tienen la misma necesidad de monitoreo que las empresas grandes (supermercados, distribuidoras).
+
+7. **A7**: El personal técnico tradicional puede adaptarse rápidamente a una plataforma digital sin resistencia significativa al cambio.
+
+**Sobre el Producto y Funcionalidades:**
+
+8. **A8**: Las alertas automatizadas por temperatura generan respuestas inmediatas por parte de los administradores de negocios.
+
+9. **A9**: Los reportes técnicos en PDF son el formato preferido por los técnicos para documentar sus intervenciones.
+
+10. **A10**: El calendario de mantenimiento preventivo con notificaciones programadas incrementa la frecuencia de mantenimientos realizados.
+
+11. **A11**: La visualización de gráficos de consumo energético motiva a los negocios a optimizar el uso de sus equipos.
+
+12. **A12**: El sistema de gestión de múltiples ubicaciones es esencial para cadenas de negocio con varias sucursales.
+
+13. **A13**: La integración con sensores IoT certificados garantiza la confiabilidad de los datos mostrados en la plataforma.
+
+**Sobre el Modelo de Negocio:**
+
+14. **A14**: Un modelo freemium con funciones limitadas y publicidad atraerá a usuarios que posteriormente migrarán a planes de pago.
+
+15. **A15**: La prueba gratuita de 14 días es suficiente para demostrar el valor de la plataforma y convertir usuarios a planes premium.
+
+16. **A16**: Las alianzas con fabricantes de equipos de refrigeración acelerarán la adopción de la plataforma.
+
+17. **A17**: La publicidad dirigida dentro de la plataforma puede generar ingresos adicionales significativos.
+
+**Sobre el Comportamiento del Usuario:**
+
+18. **A18**: Los usuarios revisan la plataforma al menos una vez al día para verificar el estado de sus equipos.
+
+19. **A19**: Los técnicos prefieren recibir notificaciones push sobre sus próximas visitas programadas.
+
+20. **A20**: Los administradores de negocio comparten acceso a la plataforma con su personal operativo.
+
+#### **Knowledge Gaps (Brechas de Conocimiento)**
+
+**Sobre el Comportamiento Real del Usuario:**
+
+1. **KG1**: No sabemos con qué frecuencia real los usuarios consultan la plataforma después de la configuración inicial.
+
+2. **KG2**: Desconocemos qué funcionalidad es la más utilizada entre: monitoreo en tiempo real, reportes históricos, alertas o calendario de mantenimiento.
+
+3. **KG3**: No está claro si los usuarios prefieren recibir notificaciones por correo electrónico, SMS, push notifications o WhatsApp.
+
+4. **KG4**: No sabemos cuánto tiempo toma en promedio para que un nuevo usuario complete la configuración de su primer equipo.
+
+5. **KG5**: Desconocemos qué tipo de soporte técnico demandan más frecuentemente los usuarios (tutoriales, chat en vivo, llamadas telefónicas).
+
+**Sobre la Efectividad del Producto:**
+
+6. **KG6**: No hemos medido cuánto ha disminuido realmente la frecuencia de fallas inesperadas en negocios que usan OsitoPolar versus negocios sin la plataforma.
+
+7. **KG7**: No sabemos si las alertas automatizadas están generando "fatiga de alertas" o si los usuarios las perciben como valiosas.
+
+8. **KG8**: Desconocemos qué porcentaje de las alertas emitidas resultan en acciones correctivas por parte de los usuarios.
+
+9. **KG9**: No está claro si los reportes técnicos generados son realmente utilizados por los técnicos o si prefieren documentación manual.
+
+10. **KG10**: No sabemos cuánto tiempo ahorran los técnicos al usar el módulo de gestión de visitas comparado con métodos tradicionales.
+
+**Sobre el Modelo de Negocio:**
+
+11. **KG11**: Desconocemos la tasa de conversión real de usuarios freemium a usuarios premium después de la prueba gratuita.
+
+12. **KG12**: No sabemos cuál es el precio óptimo que los usuarios están dispuestos a pagar por suscripción mensual.
+
+13. **KG13**: No está claro qué plan de precios (por número de equipos, por funcionalidad, o modelo híbrido) genera mayor aceptación.
+
+14. **KG14**: Desconocemos el Customer Acquisition Cost (CAC) real para cada segmento objetivo.
+
+15. **KG15**: No sabemos cuál es la tasa de cancelación (churn rate) esperada después de los primeros 3 meses de suscripción.
+
+**Sobre la Competencia y el Mercado:**
+
+16. **KG16**: No hemos validado si los usuarios perciben una ventaja competitiva clara de OsitoPolar frente a soluciones genéricas de mantenimiento.
+
+17. **KG17**: Desconocemos qué funcionalidades consideran los usuarios como "imprescindibles" versus "deseables".
+
+18. **KG18**: No sabemos qué canales de marketing digital (LinkedIn, Google Ads, Facebook) generan el mayor ROI para la adquisición de usuarios.
+
+#### **Ideas (Propuestas de Mejora)**
+
+**Ideas para Mejorar la Experiencia del Usuario:**
+
+1. **I1**: Implementar un asistente virtual con IA que guíe a los usuarios en la configuración inicial de sus equipos.
+
+2. **I2**: Crear un sistema de gamificación que recompense a los negocios por realizar mantenimientos preventivos a tiempo.
+
+3. **I3**: Desarrollar una funcionalidad de "Predicción de Fallas" basada en machine learning que anticipe problemas antes de que ocurran.
+
+4. **I4**: Añadir integración con WhatsApp Business para enviar alertas y reportes directamente a los usuarios.
+
+5. **I5**: Implementar un dashboard personalizable donde cada usuario pueda configurar los widgets más relevantes para su rol.
+
+6. **I6**: Crear un marketplace interno donde técnicos puedan ofrecer sus servicios directamente a negocios registrados en la plataforma.
+
+**Ideas para Optimizar el Modelo de Negocio:**
+
+7. **I7**: Ofrecer un plan "Starter" más económico con monitoreo de hasta 2 equipos para atraer negocios muy pequeños.
+
+8. **I8**: Implementar un sistema de referidos donde usuarios actuales reciban descuentos por traer nuevos clientes.
+
+9. **I9**: Crear paquetes anuales con descuento para incentivar compromisos a largo plazo.
+
+10. **I10**: Desarrollar una versión Enterprise para cadenas de negocio con más de 50 equipos.
+
+**Ideas para Aumentar el Engagement:**
+
+11. **I11**: Enviar reportes semanales automáticos por correo con resumen del estado de todos los equipos.
+
+12. **I12**: Implementar notificaciones proactivas de "buenas prácticas" basadas en el análisis de datos de uso.
+
+13. **I13**: Crear una comunidad online (foro o grupo) donde técnicos puedan compartir experiencias y soluciones.
+
+14. **I14**: Ofrecer certificaciones digitales para técnicos que completen cursos de capacitación dentro de la plataforma.
+
+#### **Claims (Afirmaciones del Negocio)**
+
+**Afirmaciones sobre la Propuesta de Valor:**
+
+1. **C1**: "OsitoPolar reduce hasta un 70% las pérdidas económicas por fallas inesperadas en equipos de refrigeración"
+
+2. **C2**: "Nuestra plataforma incrementa la vida útil de los equipos de refrigeración en un 30% mediante mantenimiento preventivo"
+
+3. **C3**: "Los técnicos ahorran hasta 5 horas semanales en gestión administrativa gracias al módulo de OsitoPolar"
+
+4. **C4**: "Los negocios que usan OsitoPolar experimentan una reducción del 40% en consumo energético"
+
+**Afirmaciones sobre la Diferenciación Competitiva:**
+
+5. **C5**: "OsitoPolar es la única plataforma especializada exclusivamente en equipos de refrigeración comercial en Perú"
+
+6. **C6**: "Nuestro sistema de alertas es 3 veces más preciso que las soluciones genéricas de IoT"
+
+7. **C7**: "OsitoPolar ofrece la mejor relación costo-beneficio del mercado para negocios medianos"
+
+**Afirmaciones sobre Adopción y Satisfacción:**
+
+8. **C8**: "El 85% de nuestros usuarios recomendaría OsitoPolar a otros negocios del sector"
+
+9. **C9**: "Los nuevos usuarios pueden configurar su primer equipo en menos de 10 minutos"
+
+10. **C10**: "La tasa de retención de usuarios premium es superior al 90% después del primer año"
+
+**Afirmaciones Pendientes de Validación:**
+
+Todas estas afirmaciones (C1 a C10) requieren ser validadas mediante experimentación rigurosa con datos reales de uso, encuestas de satisfacción y métricas de negocio medibles.
+
+---
+
+### 8.1.3. Experiment-Ready Questions
+
+A partir del material bruto identificado (Assumptions, Knowledge Gaps, Ideas, Claims), se han formulado las siguientes preguntas listas para experimentación. Estas preguntas están estructuradas siguiendo las mejores prácticas de diseño experimental y están categorizadas según su naturaleza.
+
+#### **Preguntas Impulsadas por Creencias (Belief-led Questions)**
+
+Estas preguntas buscan probar creencias o supuestos específicos que el equipo tiene sobre el producto o los usuarios.
+
+**Sobre Adopción y Onboarding:**
+
+**EQ1**: ¿Los negocios que dependen de equipos de refrigeración completan la configuración de su primer equipo en menos de 10 minutos?
+- **Creencia subyacente**: Los usuarios nuevos encuentran intuitiva la interfaz de configuración inicial (A1, KG4, C9)
+- **Tipo**: Usabilidad y UX
+
+**EQ2**: ¿Los usuarios que completan un tutorial interactivo durante el onboarding tienen mayor tasa de activación que aquellos que lo omiten?
+- **Creencia subyacente**: La capacitación inicial reduce la curva de aprendizaje (I1, KG5)
+- **Tipo**: Producto y Feature
+
+**Sobre Engagement y Uso de Funcionalidades:**
+
+**EQ3**: ¿Los usuarios consultan la plataforma al menos una vez al día después de la primera semana de uso?
+- **Creencia subyacente**: El monitoreo en tiempo real genera consultas frecuentes (A18, KG1)
+- **Tipo**: Comportamiento del usuario
+
+**EQ4**: ¿El monitoreo en tiempo real es la funcionalidad más utilizada comparada con reportes históricos y alertas?
+- **Creencia subyacente**: La visualización en vivo es más valiosa que el análisis histórico (KG2)
+- **Tipo**: Producto y Feature
+
+**EQ5**: ¿Los usuarios que reciben reportes semanales automáticos por correo tienen mayor engagement que los que no los reciben?
+- **Creencia subyacente**: Los recordatorios periódicos mantienen la atención del usuario (I11)
+- **Tipo**: Marketing y Comunicación
+
+**Sobre Efectividad de Alertas:**
+
+**EQ6**: ¿Las alertas automatizadas por temperatura generan una acción correctiva en menos de 30 minutos en al menos el 70% de los casos?
+- **Creencia subyacente**: Las alertas son efectivas y generan respuestas rápidas (A8, KG8)
+- **Tipo**: Producto y Feature
+
+**EQ7**: ¿Los usuarios prefieren recibir alertas críticas por WhatsApp en lugar de correo electrónico?
+- **Creencia subyacente**: WhatsApp es el canal preferido para comunicaciones urgentes (I4, KG3)
+- **Tipo**: Producto y Feature
+
+**EQ8**: ¿La implementación de niveles de severidad en alertas (baja, media, alta) reduce la "fatiga de alertas"?
+- **Creencia subyacente**: Los usuarios ignoran alertas frecuentes de baja prioridad (KG7)
+- **Tipo**: Producto y Feature
+
+**Sobre Impacto en Resultados de Negocio:**
+
+**EQ9**: ¿Los negocios que usan OsitoPolar experimentan una reducción de al menos 40% en pérdidas económicas por fallas de equipos comparado con negocios sin la plataforma?
+- **Creencia subyacente**: El monitoreo preventivo reduce significativamente pérdidas (A3, C1, KG6)
+- **Tipo**: Impacto de negocio
+
+**EQ10**: ¿Los técnicos que usan el módulo de gestión de visitas ahorran al menos 3 horas semanales en tareas administrativas?
+- **Creencia subyacente**: La digitalización mejora la productividad técnica (A2, C3, KG10)
+- **Tipo**: Impacto de negocio
+
+**Sobre Modelo de Negocio y Monetización:**
+
+**EQ11**: ¿La tasa de conversión de usuarios freemium a premium después de 14 días de prueba es superior al 25%?
+- **Creencia subyacente**: La prueba gratuita es efectiva para demostrar valor (A15, KG11)
+- **Tipo**: Modelo de negocio
+
+**EQ12**: ¿Los usuarios están dispuestos a pagar entre S/. 99 y S/. 299 mensuales por la suscripción premium según el número de equipos?
+- **Creencia subyacente**: El valor percibido justifica el precio propuesto (A5, KG12)
+- **Tipo**: Pricing
+
+**EQ13**: ¿Un plan "Starter" a S/. 49/mes para 2 equipos genera mayor volumen de suscripciones que ofrecer solo planes premium?
+- **Creencia subyacente**: Los negocios pequeños requieren opciones económicas (A6, I7)
+- **Tipo**: Pricing y Segmentación
+
+**EQ14**: ¿Los paquetes anuales con 20% de descuento incrementan el Lifetime Value (LTV) de los usuarios?
+- **Creencia subyacente**: Los compromisos a largo plazo mejoran la retención (I9)
+- **Tipo**: Modelo de negocio
+
+**Sobre Satisfacción y Retención:**
+
+**EQ15**: ¿El Net Promoter Score (NPS) de OsitoPolar es superior a 50 después de 3 meses de uso?
+- **Creencia subyacente**: Los usuarios satisfechos recomiendan activamente el producto (C8)
+- **Tipo**: Satisfacción del cliente
+
+**EQ16**: ¿La tasa de cancelación (churn) en los primeros 3 meses es inferior al 15%?
+- **Creencia subyacente**: El valor del producto justifica la continuidad de la suscripción (KG15, C10)
+- **Tipo**: Retención
+
+#### **Preguntas Exploratorias (Exploratory Questions)**
+
+Estas preguntas buscan descubrir nuevos insights sin una hipótesis previa específica.
+
+**Sobre Comportamiento del Usuario:**
+
+**EQ17**: ¿Qué patrones de uso emergen en las primeras 4 semanas después del onboarding?
+- **Área de exploración**: Descubrir journey paths no anticipados (KG1)
+- **Tipo**: Comportamiento del usuario
+
+**EQ18**: ¿Qué funcionalidades son consideradas "imprescindibles" versus "deseables" por diferentes segmentos de usuarios?
+- **Área de exploración**: Priorización de roadmap basada en valor percibido (KG17)
+- **Tipo**: Producto y Feature
+
+**EQ19**: ¿Cuáles son las principales barreras que impiden la adopción de OsitoPolar en negocios pequeños versus grandes?
+- **Área de exploración**: Identificar obstáculos de adopción por segmento (A6, A7)
+- **Tipo**: Adopción
+
+**EQ20**: ¿Qué canal de adquisición (LinkedIn, Google Ads, referidos) genera usuarios con mayor LTV y menor CAC?
+- **Área de exploración**: Optimizar inversión en marketing (KG18)
+- **Tipo**: Marketing y Adquisición
+
+**Sobre Diferenciación Competitiva:**
+
+**EQ21**: ¿Qué características de OsitoPolar consideran los usuarios como ventajas claras frente a soluciones genéricas de mantenimiento?
+- **Área de exploración**: Validar diferenciación percibida (KG16, C5, C6)
+- **Tipo**: Propuesta de valor
+
+**EQ22**: ¿Qué nuevas funcionalidades demandan los usuarios que actualmente no están en el roadmap?
+- **Área de exploración**: Descubrir oportunidades no exploradas (I3, I6, I13)
+- **Tipo**: Innovación de producto
+
+**Sobre Segmentación:**
+
+**EQ23**: ¿Existen subsegmentos dentro de "Negocios que usan refrigeración" con necesidades significativamente diferentes?
+- **Área de exploración**: Refinar estrategia de segmentación (A6)
+- **Tipo**: Segmentación de mercado
+
+**EQ24**: ¿Los técnicos independientes tienen patrones de uso diferentes a los técnicos que trabajan para empresas proveedoras?
+- **Área de exploración**: Personalizar experiencia por tipo de técnico (A2)
+- **Tipo**: Segmentación de mercado
+
+---
+
+### Resumen de Experiment-Ready Questions
+
+**Total de Preguntas**: 24
+- **Belief-led (impulsadas por creencias)**: 16 preguntas (EQ1-EQ16)
+- **Exploratory (exploratorias)**: 8 preguntas (EQ17-EQ24)
+
+**Categorías temáticas**:
+- Adopción y Onboarding: 2 preguntas
+- Engagement y Uso: 3 preguntas
+- Efectividad de Alertas: 3 preguntas
+- Impacto en Negocio: 2 preguntas
+- Modelo de Negocio y Pricing: 4 preguntas
+- Satisfacción y Retención: 2 preguntas
+- Comportamiento del Usuario: 2 preguntas
+- Diferenciación Competitiva: 2 preguntas
+- Segmentación: 2 preguntas
+- Producto y Features: 2 preguntas
+
+Estas preguntas servirán como base para el Question Backlog priorizado en la siguiente sección.
+
+---
+
+## 8.1.4. Question Backlog
+
+El Question Backlog es una lista priorizada de preguntas para investigación que guiará los esfuerzos de experimentación del equipo. Cada pregunta ha sido evaluada según cuatro criterios clave: **Confianza**, **Riesgo**, **Impacto** e **Interés**.
+
+### Criterios de Puntuación
+
+Cada pregunta se evalúa en una escala de 1 a 5 para los siguientes criterios:
+
+**Confianza** (Confidence): ¿Qué tan seguros estamos de conocer la respuesta?
+- 1 = Muy inciertos (no tenemos idea)
+- 5 = Muy seguros (tenemos datos sólidos)
+
+**Riesgo** (Risk): ¿Qué tan grave sería estar equivocados?
+- 1 = Bajo riesgo (impacto mínimo)
+- 5 = Riesgo crítico (puede hacer fracasar el negocio)
+
+**Impacto** (Impact): ¿Cuánto mejorará el producto/negocio al responder esta pregunta?
+- 1 = Impacto bajo (mejora incremental)
+- 5 = Impacto transformador (cambio radical)
+
+**Interés** (Interest): ¿Qué tan motivado está el equipo por investigar esto?
+- 1 = Bajo interés
+- 5 = Alto interés
+
+**Fórmula de Priorización**: 
+\`\`\`
+Score = (Risk × Impact) + Interest - Confidence
+\`\`\`
+
+Se prioriza el **Riesgo** en caso de empate en Score total.
+
+### Question Backlog Priorizado
+
+| Rank | ID | Pregunta | ¿Por qué? | Confianza | Riesgo | Impacto | Interés | Score |
+|------|-----|----------|-----------|-----------|--------|---------|---------|-------|
+| 1 | EQ9 | ¿Los negocios que usan OsitoPolar experimentan una reducción de al menos 40% en pérdidas económicas por fallas de equipos comparado con negocios sin la plataforma? | Esta es nuestra propuesta de valor central. Si no podemos demostrar ROI claro, el modelo de negocio completo está en riesgo. | 2 | 5 | 5 | 5 | **31** |
+| 2 | EQ11 | ¿La tasa de conversión de usuarios freemium a premium después de 14 días de prueba es superior al 25%? | De esto depende la viabilidad financiera del modelo freemium. Una baja conversión requeriría repensar toda la estrategia de monetización. | 1 | 5 | 5 | 4 | **28** |
+| 3 | EQ12 | ¿Los usuarios están dispuestos a pagar entre S/. 99 y S/. 299 mensuales por la suscripción premium según el número de equipos? | Si el precio está mal calibrado, podemos perder clientes potenciales o dejar dinero sobre la mesa. Critical para proyecciones financieras. | 1 | 4 | 5 | 4 | **23** |
+| 4 | EQ6 | ¿Las alertas automatizadas por temperatura generan una acción correctiva en menos de 30 minutos en al menos el 70% de los casos? | Las alertas son una funcionalidad core. Si los usuarios no responden a ellas, perdemos el diferenciador clave de "prevención en tiempo real". | 2 | 4 | 5 | 4 | **22** |
+| 5 | EQ16 | ¿La tasa de cancelación (churn) en los primeros 3 meses es inferior al 15%? | El churn define el LTV y la sostenibilidad del negocio. Altas tasas de cancelación harían inviable el modelo de suscripción. | 1 | 5 | 4 | 4 | **23** |
+| 6 | EQ1 | ¿Los negocios que dependen de equipos de refrigeración completan la configuración de su primer equipo en menos de 10 minutos? | Si el onboarding es complejo, perderemos usuarios antes de que perciban valor. La primera impresión es crítica para activación. | 2 | 4 | 4 | 3 | **19** |
+| 7 | EQ10 | ¿Los técnicos que usan el módulo de gestión de visitas ahorran al menos 3 horas semanales en tareas administrativas? | Si los técnicos no perciben ahorro de tiempo real, no adoptarán la plataforma y no recomendarán el servicio a sus clientes. | 2 | 4 | 4 | 4 | **20** |
+| 8 | EQ21 | ¿Qué características de OsitoPolar consideran los usuarios como ventajas claras frente a soluciones genéricas de mantenimiento? | Necesitamos validar nuestra diferenciación competitiva para ajustar el messaging de marketing y priorizar desarrollo de features. | 2 | 3 | 5 | 5 | **18** |
+| 9 | EQ3 | ¿Los usuarios consultan la plataforma al menos una vez al día después de la primera semana de uso? | El engagement diario es indicador de product-market fit. Baja frecuencia sugiere que el producto no se ha vuelto habitual. | 2 | 3 | 4 | 4 | **16** |
+| 10 | EQ15 | ¿El Net Promoter Score (NPS) de OsitoPolar es superior a 50 después de 3 meses de uso? | El NPS predice growth orgánico. Un NPS bajo indica problemas de satisfacción que impactarán la adquisición por referidos. | 2 | 3 | 4 | 4 | **16** |
+
+| Rank | ID | Pregunta | ¿Por qué? | Confianza | Riesgo | Impacto | Interés | Score |
+|------|-----|----------|-----------|-----------|--------|---------|---------|-------|
+| 11 | EQ7 | ¿Los usuarios prefieren recibir alertas críticas por WhatsApp en lugar de correo electrónico? | Queremos optimizar la efectividad de las alertas críticas. Si usamos el canal incorrecto, las alertas pueden ser ignoradas. | 3 | 3 | 3 | 3 | **12** |
+| 12 | EQ4 | ¿El monitoreo en tiempo real es la funcionalidad más utilizada comparada con reportes históricos y alertas? | Conocer qué feature es más valioso permite priorizar inversión en desarrollo y optimización. | 2 | 2 | 4 | 4 | **12** |
+| 13 | EQ13 | ¿Un plan "Starter" a S/. 49/mes para 2 equipos genera mayor volumen de suscripciones que ofrecer solo planes premium? | Queremos maximizar adopción en negocios pequeños. Un plan de entrada puede aumentar el TAM (Total Addressable Market). | 2 | 2 | 4 | 4 | **12** |
+| 14 | EQ20 | ¿Qué canal de adquisición (LinkedIn, Google Ads, referidos) genera usuarios con mayor LTV y menor CAC? | Necesitamos optimizar el presupuesto de marketing identificando los canales con mejor ROI. | 2 | 3 | 4 | 3 | **14** |
+| 15 | EQ18 | ¿Qué funcionalidades son consideradas "imprescindibles" versus "deseables" por diferentes segmentos de usuarios? | Esta información define el roadmap de producto. Queremos invertir en features que realmente importan. | 2 | 2 | 4 | 4 | **12** |
+| 16 | EQ2 | ¿Los usuarios que completan un tutorial interactivo durante el onboarding tienen mayor tasa de activación que aquellos que lo omiten? | Si el tutorial no mejora activación, podemos eliminarlo y simplificar el onboarding. Esto mejora la conversión inicial. | 3 | 2 | 3 | 3 | **9** |
+| 17 | EQ5 | ¿Los usuarios que reciben reportes semanales automáticos por correo tienen mayor engagement que los que no los reciben? | Queremos validar si automated emails mantienen engagement o son percibidos como spam. | 3 | 2 | 3 | 3 | **9** |
+| 18 | EQ8 | ¿La implementación de niveles de severidad en alertas (baja, media, alta) reduce la "fatiga de alertas"? | Si los usuarios ignoran las alertas por exceso de notificaciones, la funcionalidad core pierde efectividad. | 3 | 2 | 3 | 4 | **10** |
+| 19 | EQ14 | ¿Los paquetes anuales con 20% de descuento incrementan el Lifetime Value (LTV) de los usuarios? | Los compromisos anuales mejoran cash flow y reducen churn. Queremos validar si el incentivo es suficiente. | 3 | 2 | 3 | 3 | **9** |
+| 20 | EQ17 | ¿Qué patrones de uso emergen en las primeras 4 semanas después del onboarding? | Esta información puede revelar oportunidades de mejora no anticipadas en el journey del usuario. | 3 | 1 | 3 | 4 | **7** |
+| 21 | EQ19 | ¿Cuáles son las principales barreras que impiden la adopción de OsitoPolar en negocios pequeños versus grandes? | Conocer las barreras específicas permite diseñar estrategias de go-to-market diferenciadas por segmento. | 3 | 2 | 3 | 3 | **9** |
+| 22 | EQ22 | ¿Qué nuevas funcionalidades demandan los usuarios que actualmente no están en el roadmap? | Feature discovery es esencial para innovación continua. Podemos descubrir oportunidades de diferenciación. | 4 | 1 | 3 | 4 | **7** |
+| 23 | EQ23 | ¿Existen subsegmentos dentro de "Negocios que usan refrigeración" con necesidades significativamente diferentes? | Refinar segmentación permite personalizar la propuesta de valor y mejorar messaging. | 3 | 1 | 3 | 3 | **6** |
+| 24 | EQ24 | ¿Los técnicos independientes tienen patrones de uso diferentes a los técnicos que trabajan para empresas proveedoras? | Conocer diferencias de comportamiento permite crear experiencias personalizadas para cada tipo de técnico. | 3 | 1 | 2 | 3 | **5** |
+
+---
+
+### Notas Importantes sobre Priorización:
+
+1. **Alto Riesgo = Alta Prioridad**: Las preguntas con mayor riesgo (EQ9, EQ11, EQ12) están en el top 3 porque estar equivocados en estas áreas podría hacer inviable el modelo de negocio.
+
+2. **Enfoque en ROI y Monetización**: Las preguntas relacionadas con demostrar valor económico (EQ9, EQ10) y viabilidad del modelo de ingresos (EQ11, EQ12, EQ13) dominan el top 10.
+
+3. **Validación de Core Features**: Las preguntas sobre alertas (EQ6) y onboarding (EQ1) son prioritarias porque estas funcionalidades definen la primera experiencia con el producto.
+
+4. **Diferenciación Competitiva**: EQ21 está en el top 10 porque necesitamos validar nuestras ventajas competitivas proclamadas para justificar la inversión en marketing.
+
+5. **Optimización vs Validación**: Las preguntas de optimización (como canales de adquisición o preferencias de notificación) están más abajo porque primero necesitamos validar que el producto genera valor.
+
+Este Question Backlog se actualizará dinámicamente a medida que se respondan preguntas y surjan nuevos aprendizajes. En caso de empate en el Score, se prioriza la pregunta con mayor Riesgo.
+
+---
+
+## 8.1.5. Experiment Cards
+
+Las Experiment Cards son artefactos clave que capturan de forma estructurada la información esencial antes de la ejecución de cada experimento. A continuación, se presentan las tarjetas para los experimentos de mayor prioridad según el Question Backlog.
+
+### Experiment Card #01: Validación de Reducción de Pérdidas Económicas
+
+**Lado Frontal**
+
+| Campo | Contenido |
+|-------|-----------|
+| **Question** | ¿Los negocios que usan OsitoPolar experimentan una reducción de al menos 40% en pérdidas económicas por fallas de equipos comparado con negocios sin la plataforma? |
+| **Why** | Esta es nuestra propuesta de valor central (Claim C1). Si no podemos demostrar un ROI claro mediante la reducción de pérdidas económicas, el modelo de negocio completo está en riesgo. Necesitamos datos concretos para justificar la inversión de los clientes en la suscripción. |
+| **Hypothesis** | **Hipótesis de trabajo (H1)**: Los negocios que utilizan OsitoPolar durante al menos 3 meses experimentarán una reducción de al menos 40% en pérdidas económicas por fallas en equipos de refrigeración, medido en soles perdidos por productos dañados y tiempo de inactividad, comparado con negocios similares que no usan la plataforma.<br><br>**Hipótesis nula (H0)**: No existe una diferencia estadísticamente significativa (p < 0.05) en las pérdidas económicas por fallas entre negocios que usan OsitoPolar y negocios que no lo usan. |
+| **What** | Implementaremos un sistema de tracking de pérdidas económicas integrado en la plataforma que permitirá a los negocios registrar incidentes y cuantificar el impacto económico. Realizaremos un estudio comparativo entre un grupo de tratamiento (negocios con OsitoPolar) y un grupo de control (negocios sin la plataforma). |
+
+**Lado Posterior**
+
+| Campo | Contenido |
+|-------|-----------|
+| **Measures** | • **Métrica primaria**: Pérdidas económicas mensuales por fallas (S/. perdidos en productos + costo de tiempo de inactividad)<br>• **Métrica secundaria**: Número de incidentes críticos por mes<br>• **Métrica secundaria**: Tiempo promedio de respuesta ante fallas (minutos)<br>• **Métrica de engagement**: Frecuencia de uso de alertas y monitoreo<br>• **Métrica cualitativa**: Perceived value (encuesta post-experimento) |
+| **Conditions** | **Grupo experimental**: 30 negocios (mix de supermercados, minimarkets y restaurantes) que usan OsitoPolar con todas las funcionalidades premium activadas (alertas, monitoreo, reportes)<br><br>**Grupo de control**: 30 negocios similares (mismo rubro, tamaño similar, ubicación geográfica comparable) que NO usan OsitoPolar y dependen de métodos tradicionales de mantenimiento |
+| **Scale** | **Tamaño de muestra**: 60 negocios totales (30 experimental + 30 control)<br>**Duración**: 3 meses<br>**Nivel de significación**: α = 0.05 (confianza del 95%)<br>**Poder estadístico**: 1-β = 0.80 (80% de probabilidad de detectar el efecto si existe)<br>**Efecto Mínimo Detectable (MDE)**: Reducción del 40% en pérdidas económicas mensuales<br>**Cálculo**: Usando prueba t para muestras independientes, con n=30 por grupo, poder=0.80, α=0.05, esperamos detectar una diferencia de d=0.75 (tamaño del efecto grande según Cohen) |
+
+---
+
+## 8.2. Experiment Design
+
+Esta sección presenta la Fase de Diseño, fundamental para el éxito del experimento. En ella se define un diseño experimental estructurado que generará una respuesta útil y confiable, sirviendo como base para tomar decisiones informadas sobre el producto OsitoPolar.
+
+### 8.2.1. Hypotheses (Hipótesis)
+
+Para cada experimento prioritario identificado en el Question Backlog, se establecen hipótesis de trabajo claras, falsificables y medibles, emparejadas con sus respectivas hipótesis nulas.
+
+#### Experimento #01: Validación de Reducción de Pérdidas Económicas (EQ9)
+
+**Hipótesis de trabajo (H1):**
+Los negocios que utilizan OsitoPolar durante al menos 3 meses experimentarán una reducción de al menos 40% en pérdidas económicas por fallas en equipos de refrigeración, medido en soles perdidos por productos dañados y tiempo de inactividad, comparado con negocios similares que no usan la plataforma.
+
+**Hipótesis nula (H0):**
+No existe una diferencia estadísticamente significativa (p < 0.05) en las pérdidas económicas por fallas entre negocios que usan OsitoPolar y negocios que no lo usan.
+
+**Justificación:**
+Esta hipótesis es falsificable (puede ser refutada con datos), testable (podemos medir pérdidas económicas), y medible (especifica 40% de reducción). El período de 3 meses permite observar al menos dos ciclos completos de mantenimiento preventivo.
+
+---
+
+#### Experimento #02: Tasa de Conversión Freemium a Premium (EQ11)
+
+**Hipótesis de trabajo (H1):**
+Los usuarios que utilizan la versión freemium de OsitoPolar durante 14 días tendrán una tasa de conversión a planes premium superior al 25%, medida al finalizar el período de prueba.
+
+**Hipótesis nula (H0):**
+La tasa de conversión de usuarios freemium a premium después de 14 días de prueba es menor o igual al 25%.
+
+**Justificación:**
+La hipótesis establece un umbral específico (25%) basado en benchmarks de la industria SaaS B2B. El período de 14 días es suficiente para que los usuarios experimenten el valor completo de las funcionalidades premium durante al menos dos ciclos semanales de uso.
+
+---
+
+#### Experimento #03: Disposición a Pagar (EQ12)
+
+**Hipótesis de trabajo (H1):**
+Al menos el 60% de los negocios entrevistados expresarán disposición a pagar entre S/. 99 y S/. 299 mensuales por la suscripción premium de OsitoPolar, según el número de equipos monitoreados.
+
+**Hipótesis nula (H0):**
+Menos del 60% de los negocios entrevistados expresan disposición a pagar entre S/. 99 y S/. 299 mensuales por la suscripción premium.
+
+**Justificación:**
+Esta hipótesis permite validar el rango de precios propuesto antes de implementarlo en el mercado, reduciendo el riesgo de estrategias de pricing inadecuadas.
+
+---
+
+#### Experimento #04: Efectividad de Alertas (EQ6)
+
+**Hipótesis de trabajo (H1):**
+Las alertas automatizadas por temperatura generarán una acción correctiva en menos de 30 minutos en al menos el 70% de los casos, medido desde el momento de la emisión de la alerta hasta el registro de la acción en el sistema.
+
+**Hipótesis nula (H0):**
+Las alertas automatizadas no generan una acción correctiva en menos de 30 minutos en al menos el 70% de los casos, o no existe diferencia significativa en el tiempo de respuesta.
+
+**Justificación:**
+Esta hipótesis valida la funcionalidad core de prevención en tiempo real. El umbral de 30 minutos se basa en el tiempo crítico promedio antes de que productos perecederos comiencen a deteriorarse según estándares de refrigeración comercial.
+
+---
+
+### 8.2.2. Domain Business Metrics
+
+Esta sección define todas las métricas relevantes para el dominio de negocio de OsitoPolar que serán utilizadas para evaluar los experimentos. Cada métrica está descrita con su fórmula de cálculo, técnica de recolección y meta deseada. **Todas las Experiment Cards solo podrán hacer referencia a métricas definidas en esta sección.**
+
+#### Métricas Primarias del Negocio
+
+| ID | Métrica | Definición | Fórmula de Cálculo | Técnica de Recolección | Meta Deseada | Experimento Relacionado |
+|----|---------|------------|-------------------|------------------------|--------------|------------------------|
+| **DBM-01** | **Reducción de Pérdidas por Fallas** | Porcentaje de disminución en pérdidas económicas causadas por fallas en equipos de refrigeración | `((Pérdidas_antes - Pérdidas_después) / Pérdidas_antes) × 100` | Formulario de registro de incidentes en plataforma + Entrevistas de seguimiento mensuales | ≥ 40% | EXP-01 |
+| **DBM-02** | **Tasa de Conversión Freemium-Premium** | Porcentaje de usuarios que migran de plan gratuito a plan de pago tras periodo de prueba | `(Usuarios_convertidos / Total_usuarios_freemium) × 100` | Sistema de gestión de suscripciones + Analytics de plataforma | ≥ 25% | EXP-02 |
+| **DBM-03** | **Tiempo de Respuesta a Alertas Críticas** | Tiempo promedio transcurrido desde emisión de alerta crítica hasta acción correctiva registrada | `Σ(Tiempo_acción_i - Tiempo_alerta_i) / n_alertas` | Logs del sistema con timestamps + Registro de acciones en la plataforma | ≤ 30 min | EXP-04 |
+| **DBM-04** | **Disposición de Pago (Willingness to Pay)** | Porcentaje de usuarios que aceptan el rango de precios propuesto | `(Usuarios_que_aceptan_precio / Total_usuarios_encuestados) × 100` | Encuesta de pricing + Test A/B en landing page | ≥ 60% | EXP-03 |
+| **DBM-05** | **Net Promoter Score (NPS)** | Indicador de satisfacción y lealtad del cliente | `% Promotores (9-10) - % Detractores (0-6)` | Encuesta NPS enviada 3 meses post-activación | ≥ 50 | EXP-02, EXP-04 |
+
+#### Métricas Secundarias de Producto
+
+| ID | Métrica | Definición | Fórmula de Cálculo | Meta Deseada | Experimento Relacionado |
+|----|---------|------------|-------------------|--------------|------------------------|
+| **DSM-01** | **Daily Active Users (DAU)** | Porcentaje de usuarios que acceden a la plataforma al menos una vez al día | `(Usuarios_activos_día / Total_usuarios) × 100` | ≥ 60% | EXP-02 |
+| **DSM-02** | **Tiempo de Onboarding** | Tiempo promedio para completar configuración del primer equipo | `Σ(Tiempo_config_i) / n_usuarios_nuevos` | ≤ 10 min | EXP-02 |
+| **DSM-03** | **Ahorro de Tiempo (Técnicos)** | Horas semanales ahorradas en gestión administrativa | `Horas_método_tradicional - Horas_con_OsitoPolar` | ≥ 3 horas/semana | EXP-01 |
+| **DSM-04** | **Tasa de Acción sobre Alertas** | Porcentaje de alertas que resultan en acciones correctivas | `(Alertas_con_acción / Total_alertas) × 100` | ≥ 70% | EXP-04 |
+| **DSM-05** | **Churn Rate (3 meses)** | Porcentaje de usuarios que cancelan suscripción en primeros 3 meses | `(Usuarios_cancelados / Usuarios_activos_inicio) × 100` | ≤ 15% | EXP-02 |
+
+#### Métricas de Engagement
+
+| ID | Métrica | Definición | Fórmula de Cálculo | Meta Deseada |
+|----|---------|------------|-------------------|--------------|
+| **EM-01** | **Session Duration** | Duración promedio de sesión en la plataforma | `Σ(Duración_sesión_i) / Total_sesiones` | ≥ 8 min |
+| **EM-02** | **Feature Adoption Rate** | Porcentaje de usuarios que utilizan funcionalidad específica | `(Usuarios_usando_feature / Total_usuarios) × 100` | ≥ 50% |
+| **EM-03** | **Report Generation Frequency** | Frecuencia promedio de generación de reportes por usuario | `Total_reportes_generados / Total_usuarios_activos` | ≥ 4 reportes/mes |
+
+> **📸 RECOMENDACIÓN DE IMAGEN:** Incluir un dashboard conceptual de métricas mostrando visualizaciones de las 3-5 métricas principales (puede ser mockup en Figma o captura de herramienta de analytics).
+
+#### Justificación de Métricas Seleccionadas
+
+**DBM-01 (Reducción de Pérdidas):** Es la métrica más crítica pues valida la propuesta de valor central de OsitoPolar. Sin demostrar ROI tangible, el modelo de negocio no es sostenible.
+
+**DBM-02 (Conversión Freemium-Premium):** Define la viabilidad financiera del modelo freemium. Una tasa inferior al 25% indicaría necesidad de replantear la estrategia de monetización.
+
+**DBM-03 (Tiempo de Respuesta):** Valida la efectividad del sistema de alertas, funcionalidad diferenciadora clave frente a competidores.
+
+**DBM-04 (Willingness to Pay):** Previene errores costosos en estrategia de pricing antes del lanzamiento al mercado.
+
+---
+
+### 8.2.3. Measures (Medidas)
+
+Esta sección presenta los criterios seleccionados para recopilar la evidencia que ayudará a responder las preguntas principales de cada experimento y detectar evidencia secundaria. Las medidas deben ser representativas del cambio esperado y solo se utilizarán durante el tiempo justo para minimizar costos y riesgos.
+
+#### Experimento #01: Validación de Reducción de Pérdidas Económicas
+
+**Medidas Primarias:**
+
+| Medida | Tipo de Dato | Método de Recolección | Frecuencia | Responsable |
+|--------|-------------|----------------------|------------|-------------|
+| **Pérdidas económicas mensuales (S/.)** | Cuantitativo | Formulario estructurado en plataforma + Validación mediante entrevista | Mensual | Usuario Administrador |
+| **Número de incidentes críticos** | Cuantitativo | Registro automático en sistema + Confirmación manual | Continuo (tiempo real) | Sistema + Usuario |
+| **Tipo de falla registrada** | Cualitativo | Categorización predefinida en formulario | Por incidente | Usuario Administrador |
+| **Tiempo de inactividad del equipo (horas)** | Cuantitativo | Cálculo automático entre timestamp de alerta y registro de solución | Automático | Sistema |
+
+**Medidas Secundarias:**
+
+| Medida | Propósito | Método de Recolección |
+|--------|-----------|----------------------|
+| **Frecuencia de mantenimientos preventivos realizados** | Identificar correlación con reducción de fallas | Calendario de mantenimientos en plataforma |
+| **Costo de productos dañados por categoría** | Detallar el impacto económico por tipo de producto | Desglose en formulario de incidentes |
+| **Tiempo promedio de detección de anomalías** | Evaluar capacidad predictiva del sistema | Comparación de timestamp alerta vs timestamp falla real |
+
+**Criterios de Calidad de Datos:**
+- **Completitud:** Todos los campos obligatorios deben estar llenos (validación en formulario)
+- **Exactitud:** Validación cruzada mediante entrevista mensual de seguimiento
+- **Puntualidad:** Registro de incidentes dentro de las 24 horas posteriores al evento
+- **Consistencia:** Uso de categorías y unidades de medida estandarizadas
+
+---
+
+#### Experimento #02: Tasa de Conversión Freemium a Premium
+
+**Medidas Primarias:**
+
+| Medida | Tipo de Dato | Método de Recolección | Frecuencia | Responsable |
+|--------|-------------|----------------------|------------|-------------|
+| **Usuarios que convierten a premium** | Cuantitativo | Logs del sistema de suscripciones | Diario | Sistema |
+| **Días de uso activo durante trial** | Cuantitativo | Analytics de sesiones (Google Analytics + Mixpanel) | Continuo | Sistema |
+| **Features utilizados durante trial** | Cuantitativo | Event tracking en plataforma | Por sesión | Sistema |
+
+**Medidas Secundarias:**
+
+| Medida | Propósito | Método de Recolección |
+|--------|-----------|----------------------|
+| **Motivo de no conversión** | Identificar barreras de adopción | Encuesta post-trial (enviada automáticamente) |
+| **Tiempo hasta primera conversión** | Optimizar duración del trial | Diferencia entre fecha registro y fecha conversión |
+| **Plan premium seleccionado** | Validar product-market fit por segmento | Logs de sistema de suscripciones |
+| **Net Promoter Score (NPS) al final del trial** | Medir satisfacción durante experiencia inicial | Encuesta NPS enviada día 14 |
+
+---
+
+#### Experimento #03: Disposición a Pagar (Willingness to Pay)
+
+**Medidas Primarias:**
+
+| Medida | Tipo de Dato | Método de Recolección | Frecuencia | Responsable |
+|--------|-------------|----------------------|------------|-------------|
+| **Rango de precio aceptable** | Cuantitativo | Encuesta estructurada con técnica Van Westendorp | Una vez por participante | Equipo de investigación |
+| **Plan preferido según número de equipos** | Cualitativo/Cuantitativo | Encuesta de preferencias | Una vez por participante | Equipo de investigación |
+| **Percepción de valor vs precio** | Cualitativo (escala Likert 1-5) | Encuesta estructurada | Una vez por participante | Equipo de investigación |
+
+**Medidas Secundarias:**
+
+| Medida | Propósito | Método de Recolección |
+|--------|-----------|----------------------|
+| **Presupuesto actual en soluciones similares** | Contextualizar disposición de pago | Entrevista semi-estructurada |
+| **Sensibilidad al precio por segmento** | Identificar elasticidad de demanda | Análisis conjunto (conjoint analysis) |
+| **Features percibidos como "must-have" vs "nice-to-have"** | Priorizar roadmap según disposición de pago | Ranking de features en encuesta |
+
+---
+
+#### Experimento #04: Efectividad de Alertas
+
+**Medidas Primarias:**
+
+| Medida | Tipo de Dato | Método de Recolección | Frecuencia | Responsable |
+|--------|-------------|----------------------|------------|-------------|
+| **Tiempo de respuesta a alerta (minutos)** | Cuantitativo | Diferencia entre timestamp alerta y timestamp primera acción | Por alerta | Sistema |
+| **Tasa de acciones correctivas ejecutadas** | Cuantitativo | Conteo de alertas con registro de acción vs total alertas | Semanal | Sistema + Usuario |
+| **Tipo de acción correctiva realizada** | Cualitativo | Categorización en registro de acciones | Por alerta | Usuario |
+
+**Medidas Secundarias:**
+
+| Medida | Propósito | Método de Recolección |
+|--------|-----------|----------------------|
+| **Severidad de alerta** | Evaluar si nivel de urgencia afecta tiempo de respuesta | Categorización automática (baja/media/alta/crítica) |
+| **Canal de notificación utilizado** | Identificar canal más efectivo | Logs de envío (email/push/SMS/WhatsApp) |
+| **Hora del día de emisión de alerta** | Detectar patrones temporales en efectividad | Timestamp de alerta |
+| **Resultado de acción correctiva** | Medir efectividad de respuestas | Formulario post-acción (problema resuelto: sí/no) |
+
+---
+
+### 8.2.4. Conditions (Condiciones)
+
+Esta sección describe los factores que ayudan a identificar el motivo subyacente detrás de una respuesta. Para preguntas basadas en creencias, se establecen dos estados: condición experimental (para obtener evidencia a favor de H1) y condición de control (asumiendo H0 es correcta). Para preguntas exploratorias, se detallan los límites o características específicas del grupo de estudio.
+
+#### Experimento #01: Validación de Reducción de Pérdidas Económicas
+
+**Condición Experimental (Grupo de Tratamiento):**
+
+- **Descripción:** Negocios que utilizan OsitoPolar con todas las funcionalidades premium activadas
+- **Tamaño de muestra:** n = 30 negocios
+- **Criterios de inclusión:**
+  - Negocios con al menos 5 equipos de refrigeración comercial
+  - Ubicados en Lima Metropolitana
+  - Facturación anual superior a S/. 500,000
+  - Sin uso previo de plataformas de monitoreo IoT
+  - Comprometidos a registrar datos de pérdidas mensualmente durante 3 meses
+- **Segmentación:**
+  - 10 supermercados / minimercados
+  - 10 restaurantes / hoteles
+  - 10 laboratorios / distribuidoras farmacéuticas
+- **Intervención:**
+  - Instalación de sensores IoT certificados en todos los equipos
+  - Capacitación inicial de 2 horas en uso de plataforma
+  - Acceso completo a: monitoreo en tiempo real, alertas automatizadas, reportes técnicos, calendario de mantenimiento preventivo
+  - Soporte técnico prioritario vía WhatsApp y email
+
+**Condición de Control (Grupo de Control):**
+
+- **Descripción:** Negocios similares que continúan con métodos tradicionales de mantenimiento
+- **Tamaño de muestra:** n = 30 negocios
+- **Criterios de inclusión:**
+  - Mismos criterios que grupo experimental para garantizar comparabilidad
+  - Pareamiento por: tamaño de negocio, número de equipos, ubicación geográfica, segmento
+- **Segmentación:**
+  - 10 supermercados / minimercados
+  - 10 restaurantes / hoteles
+  - 10 laboratorios / distribuidoras farmacéuticas
+- **Intervención:**
+  - Continúan con sus procesos actuales de mantenimiento
+  - Registran pérdidas económicas mensualmente mediante formulario externo (compensación monetaria por participación)
+  - Sin acceso a la plataforma OsitoPolar durante el período de experimento
+
+**Variables de Control (Confounders):**
+
+Para asegurar validez interna, se controlarán las siguientes variables que podrían afectar los resultados:
+
+| Variable Confundidora | Estrategia de Control |
+|-----------------------|----------------------|
+| **Antigüedad de equipos** | Pareamiento: equipos con antigüedad similar entre grupos (+/- 2 años) |
+| **Marca y modelo de equipos** | Registro detallado de especificaciones técnicas para análisis de covarianza |
+| **Estacionalidad** | Experimento corre en mismo período temporal para ambos grupos (elimina efecto estacional) |
+| **Frecuencia de mantenimiento previa** | Línea base: recolectar datos de frecuencia de mantenimiento 3 meses antes del experimento |
+| **Volumen de productos almacenados** | Normalización de pérdidas por volumen (S/. perdidos por m³ de almacenamiento) |
+| **Capacitación del personal** | Grupo control recibe capacitación similar en registro de datos (sin acceso a plataforma) |
+
+---
+
+#### Experimento #02: Tasa de Conversión Freemium a Premium
+
+**Condición Experimental (Usuarios Freemium con Onboarding Optimizado):**
+
+- **Descripción:** Usuarios que reciben experiencia de onboarding mejorada y acceso a trial de 14 días
+- **Tamaño de muestra:** n = 200 usuarios
+- **Criterios de inclusión:**
+  - Nuevos registros en la plataforma
+  - Representantes de segmentos objetivo (administradores de negocios o técnicos)
+  - Email y teléfono verificados
+  - Completaron perfil inicial (nombre de negocio, número de equipos)
+- **Características del Trial:**
+  - Duración: 14 días calendario
+  - Acceso completo a funcionalidades premium:
+    - Monitoreo en tiempo real sin límite de equipos
+    - Alertas por email, SMS y push notifications
+    - Generación ilimitada de reportes técnicos
+    - Calendario de mantenimiento preventivo con recordatorios
+  - Restricciones: Sin acceso a historial mayor a 30 días, sin soporte prioritario
+- **Intervención adicional:**
+  - Tutorial interactivo al primer login (5 minutos)
+  - Emails automatizados de nurturing: día 1, 5, 10, 13 (recordatorio de vencimiento)
+  - Webinar grupal opcional en día 7 (demo de casos de uso)
+
+**Condición de Control (Usuarios Freemium Estándar):**
+
+- **Descripción:** Usuarios con experiencia de onboarding básica y versión freemium limitada permanentemente
+- **Tamaño de muestra:** n = 200 usuarios (cohorte histórica)
+- **Características Freemium:**
+  - Monitoreo de hasta 2 equipos
+  - Alertas solo por email
+  - 1 reporte técnico por mes
+  - Sin calendario de mantenimiento
+  - Publicidad de planes premium en la interfaz
+- **Intervención:**
+  - Onboarding básico (sin tutorial interactivo)
+  - Emails promocionales de planes premium: semanal
+  - Sin webinars ni capacitaciones
+
+**Punto de Medición:**
+- **Día 14:** Finalización del trial → Decisión de conversión o downgrade a freemium estándar
+- **Seguimiento adicional:** Día 30 y 60 para medir conversiones tardías
+
+---
+
+#### Experimento #03: Disposición a Pagar
+
+**Condición Exploratoria (Segmento: Negocios Pequeños y Medianos):**
+
+- **Descripción:** Estudio de sensibilidad al precio en negocios con 3-20 equipos
+- **Tamaño de muestra:** n = 50 participantes
+- **Criterios de inclusión:**
+  - Decisores de compra (gerentes o dueños)
+  - Negocios con 3-20 equipos de refrigeración
+  - Segmentos: minimarkets, restaurantes, laboratorios pequeños
+  - Sin suscripción actual a OsitoPolar
+- **Método de Investigación:**
+  - Encuesta Van Westendorp Price Sensitivity Meter (PSM):
+    - ¿A qué precio consideras que es demasiado caro y no comprarías?
+    - ¿A qué precio consideras que es caro, pero podrías considerarlo?
+    - ¿A qué precio consideras que es barato y representa buena relación calidad-precio?
+    - ¿A qué precio consideras que es tan barato que dudarías de su calidad?
+  - Análisis Conjunto (Conjoint Analysis): Evaluar trade-offs entre precio y features
+
+---
+
+#### Experimento #04: Efectividad de Alertas
+
+**Condición Experimental 1 (Alertas Multi-canal con Priorización):**
+
+- **Descripción:** Usuarios que reciben alertas con sistema de severidad y multi-canal
+- **Tamaño de muestra:** n = 40 usuarios
+- **Características:**
+  - Alertas clasificadas por severidad: Baja (email), Media (email + push), Alta (email + push + SMS), Crítica (email + push + SMS + WhatsApp)
+  - Notificaciones inteligentes según hora del día (silencioso de 11pm-7am para alertas no críticas)
+  - Opción de snooze para alertas no críticas
+
+**Condición Experimental 2 (Alertas Email-only sin Priorización):**
+
+- **Descripción:** Usuarios que reciben todas las alertas únicamente por email, sin diferenciación de severidad
+- **Tamaño de muestra:** n = 40 usuarios
+- **Características:**
+  - Todas las alertas por email con mismo formato
+  - Sin clasificación de severidad visible
+  - Sin opciones de snooze
+
+**Punto de Comparación:**
+Evaluar si la diferenciación por severidad y multi-canal mejora:
+- Tiempo de respuesta
+- Tasa de acción
+- Satisfacción del usuario (medida por encuesta post-experimento)
+- Incidencia de "fatiga de alertas" (medida por tasa de desactivación de notificaciones)
+
+---
+
+### 8.2.5. Scale Calculations and Decisions (Cálculos y Decisiones de Escala)
+
+Esta sección describe la determinación de la cantidad de evidencia necesaria para cada experimento. La escala se basa en la **Certeza** (probabilidad de error aceptable) y la **Precisión** (granularidad del cambio a detectar).
+
+#### Experimento #01: Validación de Reducción de Pérdidas Económicas
+
+**Parámetros del Diseño Experimental:**
+
+| Parámetro | Valor | Justificación |
+|-----------|-------|---------------|
+| **Nivel de Significación (α)** | 0.05 | Estándar en investigación científica: 5% de probabilidad de Error Tipo I (rechazar H0 cuando es verdadera) |
+| **Poder Estadístico (1-β)** | 0.80 | 80% de probabilidad de detectar el efecto si existe (Error Tipo II = 20%) |
+| **Efecto Mínimo Detectable (MDE)** | 40% de reducción | Umbral mínimo de impacto económico que justifica la inversión en OsitoPolar |
+| **Tamaño del Efecto (Cohen's d)** | 0.75 (grande) | Efecto esperado según Claim C1 y benchmarks de industria IoT |
+| **Tipo de Test** | Two-sample t-test (dos colas) | Comparación de medias entre dos grupos independientes |
+
+**Cálculo del Tamaño de Muestra:**
+
+Utilizando la fórmula para comparación de medias entre dos grupos independientes:
+```
+n = 2 × [(Z_α/2 + Z_β)² × σ²] / (μ1 - μ2)²
+
+Donde:
+- Z_α/2 = 1.96 (para α = 0.05, dos colas)
+- Z_β = 0.84 (para poder = 0.80)
+- σ = Desviación estándar estimada de pérdidas mensuales
+- μ1 - μ2 = Diferencia esperada entre grupos
+```
+
+**Estimación de parámetros poblacionales (basado en entrevistas preliminares):**
+- Pérdidas mensuales promedio sin OsitoPolar (μ_control): S/. 2,500
+- Pérdidas mensuales esperadas con OsitoPolar (μ_tratamiento): S/. 1,500 (40% reducción)
+- Desviación estándar estimada (σ): S/. 1,200
+```
+n = 2 × [(1.96 + 0.84)² × 1,200²] / (2,500 - 1,500)²
+n = 2 × [7.84 × 1,440,000] / 1,000,000
+n = 2 × 11,289,600 / 1,000,000
+n = 22.58 ≈ 23 por grupo
+```
+
+**Tamaño de Muestra Ajustado:**
+- **n calculado:** 23 negocios por grupo
+- **Ajuste por attrición:** +30% (considerando dropouts y datos incompletos)
+- **n final:** 30 negocios por grupo
+- **Total:** 60 negocios
+
+**Duración del Experimento:**
+- **3 meses** de seguimiento por negocio
+- Justificación: Permite observar al menos 2-3 ciclos de mantenimiento preventivo y capturar variabilidad estacional
+
+---
+
+#### Experimento #02: Tasa de Conversión Freemium a Premium
+
+**Parámetros del Diseño Experimental:**
+
+| Parámetro | Valor | Justificación |
+|-----------|-------|---------------|
+| **Nivel de Significación (α)** | 0.05 | Estándar para validación de hipótesis de negocio |
+| **Poder Estadístico (1-β)** | 0.80 | Balance entre rigurosidad y costo de experimentación |
+| **Tasa de Conversión Esperada (p1)** | 25% | Hipótesis según benchmark de SaaS B2B freemium |
+| **Tasa de Conversión Control (p0)** | 10% | Tasa histórica observada en versión freemium sin trial |
+| **Efecto Mínimo Detectable** | 15 puntos porcentuales | Diferencia mínima que justifica cambios en estrategia |
+| **Tipo de Test** | Two-proportion z-test | Comparación de proporciones entre dos grupos |
+
+**Cálculo del Tamaño de Muestra:**
+
+Para comparación de proporciones:
+```
+n = [(Z_α/2 × √(2p̄(1-p̄)) + Z_β × √(p1(1-p1) + p0(1-p0))]² / (p1 - p0)²
+
+Donde:
+- p̄ = (p1 + p0) / 2 = (0.25 + 0.10) / 2 = 0.175
+- p1 = 0.25 (tasa esperada en grupo experimental)
+- p0 = 0.10 (tasa en grupo control)
+```
+```
+n = [(1.96 × √(2×0.175×0.825)) + (0.84 × √(0.25×0.75 + 0.10×0.90))]² / (0.15)²
+n = [(1.96 × 0.538) + (0.84 × 0.484)]² / 0.0225
+n = [1.054 + 0.407]² / 0.0225
+n = 2.134 / 0.0225
+n = 94.8 ≈ 95 usuarios por grupo
+```
+
+**Tamaño de Muestra Ajustado:**
+- **n calculado:** 95 usuarios por grupo
+- **Ajuste por usuarios inactivos:** +100% (usuarios que se registran pero nunca activan cuenta)
+- **n final:** 200 usuarios por grupo
+- **Total:** 400 usuarios
+
+**Duración del Experimento:**
+- **14 días** de período de trial
+- **Reclutamiento:** Continuo hasta alcanzar n=400
+- **Estimación:** 4-6 semanas para completar reclutamiento (basado en tráfico actual del landing page)
+
+---
+
+#### Experimento #03: Disposición a Pagar
+
+**Parámetros del Diseño Experimental:**
+
+| Parámetro | Valor | Justificación |
+|-----------|-------|---------------|
+| **Nivel de Confianza** | 95% (α = 0.05) | Estándar para investigación de precios |
+| **Margen de Error** | ±10% | Precisión aceptable para decisión de pricing |
+| **Proporción Esperada** | 60% (disposición a pagar) | Estimación conservadora |
+| **Tipo de Estudio** | Descriptivo (Van Westendorp PSM) + Análisis Conjunto | Métodos complementarios para triangulación |
+
+**Cálculo del Tamaño de Muestra:**
+
+Para estimación de proporción poblacional:
+```
+n = (Z²× p × (1-p)) / E²
+
+Donde:
+- Z = 1.96 (para 95% de confianza)
+- p = 0.60 (proporción esperada)
+- E = 0.10 (margen de error)
+```
+```
+n = (1.96² × 0.60 × 0.40) / 0.10²
+n = (3.84 × 0.24) / 0.01
+n = 0.922 / 0.01
+n = 92.2 ≈ 93 participantes
+```
+
+**Tamaño de Muestra Ajustado:**
+- **n calculado:** 93 participantes
+- **Ajuste por respuestas incompletas:** -30%
+- **n ajustado:** 93 / 0.70 = 133 invitaciones
+- **Segmentación requerida:** Mínimo 25 participantes por segmento × 3 segmentos = 75 mínimo
+- **n final conservador:** 150 invitaciones → ~100 respuestas completas esperadas
+
+**Duración del Experimento:**
+- **2 semanas** para reclutamiento y recolección de respuestas
+- **Método:** Encuesta online (Google Forms / Typeform) + entrevistas de seguimiento opcional
+
+---
+
+#### Experimento #04: Efectividad de Alertas
+
+**Parámetros del Diseño Experimental:**
+
+| Parámetro | Valor | Justificación |
+|-----------|-------|---------------|
+| **Nivel de Significación (α)** | 0.05 | Estándar |
+| **Poder Estadístico (1-β)** | 0.80 | Balance costo-beneficio |
+| **Tiempo de Respuesta Esperado (Multicanal)** | 20 minutos | Basado en pruebas piloto |
+| **Tiempo de Respuesta Control (Email-only)** | 45 minutos | Baseline actual |
+| **Desviación Estándar Estimada** | 15 minutos | Variabilidad observada en piloto |
+| **Efecto Mínimo Detectable** | 20 minutos de diferencia | Diferencia prácticamente significativa |
+
+**Cálculo del Tamaño de Muestra:**
+```
+n = 2 × [(Z_α/2 + Z_β)² × σ²] / (μ1 - μ2)²
+n = 2 × [(1.96 + 0.84)² × 15²] / (45 - 20)²
+n = 2 × [7.84 × 225] / 625
+n = 2 × 1,764 / 625
+n = 5.64 ≈ 6 usuarios por grupo
+```
+
+**Consideración Adicional - Unidad de Análisis:**
+- **Unidad:** Alerta emitida (no usuario)
+- **Alertas esperadas por usuario:** ~15 alertas en 30 días
+- **n usuarios calculado:** 6 por grupo
+- **Total alertas esperadas:** 6 × 15 × 2 grupos = 180 alertas
+
+**Tamaño de Muestra Ajustado:**
+- **n usuarios por grupo:** 40 (para mayor robustez y subgrupos de análisis)
+- **Alertas esperadas:** 40 × 15 × 2 = 1,200 alertas totales
+- **Poder real con n=40:** > 0.95 (sobrepotenciado, pero permite análisis de subgrupos por tipo de negocio)
+
+**Duración del Experimento:**
+- **30 días** de monitoreo activo por usuario
+- **Reclutamiento:** 1-2 semanas
+- **Total:** 6-8 semanas
+
+---
+
+### 8.2.6. Methods Selection (Selección de Métodos)
+
+Esta sección describe cómo se llevará a cabo cada experimento, aplicando el principio fundamental de que el método debe ser el **Simplest Useful Thing** (la cosa más simple y útil) para alcanzar el tamaño de muestra y las condiciones necesarias.
+
+#### Experimento #01: Validación de Reducción de Pérdidas Económicas
+
+**Método Seleccionado:** Estudio Cuasi-Experimental de Cohortes con Grupo Control No Aleatorizado
+
+**Justificación:**
+Un diseño experimental aleatorizado verdadero (RCT) sería ideal, pero presenta desafíos prácticos:
+- Requeriría convencer a negocios de aceptar asignación aleatoria
+- Cuestiones éticas: ¿podemos negar acceso a plataforma a negocios del grupo control si creen que les beneficiaría?
+
+El diseño cuasi-experimental con pareamiento permite:
+- Comparabilidad entre grupos mediante matching por variables confundidoras
+- Mayor viabilidad de reclutamiento (los negocios auto-seleccionan pero son pareados)
+- Suficiente validez interna si se controlan correctamente los confounders
+
+**Procedimiento Detallado:**
+
+**Fase 1: Reclutamiento (Semanas 1-3)**
+1. **Reclutamiento de Grupo Experimental:**
+   - Campaña en LinkedIn Ads dirigida a administradores de negocios con refrigeración
+   - Webinar informativo: "Cómo reducir pérdidas por fallas en refrigeración" (generación de leads)
+   - Oferta: Acceso gratuito por 3 meses a cambio de participar en estudio
+   - Screening: Aplicar criterios de inclusión vía formulario
+   - Meta: 30 negocios
+
+2. **Reclutamiento de Grupo Control:**
+   - Invitación a negocios similares no interesados en adoptar tecnología aún
+   - Incentivo: S/. 200 por completar registro de datos mensual durante 3 meses
+   - Pareamiento por: tamaño, segmento, ubicación, número de equipos
+   - Meta: 30 negocios pareados
+
+**Fase 2: Línea Base (Semana 4)**
+- Ambos grupos registran pérdidas del mes anterior (baseline retrospectivo)
+- Instalación de sensores en grupo experimental
+- Capacitación de 2 horas en uso de plataforma (grupo experimental)
+- Capacitación de 1 hora en registro de datos (grupo control)
+
+**Fase 3: Intervención (Semanas 5-16, 12 semanas = 3 meses)**
+- Grupo experimental: Uso activo de OsitoPolar con todas las funcionalidades
+- Grupo control: Continúa con métodos tradicionales
+- Ambos grupos: Registro mensual de:
+  - Pérdidas económicas (S/.)
+  - Número de incidentes
+  - Costos de mantenimiento
+  - Tiempo de inactividad
+
+**Fase 4: Recolección y Validación de Datos (Continua)**
+- Check-ins semanales con grupo experimental (vía WhatsApp)
+- Recordatorios automatizados para registro de datos
+- Entrevistas de validación mensual con ambos grupos (30 min c/u)
+
+**Fase 5: Análisis (Semana 17)**
+- Análisis estadístico: t-test para diferencia de medias
+- ANCOVA para ajustar por covariables
+- Análisis de sensibilidad
+
+**Consideraciones Éticas:**
+- Consentimiento informado explícito de todos los participantes
+- Grupo control tendrá acceso a plataforma gratuitamente al finalizar el estudio
+- Datos tratados con confidencialidad (NDA firmado)
+- Derecho a abandonar estudio en cualquier momento sin penalización
+
+**Norma Esencial de XDPD:**
+No se ejecutarán otros experimentos simultáneos que puedan afectar las métricas de pérdidas económicas en los mismos participantes.
+
+---
+
+#### Experimento #02: Tasa de Conversión Freemium a Premium
+
+**Método Seleccionado:** A/B Test con Asignación Aleatoria Simple
+
+**Justificación:**
+El A/B test es el método óptimo porque:
+- Permite aleatorización verdadera (asignación automática en registro)
+- Minimiza sesgos de selección
+- Es el estándar de la industria para optimización de conversión SaaS
+- Fácil implementación técnica mediante feature flags
+
+**Procedimiento Detallado:**
+
+**Fase 1: Configuración Técnica (Semana 1)**
+1. **Implementación de Feature Flags:**
+   - Herramienta: LaunchDarkly / Firebase Remote Config
+   - Flag: `trial_experience_version` con valores: `v1_with_trial` | `v2_standard_freemium`
+   - Lógica de asignación: 50/50 aleatoria en momento de registro
+
+2. **Configuración de Analytics:**
+   - Google Analytics 4: Eventos personalizados
+     - `user_registered` (dimensión custom: `variant`)
+     - `trial_started`
+     - `trial_day_7_active`
+     - `trial_ended`
+     - `converted_to_premium`
+   - Mixpanel: Funnel de conversión con segmentación por variante
+
+**Fase 2: Reclutamiento (Semanas 2-7, continuo hasta n=400)**
+- Tráfico orgánico desde Landing Page
+- Campañas de Google Ads y LinkedIn Ads dirigidas a segmentos objetivo
+- No mencionar el trial en ads (para evitar sesgo de auto-selección)
+- Los usuarios descubren el trial en el onboarding de la plataforma
+
+**Fase 3: Experiencia de Usuario (14 días por usuario)**
+
+**Variante A (Experimental - Trial de 14 días):**
+- Día 1:
+  - Bienvenida con tutorial interactivo (5 min)
+  - Email: "Bienvenido a tu trial premium de OsitoPolar"
+- Día 5:
+  - Email: "¿Necesitas ayuda? Consejos para aprovechar tu trial"
+- Día 7:
+  - Email: "¡Ya llevas la mitad! Caso de éxito: Cómo [Negocio X] redujo pérdidas en 45%"
+  - Invitación a webinar (opcional)
+- Día 10:
+  - Push notification: "Genera tu primer reporte completo"
+- Día 13:
+  - Email: "Último día de trial mañana - Elige tu plan premium"
+  - CTA prominente en plataforma
+- Día 14:
+  - Modal de conversión al hacer login
+  - Opciones: Elegir plan premium / Continuar con freemium básico
+
+**Variante B (Control - Freemium Estándar):**
+- Día 1:
+  - Onboarding básico (sin tutorial interactivo)
+  - Email: "Bienvenido a OsitoPolar"
+- Continuo:
+  - Banner persistente en plataforma: "Upgrade a Premium"
+  - Limitaciones visibles: "Has alcanzado el límite de 2 equipos"
+- Día 7, 14, 21:
+  - Email promocional: "Desbloquea el potencial completo con Premium"
+
+**Fase 4: Medición de Conversión (Día 14, 30, 60)**
+- Punto primario: Día 14 (fin del trial / decisión de upgrade)
+- Seguimiento: Día 30 y 60 para capturar conversiones tardías
+- Métricas secundarias: engagement durante trial (sesiones, features usados)
+
+**Fase 5: Análisis (Semana 8)**
+- Two-proportion z-test para diferencia en tasas de conversión
+- Análisis de subgrupos por segmento (supermercados vs restaurantes vs laboratorios)
+- Análisis de cohortes por fecha de registro (detectar efectos temporales)
+
+**Criterios de Parada Temprana:**
+- Si después de 200 usuarios (n=100 por grupo), la diferencia es estadísticamente significativa con p < 0.01 y la tasa del grupo experimental es >30%, se puede detener el experimento anticipadamente (early stopping)
+- Si la tasa del grupo experimental es <15%, se evalúa pivote de estrategia
+
+**Norma Esencial de XDPD:**
+Durante este experimento, NO se ejecutarán otros tests A/B que afecten la experiencia de onboarding o el flujo de conversión (ej: cambios en pricing page, modificaciones en mensajes de email)
+
+---
+
+#### Experimento #03: Disposición a Pagar
+
+**Método Seleccionado:** Estudio de Investigación de Mercado Combinado (Van Westendorp PSM + Análisis Conjunto)
+
+**Justificación:**
+Usar dos métodos complementarios permite:
+- **Van Westendorp PSM:** Identificar rango de precios aceptable de forma rápida
+- **Análisis Conjunto:** Entender trade-offs entre precio y features (valor percibido)
+- Triangulación de resultados aumenta confianza en decisiones de pricing
+
+**Procedimiento Detallado:**
+
+**Fase 1: Diseño del Cuestionario (Semana 1)**
+
+**Parte A: Screener (2 minutos)**
+- Rol en la empresa (filtro: debe ser decisor de compra)
+- Número de equipos de refrigeración
+- Segmento de negocio
+- Presupuesto anual en mantenimiento de equipos
+
+**Parte B: Van Westendorp Price Sensitivity Meter (5 minutos)**
+Presentar descripción de OsitoPolar (video de 90 segundos + bullet points de features), luego preguntar:
+
+1. "¿A qué precio mensual (por 5 equipos) considerarías que OsitoPolar es **tan barato que dudarías de su calidad**?"
+   - Respuesta abierta (campo numérico: S/. ___)
+
+2. "¿A qué precio mensual considerarías que OsitoPolar es **barato y representa buena relación calidad-precio**?"
+   - Respuesta abierta (campo numérico: S/. ___)
+
+3. "¿A qué precio mensual considerarías que OsitoPolar es **caro, pero aún podrías considerarlo**?"
+   - Respuesta abierta (campo numérico: S/. ___)
+
+4. "¿A qué precio mensual considerarías que OsitoPolar es **demasiado caro y no lo comprarías**?"
+   - Respuesta abierta (campo numérico: S/. ___)
+
+**Parte C: Análisis Conjunto (8 minutos)**
+Presentar 12 perfiles de producto (combinaciones de atributos) y pedir ranking de preferencia.
+
+Atributos a evaluar:
+| Atributo | Niveles |
+|----------|---------|
+| **Precio mensual** | S/. 79 / S/. 129 / S/. 199 / S/. 299 |
+| **Número de equipos incluidos** | 3 / 5 / 10 / Ilimitado |
+| **Soporte técnico** | Email (48h) / Chat (24h) / Teléfono prioritario |
+| **Frecuencia de reportes** | Mensual / Semanal / Diario |
+
+Ejemplo de perfil a evaluar:
+> **Opción A:** S/. 129/mes | 5 equipos | Chat 24h | Reportes semanales
+> **Opción B:** S/. 199/mes | 10 equipos | Teléfono prioritario | Reportes diarios
+> "¿Cuál preferirías?" (ranking 1-12)
+
+**Parte D: Preguntas Complementarias (3 minutos)**
+- ¿Qué features consideras más valiosos? (ranking)
+- ¿Cuánto gastas actualmente en soluciones similares?
+- ¿Qué te haría decidir NO comprar OsitoPolar? (pregunta abierta)
+
+**Fase 2: Reclutamiento (Semana 2)**
+- **Canal 1:** Base de datos de leads del landing page (emails recopilados)
+- **Canal 2:** LinkedIn Ads con oferta: "Participa en estudio de mercado - Amazon gift card S/. 50"
+- **Canal 3:** Asociaciones empresariales (ADEX, Cámara de Comercio de Lima)
+- Meta: 150 invitaciones enviadas
+- Tasa de respuesta esperada: 60-70% → ~100 respuestas completas
+
+**Fase 3: Recolección de Datos (Semanas 2-3)**
+- Plataforma: Typeform (UX superior) / Google Forms (fallback)
+- Recordatorios: Email día 3, 7, 10 (a quienes no completaron)
+- Validación en tiempo real: Alertas si respuestas inconsistentes (ej: "demasiado barato" > "demasiado caro")
+
+**Fase 4: Análisis (Semana 4)**
+
+**Análisis Van Westendorp:**
+1. Graficar curvas acumuladas:
+   - "Demasiado barato" (curva ascendente)
+   - "Barato / Buena relación" (curva descendente)
+   - "Caro pero considerable" (curva ascendente)
+   - "Demasiado caro" (curva descendente)
+
+2. Identificar puntos clave:
+   - **PMC (Point of Marginal Cheapness):** Intersección "Demasiado barato" × "Caro pero considerable"
+   - **OPP (Optimal Price Point):** Intersección "Barato" × "Caro pero considerable"
+   - **PME (Point of Marginal Expensiveness):** Intersección "Barato" × "Demasiado caro"
+   - **IDP (Indifference Price Point):** Intersección "Demasiado barato" × "Demasiado caro"
+
+3. Rango aceptable de precios: Entre PMC y PME
+4. Precio óptimo sugerido: OPP
+
+**Análisis Conjunto:**
+- Software: Sawtooth Software / R (package `conjoint`)
+- Calcular utilidades (part-worth utilities) para cada nivel de atributo
+- Identificar importancia relativa de cada atributo (% de varianza explicada)
+- Simular escenarios de pricing competitivo
+
+**Fase 5: Toma de Decisión (Semana 4)**
+- Reunión con stakeholders (Product Manager, CEO, CFO)
+- Presentar hallazgos: rango óptimo, sensibilidad por segmento, trade-offs precio-features
+- Definir pricing final considerando:
+  - Costos de operación (COGS)
+  - Estrategia competitiva
+  - Objetivos de penetración de mercado vs maximización de revenue
+
+---
+
+#### Experimento #04: Efectividad de Alertas
+
+**Método Seleccionado:** Experimento Factorial 2×2 con Asignación Aleatoria
+
+**Justificación:**
+Un diseño factorial permite evaluar simultáneamente dos factores:
+- **Factor A:** Sistema de severidad (Con / Sin)
+- **Factor B:** Multicanal (Multicanal / Email-only)
+
+Esto resulta en 4 condiciones experimentales, permitiendo:
+1. Evaluar efecto principal de cada factor
+2. Detectar interacciones entre factores
+3. Mayor eficiencia que ejecutar 2 experimentos separados
+
+**Condiciones Experimentales:**
+
+| Grupo | Severidad | Canales | n |
+|-------|-----------|---------|---|
+| **Grupo 1 (Control)** | Sin severidad | Email-only | 20 usuarios |
+| **Grupo 2** | Con severidad | Email-only | 20 usuarios |
+| **Grupo 3** | Sin severidad | Multicanal | 20 usuarios |
+| **Grupo 4 (Tratamiento completo)** | Con severidad | Multicanal | 20 usuarios |
+| **Total** | | | **80 usuarios** |
+
+**Procedimiento Detallado:**
+
+**Fase 1: Configuración Técnica (Semanas 1-2)**
+1. **Backend:**
+   - Desarrollar lógica de clasificación de alertas por severidad (basada en desviación de temperatura y duración)
+   - Integrar APIs de notificación: SendGrid (email), OneSignal (push), Twilio (SMS/WhatsApp)
+   - Feature flags para activar/desactivar severidad y canales por usuario
+
+2. **Frontend:**
+   - UI diferenciada por severidad (colores: gris, amarillo, naranja, rojo)
+   - Configuración de preferencias de canal (para grupos multicanal)
+
+**Fase 2: Reclutamiento y Asignación (Semana 3)**
+- Invitar a 80 usuarios actuales de OsitoPolar (ya tienen sensores instalados)
+- Asignación aleatoria mediante script (stratified randomization por segmento de negocio)
+- Consentimiento informado: "Estarás participando en un estudio para mejorar el sistema de alertas"
+
+**Fase 3: Intervención (Semanas 4-7, 30 días)**
+- Monitoreo pasivo: Sistema funciona normalmente
+- Registro automático de eventos:
+  - Timestamp de emisión de alerta
+  - Severidad (si aplica)
+  - Canal(es) de envío
+  - Timestamp de primera apertura de alerta (email open, push viewed)
+  - Timestamp de primera acción en plataforma (login post-alerta)
+  - Timestamp de registro de acción correctiva
+  - Tipo de acción correctiva registrada
+
+**Fase 4: Recolección de Datos Cualitativos (Semana 8)**
+- Encuesta post-experimento a todos los participantes (10 min):
+  - Satisfacción con sistema de alertas (escala Likert 1-5)
+  - ¿Experimentaste "fatiga de alertas"? (sí/no + preguntas de seguimiento)
+  - ¿Cuál fue el canal más útil para ti? (ranking)
+  - ¿Las alertas te ayudaron a prevenir pérdidas? (sí/no + ejemplo abierto)
+  - NPS específico del feature de alertas
+
+**Fase 5: Análisis (Semana 9)**
+
+**Análisis Cuantitativo:**
+1. **Métrica Primaria:** Tiempo de respuesta (minutos)
+   - ANOVA factorial 2×2 para evaluar:
+     - Efecto principal de Severidad (F-statistic, p-value)
+     - Efecto principal de Multicanal (F-statistic, p-value)
+     - Efecto de interacción Severidad × Multicanal (F-statistic, p-value)
+   - Post-hoc: Tukey HSD para comparaciones múltiples
+
+2. **Métrica Secundaria:** Tasa de acción (%)
+   - Chi-cuadrado para proporciones entre grupos
+
+**Análisis Cualitativo:**
+- Análisis temático de respuestas abiertas en encuesta
+- Identificar barreras de uso y oportunidades de mejora
+
+**Norma Esencial de XDPD:**
+✅ Durante este experimento, NO se modificarán otros aspectos del sistema de alertas (ej: umbrales de temperatura, frecuencia de verificación de sensores)
+
+---
+
+### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection
+
+Esta sección presenta la preparación analítica basada en la selección de medidas, con el objetivo de asegurar la economía en el rastreo de datos y garantizar que las métricas elegidas permitan detectar diferencias o cambios precisos en el comportamiento de los usuarios y en los resultados de negocio.
+
+#### Objetivo General de Analytics
+
+Implementar un sistema de data analytics que permita:
+1. **Monitorear** el desempeño de los experimentos en tiempo real
+2. **Detectar** anomalías o desviaciones significativas tempranamente
+3. **Validar** hipótesis mediante análisis estadístico riguroso
+4. **Optimizar** la toma de decisiones basada en datos cuantitativos y cualitativos
+5. **Escalar** el aprendizaje organizacional mediante documentación de insights
+
+#### Estructura de Goals, KPIs y Metrics por Experimento
+
+##### Experimento #01: Validación de Reducción de Pérdidas Económicas
+
+**GOAL 1:** Demostrar que OsitoPolar reduce pérdidas económicas por fallas en al menos 40%
+
+**KPIs (Key Performance Indicators):**
+
+| KPI | Definición | Target | Frecuencia de Medición |
+|-----|------------|--------|------------------------|
+| **Pérdidas Mensuales Promedio (S/.)** | Media de pérdidas económicas por negocio en el grupo experimental | ≤ S/. 1,500 (vs baseline S/. 2,500) | Mensual |
+| **Porcentaje de Reducción de Pérdidas** | `((Baseline - Actual) / Baseline) × 100` | ≥ 40% | Al final del experimento (3 meses) |
+| **Tasa de Incidentes Críticos por Equipo** | `Total_incidentes_críticos / Total_equipos` | < 0.5 incidentes/equipo/mes | Mensual |
+| **ROI del Cliente** | `(Ahorros - Costo_suscripción) / Costo_suscripción × 100` | ≥ 300% | Trimestral |
+
+**Métricas de Soporte:**
+
+| Métrica | Propósito | Cálculo |
+|---------|-----------|---------|
+| **Tiempo Promedio de Inactividad** | Evaluar eficiencia de respuesta | `Σ Horas_inactividad / N_incidentes` |
+| **Costo Promedio por Incidente** | Desglosar impacto económico | `Total_pérdidas / N_incidentes` |
+| **Mantenimientos Preventivos Realizados** | Correlacionar con reducción de fallas | Conteo mensual |
+| **Alertas Generadas vs Incidentes Reales** | Evaluar tasa de falsos positivos | `(Alertas - Incidentes_reales) / Alertas × 100` |
+
+**Dashboard Requirements:**
+- Gráfico de líneas: Evolución de pérdidas mensuales (grupo experimental vs control)
+- Gráfico de barras: Comparación de incidentes por tipo entre grupos
+- Heatmap: Distribución temporal de incidentes (día de semana × hora)
+- Funnel: Alerta → Apertura → Acción → Resolución
+
+---
+
+##### Experimento #02: Tasa de Conversión Freemium a Premium
+
+**GOAL 2:** Alcanzar una tasa de conversión superior al 25% mediante trial de 14 días
+
+**KPIs:**
+
+| KPI | Definición | Target | Frecuencia de Medición |
+|-----|------------|--------|------------------------|
+| **Conversion Rate (Trial → Premium)** | `(Usuarios_premium / Usuarios_trial) × 100` | ≥ 25% | Día 14, 30, 60 |
+| **Activation Rate** | `(Usuarios_que_configuran_1er_equipo / Total_registros) × 100` | ≥ 70% | Diaria |
+| **Trial Engagement Score** | Media de: sesiones + features_usados + días_activos (normalizado 0-100) | ≥ 60 | Semanal |
+| **Customer Acquisition Cost (CAC)** | `Costos_marketing / Nuevos_usuarios_premium` | ≤ S/. 300 | Mensual |
+
+**Métricas de Soporte:**
+
+| Métrica | Propósito | Cálculo |
+|---------|-----------|---------|
+| **Time to First Value** | Evaluar fricción en onboarding | Tiempo desde registro hasta 1er equipo configurado |
+| **Feature Adoption Rate por Feature** | Identificar features más valiosos | `Usuarios_usando_feature / Total_usuarios` |
+| **Trial Completion Rate** | Medir engagement sostenido | `Usuarios_activos_día_14 / Total_inicios_trial` |
+| **Plan Selection Distribution** | Entender preferencias de pricing | % por cada tier (Starter/Pro/Business) |
+
+**Funnel de Conversión:**
+```
+100% Registros
+ ↓ Activation
+70% Configuraron 1er equipo (Target: ≥70%)
+ ↓ Early engagement
+50% Usuarios activos día 3 (Target: ≥50%)
+ ↓ Mid-trial engagement
+40% Usuarios activos día 7 (Target: ≥40%)
+ ↓ Late-trial engagement
+35% Usuarios activos día 13 (Target: ≥35%)
+ ↓ Conversion
+25% Conversión a Premium (Target: ≥25%)
+```
+
+**Dashboard Requirements:**
+- Embudo de conversión con tasas de caída por etapa
+- Gráfico de líneas: Curvas de engagement por cohorte (días 1-14)
+- Gráfico de barras: Distribución de features usados durante trial
+- Cohort analysis: Retención por semana de registro
+
+> **📸 RECOMENDACIÓN DE IMAGEN:** Mockup del dashboard de conversión mostrando el funnel y métricas clave en tiempo real (puede usar herramientas como Mixpanel, Amplitude o Tableau).
+
+---
+
+##### Experimento #03: Disposición a Pagar
+
+**GOAL 3:** Validar que al menos 60% de usuarios aceptan rango de precios S/. 99-299
+
+**KPIs:**
+
+| KPI | Definición | Target | Frecuencia de Medición |
+|-----|------------|--------|------------------------|
+| **Acceptance Rate del Rango de Precios** | `Usuarios_aceptan_rango / Total_encuestados × 100` | ≥ 60% | Una vez (post-encuesta) |
+| **Optimal Price Point (OPP)** | Precio identificado en Van Westendorp | Dentro de S/. 99-299 | Una vez |
+| **Price Sensitivity by Segment** | Desviación estándar del OPP por segmento | < S/. 50 | Una vez |
+| **Feature-Price Trade-off Coefficient** | Importancia relativa del precio en análisis conjunto | < 35% (indicaría que features son más importantes) | Una vez |
+
+**Métricas de Soporte:**
+
+| Métrica | Propósito | Cálculo |
+|---------|-----------|---------|
+| **Rango de Precios Aceptable (IQR)** | Identificar dispersión de opiniones | Percentil 75 - Percentil 25 |
+| **Utilidad Marginal por Feature** | Rankear features por valor percibido | Part-worth utilities del análisis conjunto |
+| **Willingness to Pay por Segmento** | Pricing diferenciado | Mediana del "precio barato" por segmento |
+
+**Análisis Requerido:**
+1. Van Westendorp Price Sensitivity Meter (4 curvas + puntos de intersección)
+2. Análisis Conjunto: Matriz de utilidades e importancia relativa de atributos
+3. Segmentación: Análisis comparativo entre supermercados, restaurantes y laboratorios
+
+---
+
+##### Experimento #04: Efectividad de Alertas
+
+**GOAL 4:** Lograr que 70% de alertas generen acción correctiva en < 30 minutos
+
+**KPIs:**
+
+| KPI | Definición | Target | Frecuencia de Medición |
+|-----|------------|--------|------------------------|
+| **Action Rate** | `(Alertas_con_acción / Total_alertas) × 100` | ≥ 70% | Semanal |
+| **Average Response Time** | `Σ (Tiempo_acción - Tiempo_alerta) / N_alertas` | ≤ 30 min | Semanal |
+| **Alert Fatigue Rate** | `(Usuarios_desactivan_alertas / Total_usuarios) × 100` | ≤ 10% | Mensual |
+| **Satisfaction Score (Alertas)** | NPS específico del sistema de alertas | ≥ 40 | Post-experimento |
+
+**Métricas de Soporte:**
+
+| Métrica | Propósito | Cálculo |
+|---------|-----------|---------|
+| **Response Time por Severidad** | Evaluar efectividad de priorización | Mediana de tiempo por nivel (baja/media/alta/crítica) |
+| **Response Time por Canal** | Identificar canal más efectivo | Mediana de tiempo por canal (email/push/SMS/WhatsApp) |
+| **False Positive Rate** | Evaluar precisión del sistema | `(Alertas_sin_problema_real / Total_alertas) × 100` |
+| **Alert Engagement Rate** | Medir apertura de alertas | `(Alertas_abiertas / Total_alertas) × 100` |
+
+**Análisis Estadístico Requerido:**
+- ANOVA Factorial 2×2 (Severidad × Multicanal)
+- Test de Tukey para comparaciones múltiples post-hoc
+- Análisis de supervivencia (Kaplan-Meier) para tiempo hasta acción
+
+---
+
+#### Stack Tecnológico de Analytics
+
+| Componente | Herramienta | Propósito |
+|------------|-------------|-----------|
+| **Event Tracking** | Mixpanel / Amplitude | Rastreo de eventos de usuario en web y mobile |
+| **Web Analytics** | Google Analytics 4 | Tráfico, sesiones, demografía |
+| **Product Analytics** | Heap | Retroactive event tracking y session replay |
+| **Data Warehouse** | Google BigQuery / Amazon Redshift | Almacenamiento centralizado de datos |
+| **Business Intelligence** | Tableau / Looker / Power BI | Dashboards y reportería |
+| **Statistical Analysis** | Python (pandas, scipy, statsmodels) / R | Análisis estadístico avanzado |
+| **A/B Testing Platform** | Optimizely / LaunchDarkly | Gestión de experimentos y feature flags |
+| **Survey Tool** | Typeform / Google Forms / SurveyMonkey | Encuestas de investigación |
+
+---
+
+### 8.2.8. Web and Mobile Tracking Plan
+
+Esta sección detalla el plan de rastreo de eventos en las plataformas web y móvil de OsitoPolar para asegurar la recolección precisa de datos necesarios para los experimentos. Se especifica qué eventos deben rastrearse, en qué circunstancias, qué propiedades deben capturarse y qué herramientas se utilizarán.
+
+#### Principios del Tracking Plan
+
+1. **Event-Driven Architecture:** Cada interacción relevante del usuario genera un evento inmutable
+2. **Granularidad Balanceada:** Suficiente detalle para análisis sin generar ruido excesivo
+3. **Privacidad by Design:** Cumplimiento con GDPR y leyes de protección de datos del Perú
+4. **Nomenclatura Consistente:** Convención snake_case para nombres de eventos y propiedades
+5. **Versionado:** Esquema de datos versionado para evolución sin breaking changes
+
+#### Taxonomía de Eventos
+
+Los eventos se organizan en categorías según el journey del usuario:
+
+| Categoría | Descripción | Prefijo de Evento |
+|-----------|-------------|-------------------|
+| **Authentication** | Registro, login, logout | `auth_` |
+| **Onboarding** | Configuración inicial, tutorial | `onboarding_` |
+| **Equipment Management** | CRUD de equipos | `equipment_` |
+| **Monitoring** | Visualización de dashboards, alertas | `monitoring_` |
+| **Alerts** | Interacción con alertas | `alert_` |
+| **Maintenance** | Calendario, registros de mantenimiento | `maintenance_` |
+| **Reports** | Generación y descarga de reportes | `report_` |
+| **Subscription** | Trial, conversión, cambios de plan | `subscription_` |
+| **Support** | Contacto con soporte, ayuda | `support_` |
+
+---
+
+#### Eventos Críticos por Experimento
+
+##### Experimento #01: Reducción de Pérdidas Económicas
+
+**Eventos a Rastrear:**
+
+| Evento | Trigger | Propiedades | Herramienta |
+|--------|---------|-------------|-------------|
+| `equipment_added` | Usuario registra nuevo equipo | `equipment_id`, `equipment_type`, `brand`, `model`, `capacity`, `installation_date`, `user_id`, `business_id` | Mixpanel |
+| `alert_generated` | Sistema detecta anomalía | `alert_id`, `equipment_id`, `alert_type`, `severity`, `temperature`, `threshold`, `timestamp` | Mixpanel + BigQuery |
+| `alert_opened` | Usuario ve alerta | `alert_id`, `channel` (email/push/SMS), `time_to_open` (segundos), `device_type` | Mixpanel |
+| `alert_action_recorded` | Usuario registra acción correctiva | `alert_id`, `action_type`, `resolution_time` (minutos), `problem_resolved` (boolean), `notes` | Mixpanel + BigQuery |
+| `incident_reported` | Usuario registra incidente con pérdidas | `incident_id`, `equipment_id`, `incident_date`, `downtime_hours`, `financial_loss`, `products_damaged`, `cause_category` | BigQuery (PII) |
+| `maintenance_scheduled` | Usuario programa mantenimiento | `maintenance_id`, `equipment_id`, `scheduled_date`, `maintenance_type` (preventive/corrective) | Mixpanel |
+| `maintenance_completed` | Usuario marca mantenimiento como realizado | `maintenance_id`, `completion_date`, `technician_id`, `findings` | BigQuery |
+
+**Métricas Derivadas:**
+- **Pérdidas Mensuales:** Agregación de `financial_loss` por `business_id` y mes
+- **Tiempo de Respuesta a Alertas:** `alert_action_recorded.resolution_time` - `alert_generated.timestamp`
+- **Tasa de Mantenimientos Preventivos:** `COUNT(maintenance_scheduled WHERE maintenance_type = 'preventive') / Total_equipos`
+
+---
+
+##### Experimento #02: Conversión Freemium-Premium
+
+**Eventos a Rastrear:**
+
+| Evento | Trigger | Propiedades | Herramienta |
+|--------|---------|-------------|-------------|
+| `auth_user_registered` | Usuario completa registro | `user_id`, `email`, `signup_source`, `variant` (trial/freemium), `business_type`, `equipment_count`, `utm_parameters` | Mixpanel + GA4 |
+| `onboarding_started` | Usuario inicia onboarding | `user_id`, `variant` | Mixpanel |
+| `onboarding_step_completed` | Usuario completa paso del onboarding | `user_id`, `step_number`, `step_name`, `time_spent` | Mixpanel |
+| `onboarding_completed` | Usuario finaliza onboarding | `user_id`, `total_time`, `steps_completed` | Mixpanel |
+| `equipment_first_configured` | Usuario configura su 1er equipo | `user_id`, `time_to_first_value` (minutos desde registro), `equipment_type` | Mixpanel |
+| `feature_used` | Usuario usa una funcionalidad | `user_id`, `feature_name`, `session_id`, `context` | Mixpanel |
+| `trial_started` | Usuario inicia trial premium | `user_id`, `trial_start_date`, `trial_end_date` | Mixpanel + BigQuery |
+| `trial_reminder_sent` | Sistema envía recordatorio de trial | `user_id`, `reminder_type` (day_5/day_10/day_13), `channel` | Mixpanel (server-side) |
+| `subscription_plan_viewed` | Usuario ve página de planes | `user_id`, `trial_days_remaining`, `current_plan` | Mixpanel |
+| `subscription_converted` | Usuario se convierte a premium | `user_id`, `plan_selected`, `billing_cycle` (monthly/annual), `conversion_date`, `trial_duration_used`, `discount_applied` | Mixpanel + BigQuery + Stripe webhook |
+| `subscription_downgraded` | Usuario vuelve a freemium | `user_id`, `downgrade_date`, `reason` | Mixpanel + BigQuery |
+
+**Funnel de Conversión (Mixpanel):**
+```
+auth_user_registered 
+  → onboarding_completed 
+  → equipment_first_configured 
+  → trial_started (if applicable)
+  → subscription_converted
+```
+
+**Cohort Analysis:**
+- **Cohorte:** Usuarios por semana de registro
+- **Evento de Activación:** `equipment_first_configured`
+- **Evento de Conversión:** `subscription_converted`
+- **Período de Observación:** 60 días
+
+---
+
+##### Experimento #03: Disposición a Pagar
+
+**Eventos a Rastrear:**
+
+| Evento | Trigger | Propiedades | Herramienta |
+|--------|---------|-------------|-------------|
+| `survey_invitation_sent` | Se envía invitación a encuesta | `user_id`, `survey_type`, `sent_date` | Typeform + Mixpanel |
+| `survey_started` | Usuario inicia encuesta | `user_id`, `survey_id`, `response_id` | Typeform |
+| `survey_question_answered` | Usuario responde pregunta | `user_id`, `survey_id`, `question_id`, `answer_value` | Typeform |
+| `survey_completed` | Usuario completa encuesta | `user_id`, `survey_id`, `completion_time` (minutos), `completion_date` | Typeform + Mixpanel |
+| `survey_abandoned` | Usuario abandona encuesta | `user_id`, `survey_id`, `last_question_answered`, `time_spent` | Typeform |
+
+**Datos Recolectados en Encuesta (Typeform):**
+- Van Westendorp: 4 respuestas de precio por usuario
+- Análisis Conjunto: 12 rankings de perfiles de producto
+- Datos demográficos: Segmento, tamaño de negocio, presupuesto actual
+
+**Análisis Post-Recolección:**
+- Datos exportados a CSV desde Typeform
+- Procesamiento en Python (pandas) para cálculo de Van Westendorp
+- Análisis Conjunto en R (package `conjoint`)
+
+---
+
+##### Experimento #04: Efectividad de Alertas
+
+**Eventos a Rastrear:**
+
+| Evento | Trigger | Propiedades | Herramienta |
+|--------|---------|-------------|-------------|
+| `alert_generated` | Sistema detecta anomalía | `alert_id`, `equipment_id`, `alert_type`, `severity` (baja/media/alta/crítica), `temperature`, `threshold`, `timestamp`, `user_id`, `experimental_group` (1/2/3/4) | Mixpanel + BigQuery |
+| `alert_notification_sent` | Sistema envía notificación | `alert_id`, `channel` (email/push/SMS/WhatsApp), `sent_timestamp` | Mixpanel |
+| `alert_notification_delivered` | Proveedor confirma entrega | `alert_id`, `channel`, `delivery_status`, `delivered_timestamp` | Mixpanel (webhook from Twilio/SendGrid/OneSignal) |
+| `alert_opened` | Usuario abre/visualiza alerta | `alert_id`, `channel`, `opened_timestamp`, `device_type`, `time_to_open` (minutos) | Mixpanel |
+| `alert_clicked` | Usuario hace clic en alerta (CTA) | `alert_id`, `clicked_timestamp` | Mixpanel |
+| `platform_accessed_post_alert` | Usuario accede a plataforma tras alerta | `alert_id`, `login_timestamp`, `time_from_alert` (minutos) | Mixpanel |
+| `alert_action_recorded` | Usuario registra acción correctiva | `alert_id`, `action_timestamp`, `action_type`, `problem_resolved` (boolean), `time_to_action` (minutos desde generación) | Mixpanel + BigQuery |
+| `alert_dismissed` | Usuario marca alerta como revisada sin acción | `alert_id`, `dismissed_timestamp`, `reason` | Mixpanel |
+| `alert_snoozed` | Usuario pospone alerta (feature grupos 3 y 4) | `alert_id`, `snoozed_timestamp`, `snooze_duration` (minutos) | Mixpanel |
+| `notification_settings_changed` | Usuario cambia preferencias de alertas | `user_id`, `setting_changed`, `old_value`, `new_value` | Mixpanel |
+
+**Propiedades de Usuario (User Properties):**
+```json
+{
+  "user_id": "uuid",
+  "business_type": "supermercado | restaurante | laboratorio",
+  "experimental_group": "1 | 2 | 3 | 4",
+  "severity_enabled": true | false,
+  "multichannel_enabled": true | false,
+  "preferred_channels": ["email", "push", "SMS", "WhatsApp"],
+  "alert_fatigue_risk": "low | medium | high"  // calculado dinámicamente
+}
+```
+
+**Métricas Derivadas en Tiempo Real:**
+- **Average Response Time por Grupo:** `MEAN(time_to_action) GROUP BY experimental_group`
+- **Action Rate por Grupo:** `COUNT(alert_action_recorded) / COUNT(alert_generated) GROUP BY experimental_group`
+- **Channel Effectiveness:** `MEDIAN(time_to_open) GROUP BY channel`
+
+---
+
+#### Implementación Técnica del Tracking
+
+**1. Frontend Web (Vue.js):**
+```javascript
+// Ejemplo de implementación con Mixpanel SDK
+import mixpanel from 'mixpanel-browser';
+
+// Inicialización
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  debug: true,
+  track_pageview: true,
+  persistence: 'localStorage'
+});
+
+// Tracking de evento
+const trackEquipmentAdded = (equipmentData) => {
+  mixpanel.track('equipment_added', {
+    equipment_id: equipmentData.id,
+    equipment_type: equipmentData.type,
+    brand: equipmentData.brand,
+    model: equipmentData.model,
+    capacity: equipmentData.capacity,
+    installation_date: equipmentData.installationDate,
+    user_id: currentUser.id,
+    business_id: currentUser.businessId
+  });
+};
+
+// Identificación de usuario
+mixpanel.identify(currentUser.id);
+mixpanel.people.set({
+  "$email": currentUser.email,
+  "$name": currentUser.name,
+  "business_type": currentUser.businessType,
+  "signup_date": currentUser.signupDate
+});
+```
+
+**2. Backend (ASP.NET Core / C#):**
+```csharp
+// Tracking server-side con Mixpanel HTTP API
+using Mixpanel;
+
+var mixpanel = new MixpanelClient("YOUR_PROJECT_TOKEN");
+
+// Evento de alerta generada
+var properties = new {
+    alert_id = alert.Id,
+    equipment_id = alert.EquipmentId,
+    alert_type = alert.Type,
+    severity = alert.Severity,
+    temperature = alert.Temperature,
+    threshold = alert.Threshold,
+    user_id = alert.UserId,
+    experimental_group = user.ExperimentalGroup
+};
+
+mixpanel.Track(alert.UserId, "alert_generated", properties);
+```
+
+**3. Mobile (Flutter / iOS & Android):**
+```dart
+// Tracking con Firebase Analytics y Mixpanel Flutter SDK
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+
+// Inicialización
+final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+late Mixpanel mixpanel;
+
+void initAnalytics() async {
+  mixpanel = await Mixpanel.init("YOUR_PROJECT_TOKEN", trackAutomaticEvents: true);
+}
+
+// Tracking de evento
+void trackAlertOpened(String alertId, String channel) {
+  // Firebase Analytics
+  analytics.logEvent(
+    name: 'alert_opened',
+    parameters: {
+      'alert_id': alertId,
+      'channel': channel,
+      'device_type': Platform.isIOS ? 'iOS' : 'Android',
+    },
+  );
+  
+  // Mixpanel
+  mixpanel.track('alert_opened', properties: {
+    'alert_id': alertId,
+    'channel': channel,
+    'device_type': Platform.isIOS ? 'iOS' : 'Android',
+    'time_to_open': calculateTimeToOpen(alertId),
+  });
+}
+```
+
+---
+
+#### Validación y Testing del Tracking
+
+**Checklist Pre-Launch:**
+
+- [ ] **Eventos Core implementados** en web, mobile y backend
+- [ ] **Propiedades requeridas** presentes en todos los eventos
+- [ ] **User Identification** funcionando correctamente (mismo user_id across platforms)
+- [ ] **QA Testing** con Mixpanel Inspector/Debugger
+  - Verificar que eventos se envían correctamente
+  - Validar que propiedades tienen formato correcto (tipos de datos)
+  - Confirmar que no hay eventos duplicados
+- [ ] **Data Validation** en BigQuery
+  - Schema correcto
+  - No hay valores NULL en campos críticos
+  - Timestamps en formato ISO 8601
+- [ ] **Privacy Compliance**
+  - No se rastrean datos PII sin consentimiento
+  - Implementado opt-out mechanism
+  - Cookie consent banner (EU users)
+
+**Monitoring Post-Launch:**
+
+- Dashboard de monitoreo de calidad de datos:
+  - Volume de eventos por día (detectar caídas)
+  - Tasa de eventos con propiedades faltantes
+  - Latencia de ingestion (tiempo desde evento hasta disponible en BI)
+- Alertas automáticas (PagerDuty) si:
+  - Volume de eventos cae > 30% vs promedio 7 días
+  - Tasa de errores en tracking > 5%
+  - Latencia > 10 minutos
+
+---
+
+#### Governance y Documentación
+
+**Tracking Plan Document (Living Document en Notion/Confluence):**
+- Propiedad del equipo de Product Analytics
+- Versionado (actualmente v1.0)
+- Actualizado antes de cada release con nuevos eventos
+- Revisado trimestralmente para deprecar eventos no utilizados
+
+**Acceso a Datos:**
+- **Product Managers:** Full access a Mixpanel, Tableau
+- **Engineers:** Read access a BigQuery, Mixpanel
+- **Data Analysts:** Full access a BigQuery, Tableau
+- **External Auditors:** No access (datos anonimizados bajo solicitud)
+
+**Retención de Datos:**
+- **Mixpanel:** 5 años (plan Enterprise)
+- **BigQuery:** Indefinido (costo-efectivo con columnar storage)
+- **Compliance:** Derecho al olvido (GDPR) - implementar pipeline de eliminación de datos de usuario
+
+---
+
+## 8.3. Experimentation
+
+Esta sección abarca la fase de experimentación, donde se ejecutan los experimentos diseñados previamente. Incluye la definición de User Stories orientadas al estado "To-Be", la priorización en un Product Backlog actualizado, y la implementación de los cambios necesarios en la plataforma para soportar los experimentos, seguida de validaciones con usuarios reales.
+
+### 8.3.1. To-Be User Stories
+
+Las User Stories "To-Be" representan las funcionalidades y mejoras que deben implementarse en la plataforma OsitoPolar para ejecutar los experimentos diseñados. Estas historias están alineadas con los objetivos de cada experimento y priorizan la instrumentación necesaria para la recolección de datos.
+
+#### Épica: Instrumentación para Experimentos
+
+Esta épica agrupa todas las historias técnicas necesarias para implementar el tracking plan, feature flags, y infraestructura de experimentación.
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-001** | Developer | High | Instrumentación para Experimentos |
+
+**Title:** Implementar Event Tracking con Mixpanel
+
+**Description:**
+Como Developer, quiero implementar el SDK de Mixpanel en la aplicación web y móvil para poder rastrear eventos de usuario según el tracking plan definido, de manera que podamos recolectar datos necesarios para los experimentos.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Inicialización de Mixpanel en Web App**
+```gherkin
+Given que el usuario accede a la aplicación web de OsitoPolar
+When la aplicación carga en el navegador
+Then el SDK de Mixpanel debe inicializarse correctamente
+And el token del proyecto debe ser "YOUR_PROJECT_TOKEN"
+And el modo debug debe estar habilitado solo en entorno development
+```
+
+**Scenario 2: Tracking de evento equipment_added**
+```gherkin
+Given que un usuario autenticado está en la página de gestión de equipos
+And el usuario completa el formulario de nuevo equipo con datos válidos
+When el usuario hace clic en "Guardar equipo"
+Then se debe enviar un evento "equipment_added" a Mixpanel
+And el evento debe incluir las propiedades: equipment_id, equipment_type, brand, model, capacity, installation_date, user_id, business_id
+And el evento debe reflejarse en Mixpanel Live View dentro de 5 segundos
+```
+
+**Scenario 3: User Identification**
+```gherkin
+Given que un usuario se autentica exitosamente en la plataforma
+When el sistema completa el proceso de login
+Then se debe llamar a mixpanel.identify(user_id)
+And se deben establecer las user properties: email, name, business_type, signup_date
+And el user_id debe persistir en todas las sesiones futuras
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-002** | Developer | High | Instrumentación para Experimentos |
+
+**Title:** Configurar Feature Flags con LaunchDarkly
+
+**Description:**
+Como Developer, quiero configurar feature flags en LaunchDarkly para poder asignar usuarios a diferentes variantes experimentales (grupos de tratamiento y control) de manera controlada y en tiempo real.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Feature flag para Experimento #02 (Trial vs Freemium)**
+```gherkin
+Given que se ha creado un feature flag "trial_experience_version" en LaunchDarkly
+When un nuevo usuario se registra en la plataforma
+Then el sistema debe solicitar la evaluación del flag para ese usuario
+And LaunchDarkly debe retornar uno de los valores: "v1_with_trial" o "v2_standard_freemium"
+And la asignación debe ser aleatoria con distribución 50/50
+And el valor asignado debe almacenarse en user_properties de Mixpanel
+```
+
+**Scenario 2: Feature flag para Experimento #04 (Alertas)**
+```gherkin
+Given que se han creado feature flags "alert_severity_enabled" y "alert_multichannel_enabled"
+When un usuario existente inicia sesión
+Then el sistema debe evaluar ambos flags para determinar el grupo experimental (1/2/3/4)
+And la configuración de alertas del usuario debe actualizarse según los valores de los flags
+And los cambios deben aplicarse sin requerir logout/login
+```
+
+---
+
+#### Épica: Experimento #01 - Validación de Reducción de Pérdidas
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-003** | Administrador de Negocio | High | Experimento #01 |
+
+**Title:** Registrar Incidentes con Pérdidas Económicas
+
+**Description:**
+Como Administrador de Negocio, quiero registrar incidentes que causen pérdidas económicas en mis equipos de refrigeración para poder documentar el impacto financiero y contribuir al estudio de reducción de pérdidas.
+
+**Acceptance Criteria:**
+```gherkin
+Scenario 1: Registro exitoso de incidente
+Given que estoy en la página de detalle de un equipo de refrigeración
+And el equipo ha tenido una falla reportada por el sistema
+When hago clic en "Registrar Incidente con Pérdidas"
+Then se debe abrir un formulario modal con los siguientes campos obligatorios:
+  | Campo | Tipo | Validación |
+  | Fecha del incidente | Date | No puede ser futura |
+  | Horas de inactividad | Number | > 0 |
+  | Pérdida económica (S/.) | Number | > 0 |
+  | Productos dañados | Text | Min 10 caracteres |
+  | Categoría de causa | Select | Opciones predefinidas |
+And al hacer clic en "Guardar"
+Then el incidente debe guardarse en la base de datos
+And se debe enviar un evento "incident_reported" a Mixpanel con todas las propiedades
+And debe mostrarse un mensaje de confirmación "Incidente registrado exitosamente"
+
+Scenario 2: Validación de campos obligatorios
+Given que estoy en el formulario de registro de incidente
+When intento guardar sin completar todos los campos obligatorios
+Then el formulario debe mostrar mensajes de error debajo de cada campo faltante
+And el incidente no debe guardarse
+
+Scenario 3: Ver historial de incidentes
+Given que tengo incidentes registrados para un equipo
+When accedo a la pestaña "Historial de Incidentes" en el detalle del equipo
+Then debo ver una tabla con todos los incidentes ordenados por fecha descendente
+And cada fila debe mostrar: fecha, pérdida (S/.), tiempo de inactividad, causa
+```
+# 8.3. Experimentation
+
+Esta sección abarca la fase de experimentación, donde se ejecutan los experimentos diseñados previamente. Incluye la definición de User Stories orientadas al estado "To-Be", la priorización en un Product Backlog actualizado, y la implementación de los cambios necesarios en la plataforma para soportar los experimentos, seguida de validaciones con usuarios reales.
+
+---
+
+## 8.3.1. To-Be User Stories
+
+Las User Stories "To-Be" representan las funcionalidades y mejoras que deben implementarse en la plataforma **OsitoPolar** para ejecutar los experimentos diseñados. Estas historias están alineadas con los objetivos de cada experimento y priorizan la instrumentación necesaria para la recolección de datos.
+
+### Introducción
+
+Las To-Be User Stories han sido estructuradas considerando:
+
+1. **Vinculación con experimentos prioritarios**: Cada historia soporta directamente uno o más experimentos del Question Backlog.
+2. **Instrumentación técnica**: Se priorizan historias que habilitan la recolección de datos (tracking, feature flags, logging).
+3. **Funcionalidades core del negocio**: Se implementan mejoras en alertas, onboarding, y gestión de incidentes.
+4. **Alineación con Domain Business Metrics**: Todas las historias impactan métricas definidas en la sección 8.2.2.
+
+---
+
+### Épica: Instrumentación para Experimentos
+
+Esta épica agrupa todas las historias técnicas necesarias para implementar el tracking plan, feature flags, y infraestructura de experimentación.
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-001** | Developer | High | Instrumentación para Experimentos |
+
+**Title:** Implementar Event Tracking con Mixpanel
+
+**Description:**
+Como Developer, quiero implementar el SDK de Mixpanel en la aplicación web y móvil para poder rastrear eventos de usuario según el tracking plan definido, de manera que podamos recolectar datos necesarios para los experimentos.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Inicialización de Mixpanel en Web App**
+```gherkin
+Given que el usuario accede a la aplicación web de OsitoPolar
+When la aplicación carga en el navegador
+Then el SDK de Mixpanel debe inicializarse correctamente
+And el token del proyecto debe ser "YOUR_PROJECT_TOKEN"
+And el modo debug debe estar habilitado solo en entorno development
+```
+
+**Scenario 2: Tracking de evento equipment_added**
+```gherkin
+Given que un usuario autenticado está en la página de gestión de equipos
+And el usuario completa el formulario de nuevo equipo con datos válidos
+When el usuario hace clic en "Guardar equipo"
+Then se debe enviar un evento "equipment_added" a Mixpanel
+And el evento debe incluir las propiedades: equipment_id, equipment_type, brand, model, capacity, installation_date, user_id, business_id
+And el evento debe reflejarse en Mixpanel Live View dentro de 5 segundos
+```
+
+**Scenario 3: User Identification**
+```gherkin
+Given que un usuario se autentica exitosamente en la plataforma
+When el sistema completa el proceso de login
+Then se debe llamar a mixpanel.identify(user_id)
+And se deben establecer las user properties: email, name, business_type, signup_date
+And el user_id debe persistir en todas las sesiones futuras
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-002** | Developer | High | Instrumentación para Experimentos |
+
+**Title:** Configurar Feature Flags con LaunchDarkly
+
+**Description:**
+Como Developer, quiero configurar feature flags en LaunchDarkly para poder asignar usuarios a diferentes variantes experimentales (grupos de tratamiento y control) de manera controlada y en tiempo real.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Feature flag para Experimento EQ9 (Reducción de Pérdidas)**
+```gherkin
+Given que se ha creado un feature flag "full_monitoring_enabled" en LaunchDarkly
+When un negocio se registra en la plataforma
+Then el sistema debe solicitar la evaluación del flag para ese negocio
+And LaunchDarkly debe retornar uno de los valores: "enabled" o "disabled"
+And la asignación debe ser aleatoria con distribución 50/50
+And el valor asignado debe almacenarse en user_properties de Mixpanel
+```
+
+**Scenario 2: Feature flag para Experimento EQ11 (Conversión Freemium a Premium)**
+```gherkin
+Given que se ha creado un feature flag "trial_experience_version" en LaunchDarkly
+When un nuevo usuario se registra en la plataforma
+Then el sistema debe solicitar la evaluación del flag para ese usuario
+And LaunchDarkly debe retornar uno de los valores: "v1_with_trial" o "v2_standard_freemium"
+And la asignación debe ser aleatoria con distribución 50/50
+And el valor asignado debe almacenarse en user_properties de Mixpanel
+And la experiencia de onboarding debe adaptarse según el valor del flag
+```
+
+**Scenario 3: Feature flag para Experimento EQ6 (Efectividad de Alertas)**
+```gherkin
+Given que se han creado feature flags "alert_severity_enabled" y "alert_multichannel_enabled"
+When un usuario existente inicia sesión
+Then el sistema debe evaluar ambos flags para determinar el grupo experimental (1/2/3/4)
+And la configuración de alertas del usuario debe actualizarse según los valores de los flags
+And los cambios deben aplicarse sin requerir logout/login
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-003** | Developer | High | Instrumentación para Experimentos |
+
+**Title:** Implementar Logging de Eventos de Negocio Críticos
+
+**Description:**
+Como Developer, quiero implementar un sistema de logging estructurado para eventos de negocio críticos, de manera que podamos auditar y analizar el comportamiento de usuarios durante los experimentos.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Log de conversión de usuario**
+```gherkin
+Given que un usuario freemium está navegando en la plataforma
+When el usuario hace clic en "Actualizar a Premium"
+And completa exitosamente el proceso de pago
+Then se debe crear un log con estructura JSON que incluya:
+  - timestamp
+  - user_id
+  - event_type: "conversion_to_premium"
+  - plan_selected
+  - trial_days_used
+  - source_page
+  - experiment_group
+And el log debe almacenarse en la base de datos analytics_events
+And se debe enviar el evento a Mixpanel con las mismas propiedades
+```
+
+**Scenario 2: Log de respuesta a alertas**
+```gherkin
+Given que se ha enviado una alerta crítica a un usuario
+When el usuario realiza una acción correctiva (ej: ajustar temperatura)
+Then se debe crear un log con:
+  - alert_id
+  - alert_timestamp
+  - action_timestamp
+  - response_time_minutes (calculado)
+  - action_type
+  - equipment_id
+And el log debe incluir el grupo experimental del usuario
+```
+
+---
+
+### Épica: Experimento #01 - Validación de Reducción de Pérdidas Económicas (EQ9)
+
+Esta épica implementa las funcionalidades necesarias para validar si OsitoPolar reduce efectivamente las pérdidas económicas por fallas en equipos de refrigeración.
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-004** | Administrador de Negocio | High | Experimento #01 - EQ9 |
+
+**Title:** Registrar Incidentes con Pérdidas Económicas
+
+**Description:**
+Como Administrador de Negocio, quiero registrar incidentes que causen pérdidas económicas en mis equipos de refrigeración para poder documentar el impacto financiero y contribuir al estudio de reducción de pérdidas.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Registro exitoso de incidente**
+```gherkin
+Given que estoy en la página de detalle de un equipo de refrigeración
+And el equipo ha tenido una falla reportada por el sistema
+When hago clic en "Registrar Incidente con Pérdidas"
+Then se debe abrir un formulario modal con los siguientes campos obligatorios:
+  | Campo | Tipo | Validación |
+  | Fecha del incidente | Date | No puede ser futura |
+  | Horas de inactividad | Number | > 0 |
+  | Pérdida económica (S/.) | Number | > 0 |
+  | Productos dañados | Text | Min 10 caracteres |
+  | Categoría de causa | Select | Opciones predefinidas |
+And al hacer clic en "Guardar"
+Then el incidente debe guardarse en la base de datos
+And se debe enviar un evento "incident_reported" a Mixpanel con todas las propiedades
+And debe mostrarse un mensaje de confirmación "Incidente registrado exitosamente"
+```
+
+**Scenario 2: Validación de campos obligatorios**
+```gherkin
+Given que estoy en el formulario de registro de incidente
+When intento guardar sin completar todos los campos obligatorios
+Then el formulario debe mostrar mensajes de error debajo de cada campo faltante
+And el incidente no debe guardarse
+And se debe mostrar un contador: "X campos requeridos pendientes"
+```
+
+**Scenario 3: Ver historial de incidentes**
+```gherkin
+Given que tengo incidentes registrados para un equipo
+When accedo a la pestaña "Historial de Incidentes" en el detalle del equipo
+Then debo ver una tabla con todos los incidentes ordenados por fecha descendente
+And cada fila debe mostrar: fecha, pérdida (S/.), tiempo de inactividad, causa
+And debo ver un resumen al inicio: "Total pérdidas acumuladas: S/. X,XXX.XX en Y incidentes"
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-005** | Administrador de Negocio | High | Experimento #01 - EQ9 |
+
+**Title:** Visualizar Dashboard de Pérdidas Evitadas
+
+**Description:**
+Como Administrador de Negocio, quiero ver un dashboard que muestre las pérdidas económicas evitadas gracias al monitoreo preventivo, para poder cuantificar el valor que OsitoPolar aporta a mi negocio.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Dashboard muestra métricas clave**
+```gherkin
+Given que soy un usuario premium con al menos 30 días de uso de la plataforma
+And tengo incidentes registrados antes y después de usar OsitoPolar
+When accedo a la sección "Análisis de ROI"
+Then debo ver las siguientes métricas:
+  - Pérdidas antes de OsitoPolar (S/. por mes)
+  - Pérdidas después de OsitoPolar (S/. por mes)
+  - Reducción porcentual (%)
+  - Proyección de ahorro anual (S/.)
+And cada métrica debe tener un ícono de información con explicación del cálculo
+```
+
+**Scenario 2: Gráfico de evolución de pérdidas**
+```gherkin
+Given que estoy visualizando el dashboard de ROI
+Then debo ver un gráfico de líneas que muestre:
+  - Eje X: Meses (últimos 6 meses)
+  - Eje Y: Pérdidas económicas (S/.)
+  - Línea 1: Pérdidas reales registradas
+  - Línea 2 (punteada): Proyección si no hubiera usado OsitoPolar (basado en promedio pre-adopción)
+And el punto donde comencé a usar OsitoPolar debe estar marcado visualmente
+```
+
+---
+
+### Épica: Experimento #02 - Conversión Freemium a Premium (EQ11)
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-006** | Visitante | High | Experimento #02 - EQ11 |
+
+**Title:** Ofrecer Prueba Gratuita de 14 Días con Trial Experience
+
+**Description:**
+Como Visitante interesado en OsitoPolar, quiero poder activar una prueba gratuita de 14 días con acceso completo a funcionalidades premium, para poder evaluar el valor del producto antes de comprometerme con una suscripción de pago.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Activación de Trial (Variante A)**
+```gherkin
+Given que soy un nuevo usuario asignado al grupo experimental "v1_with_trial"
+And estoy en la página de registro
+When completo el formulario de registro exitosamente
+Then se debe crear mi cuenta con plan "trial_14_days"
+And debo ser redirigido a la página de onboarding con un banner que dice:
+  "¡Bienvenido! Tienes 14 días de acceso completo GRATIS. No se requiere tarjeta de crédito."
+And todas las funcionalidades premium deben estar habilitadas
+And se debe enviar un evento "trial_started" a Mixpanel
+```
+
+**Scenario 2: Recordatorios durante Trial**
+```gherkin
+Given que estoy en el día 7 de mi periodo de prueba
+When inicio sesión en la plataforma
+Then debo ver una notificación no intrusiva que dice:
+  "Te quedan 7 días de prueba. ¡Descubre todo lo que OsitoPolar puede hacer por tu negocio!"
+And el mensaje debe tener un botón "Ver Planes Premium"
+```
+
+**Scenario 3: Conversión al finalizar Trial**
+```gherkin
+Given que mi periodo de prueba ha finalizado (día 15)
+When intento acceder a una funcionalidad premium
+Then debo ver un modal de conversión que muestra:
+  - "Tu prueba ha finalizado"
+  - Resumen de valor obtenido durante trial (alertas enviadas, equipos monitoreados, etc.)
+  - Opciones de planes premium con precios
+  - Botón "Continuar con Premium"
+  - Botón secundario "Seguir con Plan Gratuito"
+And se debe enviar un evento "trial_ended" a Mixpanel
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-007** | Visitante | High | Experimento #02 - EQ11 |
+
+**Title:** Experiencia Freemium Estándar sin Trial (Grupo Control)
+
+**Description:**
+Como Visitante asignado al grupo control, quiero registrarme directamente en un plan freemium estándar sin periodo de prueba, para poder usar funcionalidades básicas de OsitoPolar de forma gratuita.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Registro en Freemium Estándar (Variante B)**
+```gherkin
+Given que soy un nuevo usuario asignado al grupo "v2_standard_freemium"
+And estoy en la página de registro
+When completo el formulario de registro exitosamente
+Then se debe crear mi cuenta con plan "freemium"
+And debo ser redirigido a la página de onboarding
+And solo las funcionalidades freemium deben estar habilitadas
+And las funcionalidades premium deben mostrar un badge "Premium"
+And se debe enviar un evento "freemium_signup" a Mixpanel
+```
+
+**Scenario 2: Prompts de Upgrade en Freemium**
+```gherkin
+Given que soy usuario freemium
+When intento acceder a una funcionalidad premium (ej: reportes históricos avanzados)
+Then debo ver un modal que explica:
+  - La funcionalidad está disponible en planes Premium
+  - Beneficios del plan Premium
+  - Comparación de planes
+  - Botón "Ver Planes Premium"
+And se debe enviar un evento "upgrade_prompt_shown" a Mixpanel
+```
+
+---
+
+### Épica: Experimento #03 - Efectividad de Alertas (EQ6)
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-008** | Administrador de Negocio | High | Experimento #03 - EQ6 |
+
+**Title:** Implementar Niveles de Severidad en Alertas
+
+**Description:**
+Como Administrador de Negocio, quiero que las alertas se clasifiquen por niveles de severidad (Baja, Media, Alta, Crítica), para poder priorizar mi respuesta según la urgencia del problema.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Clasificación automática de severidad**
+```gherkin
+Given que un sensor detecta una anomalía en un equipo
+When el sistema evalúa la condición detectada
+Then debe asignar un nivel de severidad según las siguientes reglas:
+  | Condición | Severidad |
+  | Temperatura fuera de rango por < 15 min | Baja |
+  | Temperatura fuera de rango por 15-60 min | Media |
+  | Temperatura fuera de rango por > 60 min | Alta |
+  | Falla completa del equipo | Crítica |
+And la alerta debe generarse con el nivel correspondiente
+```
+
+**Scenario 2: Visualización diferenciada por severidad**
+```gherkin
+Given que tengo alertas con diferentes niveles de severidad
+When accedo al panel de alertas
+Then debo ver cada alerta con un código de color:
+  - Crítica: Rojo (#D32F2F)
+  - Alta: Naranja (#F57C00)
+  - Media: Amarillo (#FBC02D)
+  - Baja: Azul (#1976D2)
+And las alertas deben estar ordenadas por severidad descendente y luego por fecha
+```
+
+**Scenario 3: Filtrado por severidad**
+```gherkin
+Given que estoy en el panel de alertas
+When selecciono el filtro "Solo alertas Críticas y Altas"
+Then debo ver únicamente las alertas con esos niveles de severidad
+And el contador debe mostrar "X alertas críticas/altas de Y totales"
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-009** | Administrador de Negocio | High | Experimento #03 - EQ6 |
+
+**Title:** Recibir Alertas Críticas por WhatsApp
+
+**Description:**
+Como Administrador de Negocio, quiero recibir alertas críticas directamente en WhatsApp, para poder responder inmediatamente incluso cuando no estoy revisando activamente la plataforma.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Configuración de WhatsApp como canal**
+```gherkin
+Given que soy usuario premium
+And estoy en la sección de Configuración de Alertas
+When hago clic en "Agregar canal de notificación"
+And selecciono "WhatsApp"
+Then debo poder ingresar mi número de teléfono con código de país
+And debo recibir un código de verificación por WhatsApp
+When ingreso el código correctamente
+Then WhatsApp debe quedar configurado como canal activo
+```
+
+**Scenario 2: Envío de alerta crítica por WhatsApp**
+```gherkin
+Given que tengo WhatsApp configurado como canal de alertas
+And una alerta con severidad "Crítica" es generada
+When el sistema procesa la alerta
+Then debo recibir un mensaje de WhatsApp dentro de 2 minutos con:
+  - "ALERTA CRÍTICA - OsitoPolar"
+  - Nombre del equipo afectado
+  - Descripción breve del problema
+  - Enlace directo al equipo en la plataforma
+And se debe registrar el evento "alert_sent_whatsapp" en Mixpanel
+```
+
+**Scenario 3: Control de frecuencia de mensajes**
+```gherkin
+Given que tengo WhatsApp configurado
+When se generan múltiples alertas críticas del mismo equipo en menos de 15 minutos
+Then solo debo recibir el primer mensaje de WhatsApp
+And los mensajes subsecuentes deben agruparse en una notificación resumida
+```
+
+---
+
+### Épica: Experimento #04 - Facilidad de Onboarding (EQ1)
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-010** | Nuevo Usuario | High | Experimento #04 - EQ1 |
+
+**Title:** Tutorial Interactivo para Primer Equipo
+
+**Description:**
+Como Nuevo Usuario, quiero completar un tutorial interactivo paso a paso al configurar mi primer equipo, para poder entender rápidamente cómo usar OsitoPolar sin frustración.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Inicio del tutorial interactivo**
+```gherkin
+Given que soy un usuario que acaba de completar el registro
+And es la primera vez que accedo a la sección "Mis Equipos"
+When la página carga
+Then debo ver un overlay semi-transparente que resalta el botón "Agregar Equipo"
+And debe mostrarse un tooltip que dice:
+  "¡Comencemos! Agrega tu primer equipo en solo 3 pasos. Tiempo estimado: 2 minutos"
+And debe haber botones "Iniciar Tutorial" y "Omitir"
+```
+
+**Scenario 2: Guía paso a paso**
+```gherkin
+Given que hice clic en "Iniciar Tutorial"
+When estoy en el formulario de nuevo equipo
+Then cada campo debe resaltarse secuencialmente
+And cada campo resaltado debe mostrar un tooltip explicativo
+And debe haber un indicador de progreso "Paso 1 de 3", "Paso 2 de 3", etc.
+And debe haber botones "Siguiente" y "Anterior" para navegar los pasos
+```
+
+**Scenario 3: Finalización exitosa del tutorial**
+```gherkin
+Given que he completado la configuración de mi primer equipo siguiendo el tutorial
+When hago clic en "Guardar equipo"
+Then debo ver una animación de celebración (confetti)
+And un mensaje de felicitación: "¡Excelente! Tu primer equipo está configurado y monitoreándose."
+And debe mostrarse un resumen de próximos pasos recomendados
+And se debe enviar el evento "tutorial_completed" a Mixpanel con tiempo_total
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-011** | Nuevo Usuario | Medium | Experimento #04 - EQ1 |
+
+**Title:** Checklist de Configuración Inicial
+
+**Description:**
+Como Nuevo Usuario, quiero ver un checklist de tareas iniciales recomendadas, para poder asegurarme de que he configurado correctamente OsitoPolar y aprovechar todas sus funcionalidades.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Visualización del checklist**
+```gherkin
+Given que soy un nuevo usuario en mis primeros 7 días en la plataforma
+When accedo al dashboard principal
+Then debo ver un widget de "Configuración Inicial" con las siguientes tareas:
+  - [ ] Agregar primer equipo (0/1)
+  - [ ] Configurar alertas de temperatura (0/1)
+  - [ ] Programar primer mantenimiento (0/1)
+  - [ ] Invitar a un miembro del equipo (0/1)
+  - [ ] Descargar app móvil (0/1)
+And cada tarea debe tener un enlace directo a la sección correspondiente
+```
+
+**Scenario 2: Completar tarea del checklist**
+```gherkin
+Given que veo el checklist de configuración inicial
+When completo una tarea (ej: agregar mi primer equipo)
+Then la tarea debe marcarse automáticamente como completada con un ✓
+And debe mostrarse una barra de progreso actualizada: "2 de 5 tareas completadas"
+And se debe enviar un evento "checklist_item_completed" a Mixpanel
+```
+
+**Scenario 3: Checklist completado**
+```gherkin
+Given que he completado todas las tareas del checklist
+When la última tarea se marca como completa
+Then el widget debe mostrar un mensaje de felicitación
+And debe aparecer un botón "Explorar funciones avanzadas"
+And el checklist debe ocultarse automáticamente después de 3 días
+```
+
+---
+
+### Épica: Experimento #05 - Pricing y Planes (EQ12, EQ13)
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-012** | Visitante | High | Experimento #05 - Pricing |
+
+**Title:** Página de Pricing con Comparación de Planes
+
+**Description:**
+Como Visitante interesado en OsitoPolar, quiero ver una página de pricing clara que compare los diferentes planes disponibles, para poder tomar una decisión informada sobre qué plan se ajusta a mis necesidades.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Visualización de planes**
+```gherkin
+Given que accedo a la página de Pricing
+Then debo ver tres planes presentados en columnas:
+  | Plan | Precio | Equipos | Características principales |
+  | Starter | S/. 49/mes | Hasta 2 | Monitoreo básico, alertas por email |
+  | Professional | S/. 149/mes | Hasta 10 | Todo Starter + alertas WhatsApp, reportes |
+  | Enterprise | S/. 299/mes | Ilimitados | Todo Professional + soporte prioritario, API |
+And el plan "Professional" debe estar destacado como "Más Popular"
+```
+
+**Scenario 2: Comparación detallada de características**
+```gherkin
+Given que estoy en la página de Pricing
+When hago clic en "Comparar planes en detalle"
+Then debo ver una tabla comparativa que muestre:
+  - Todas las características de cada plan
+  - Checkmarks (✓) o X (✗) para indicar disponibilidad
+  - Tooltips explicativos en características avanzadas
+And debe ser fácilmente escaneable visualmente
+```
+
+**Scenario 3: Call-to-action por plan**
+```gherkin
+Given que estoy visualizando los planes
+When hago clic en "Comenzar" en cualquier plan
+Then debo ser redirigido a la página de registro
+And el plan seleccionado debe pre-seleccionarse en el proceso de registro
+And se debe enviar un evento "pricing_cta_clicked" a Mixpanel con el plan seleccionado
+```
+
+---
+
+| Story ID | User | Priority | Epic |
+|----------|------|----------|------|
+| **US-EXP-013** | Usuario Freemium | High | Experimento #05 - Pricing |
+
+**Title:** Prompt de Upgrade al Alcanzar Límite de Equipos
+
+**Description:**
+Como Usuario Freemium que ha alcanzado el límite de equipos, quiero recibir un prompt claro para actualizar a un plan superior, para poder continuar agregando equipos a mi cuenta.
+
+**Acceptance Criteria:**
+
+**Scenario 1: Usuario alcanza límite freemium**
+```gherkin
+Given que soy usuario freemium con plan que permite hasta 2 equipos
+And ya tengo 2 equipos configurados
+When intento agregar un tercer equipo
+Then debo ver un modal que explica:
+  - "Has alcanzado el límite de 2 equipos en el plan Gratuito"
+  - "Actualiza a Plan Starter (S/. 49/mes) para monitorear hasta 5 equipos"
+  - Botón principal "Actualizar ahora"
+  - Botón secundario "Ver otros planes"
+And no debe permitirse agregar el equipo hasta actualizar
+And se debe enviar evento "upgrade_limit_reached" a Mixpanel
+```
+
+**Scenario 2: Comparación de beneficios del upgrade**
+```gherkin
+Given que veo el modal de límite alcanzado
+When hago clic en "Ver beneficios del upgrade"
+Then debo ver una comparación lado a lado:
+  - Mi plan actual vs Plan recomendado
+  - Características adicionales que obtendré
+  - Cálculo de ROI estimado basado en mis equipos actuales
+```
+
+---
+
+# 8.3.2. To-Be Product Backlog
+
+El **To-Be Product Backlog** representa la lista priorizada de User Stories que guiarán la implementación de la plataforma en su estado futuro, optimizado para soportar los experimentos diseñados. Este backlog ha sido re-priorizado considerando:
+
+1. **Dependencias técnicas**: Historias de instrumentación tienen máxima prioridad.
+2. **Impacto en experimentos críticos**: Se priorizan historias vinculadas a preguntas de alto riesgo del Question Backlog.
+3. **Esfuerzo de implementación**: Se balancea valor vs complejidad.
+4. **Secuencia lógica de usuario**: Se respeta el journey natural del usuario.
+
+---
+
+## Product Backlog Priorizado
+
+| # Orden | User Story Id | Título | Descripción | Story Points (1/2/3/5/8) | Sprint Asignado |
+|---------|---------------|--------|-------------|---------------------------|-----------------|
+| 1 | US-EXP-001 | Implementar Event Tracking con Mixpanel | Como Developer, quiero implementar el SDK de Mixpanel para rastrear eventos de usuario según el tracking plan definido. | 5 | Sprint 1 |
+| 2 | US-EXP-002 | Configurar Feature Flags con LaunchDarkly | Como Developer, quiero configurar feature flags para asignar usuarios a diferentes variantes experimentales. | 5 | Sprint 1 |
+| 3 | US-EXP-003 | Implementar Logging de Eventos Críticos | Como Developer, quiero implementar logging estructurado para eventos de negocio críticos. | 3 | Sprint 1 |
+| 4 | US-EXP-004 | Registrar Incidentes con Pérdidas Económicas | Como Administrador de Negocio, quiero registrar incidentes que causen pérdidas económicas. | 5 | Sprint 2 |
+| 5 | US-EXP-005 | Visualizar Dashboard de Pérdidas Evitadas | Como Administrador de Negocio, quiero ver un dashboard que muestre las pérdidas económicas evitadas. | 8 | Sprint 2 |
+| 6 | US-EXP-006 | Ofrecer Prueba Gratuita de 14 Días | Como Visitante, quiero activar una prueba gratuita de 14 días con acceso completo a funcionalidades premium. | 5 | Sprint 2 |
+| 7 | US-EXP-007 | Experiencia Freemium Estándar sin Trial | Como Visitante, quiero registrarme directamente en un plan freemium estándar sin periodo de prueba. | 3 | Sprint 2 |
+| 8 | US-EXP-008 | Implementar Niveles de Severidad en Alertas | Como Administrador de Negocio, quiero que las alertas se clasifiquen por niveles de severidad. | 5 | Sprint 3 |
+| 9 | US-EXP-009 | Recibir Alertas Críticas por WhatsApp | Como Administrador de Negocio, quiero recibir alertas críticas directamente en WhatsApp. | 8 | Sprint 3 |
+| 10 | US-EXP-010 | Tutorial Interactivo para Primer Equipo | Como Nuevo Usuario, quiero completar un tutorial interactivo al configurar mi primer equipo. | 5 | Sprint 3 |
+| 11 | US-EXP-011 | Checklist de Configuración Inicial | Como Nuevo Usuario, quiero ver un checklist de tareas iniciales recomendadas. | 3 | Sprint 3 |
+| 12 | US-EXP-012 | Página de Pricing con Comparación de Planes | Como Visitante, quiero ver una página de pricing clara que compare los diferentes planes disponibles. | 3 | Sprint 4 |
+| 13 | US-EXP-013 | Prompt de Upgrade al Alcanzar Límite de Equipos | Como Usuario Freemium, quiero recibir un prompt claro para actualizar a un plan superior al alcanzar el límite de equipos. | 3 | Sprint 4 |
+
+---
+
+## Criterios de Priorización Aplicados
+
+### 1. **Instrumentación First (Sprint 1)**
+
+Las tres primeras historias (US-EXP-001, US-EXP-002, US-EXP-003) son fundamentales porque establecen la infraestructura técnica necesaria para:
+- Recolectar datos de comportamiento de usuario
+- Asignar usuarios a grupos experimentales
+- Registrar eventos de negocio críticos
+
+**Justificación**: Sin esta instrumentación, no es posible ejecutar ni medir ningún experimento. Estas historias son bloqueantes para el resto.
+
+### 2. **Experimentos de Alto Impacto en Negocio (Sprint 2)**
+
+El segundo grupo prioriza historias relacionadas con:
+- **Experimento EQ9** (US-EXP-004, US-EXP-005): Validación de reducción de pérdidas económicas - el principal value proposition de OsitoPolar
+- **Experimento EQ11** (US-EXP-006, US-EXP-007): Optimización de conversión freemium a premium - impacto directo en revenue
+
+**Justificación**: Estos experimentos validan las hipótesis core del negocio y tienen potencial de generar el mayor ROI.
+
+### 3. **Mejora de Engagement y Retención (Sprint 3)**
+
+El tercer grupo se enfoca en:
+- **Experimento EQ6** (US-EXP-008, US-EXP-009): Efectividad de alertas - mejora la propuesta de valor y reduce churn
+- **Experimento EQ1** (US-EXP-010, US-EXP-011): Facilidad de onboarding - reduce friction en activación de usuarios
+
+**Justificación**: Una vez validado el value proposition core, se optimiza la experiencia para maximizar adopción y retención.
+
+### 4. **Optimización de Monetización (Sprint 4)**
+
+El cuarto grupo refina:
+- **Experimentos EQ12, EQ13** (US-EXP-012, US-EXP-013): Pricing y planes - optimiza la conversión y maximiza ARPU
+
+**Justificación**: Con usuarios activos y comprometidos, se optimiza la estrategia de monetización.
+
+---
+
+## Relación con Question Backlog
+
+| User Story | Pregunta del Question Backlog | Riesgo | Prioridad |
+|------------|-------------------------------|--------|-----------|
+| US-EXP-004, US-EXP-005 | **EQ9**: ¿OsitoPolar reduce efectivamente las pérdidas económicas por fallas en equipos de refrigeración? | Alto | 1 |
+| US-EXP-006, US-EXP-007 | **EQ11**: ¿Ofrecer un periodo de prueba gratuito de 14 días con acceso completo aumenta la tasa de conversión a planes premium? | Alto | 2 |
+| US-EXP-008, US-EXP-009 | **EQ6**: ¿La clasificación de alertas por niveles de severidad y el envío multicanal mejoran la tasa de respuesta y tiempo de resolución? | Medio | 3 |
+| US-EXP-010, US-EXP-011 | **EQ1**: ¿Un tutorial interactivo y checklist de configuración reduce el tiempo de activación y aumenta la tasa de completitud del onboarding? | Medio | 4 |
+| US-EXP-012, US-EXP-013 | **EQ12, EQ13**: ¿Una página de pricing clara con comparación de planes y prompts contextuales de upgrade aumentan la conversión a planes de pago? | Medio | 5 |
+
+---
+
+## Épicas Relacionadas
+
+| Épica | User Stories Incluidas | Sprint(s) |
+|-------|------------------------|-----------|
+| **Instrumentación para Experimentos** | US-EXP-001, US-EXP-002, US-EXP-003 | Sprint 1 |
+| **Experimento #01 - Reducción de Pérdidas (EQ9)** | US-EXP-004, US-EXP-005 | Sprint 2 |
+| **Experimento #02 - Conversión Freemium (EQ11)** | US-EXP-006, US-EXP-007 | Sprint 2 |
+| **Experimento #03 - Efectividad de Alertas (EQ6)** | US-EXP-008, US-EXP-009 | Sprint 3 |
+| **Experimento #04 - Facilidad de Onboarding (EQ1)** | US-EXP-010, US-EXP-011 | Sprint 3 |
+| **Experimento #05 - Pricing y Planes (EQ12, EQ13)** | US-EXP-012, US-EXP-013 | Sprint 4 |
+
+---
+
+
 ## Conclusiones
 
 A lo largo del desarrollo del modelo de negocio digital OsitoPolar, hemos logrado validar la necesidad real y urgente de soluciones tecnológicas en el sector de refrigeración, tanto en los negocios que dependen de estos equipos como en las empresas proveedoras de servicios técnicos.
