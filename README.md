@@ -8367,6 +8367,47 @@ Luego de realizar todos los cambios dichos en los anteriores puntos, se pudo log
 Esto nos da mas escalabilidad segura para la aplicación, tanto como tener un estándar establecido a comparación de antes de la refactorización. Esto ha sido una gran mejora para la aplicación y fielmente se cree que esto va a ir para mejor.
 
 
+
+## 6.3. Validation Interviews.
+
+
+### 6.3.1. Diseño de Entrevistas
+
+**Objetivo:**  
+Validar la satisfacción y percepción de los usuarios frente a la implementación de las nuevas funcionalidades de la plataforma web *OsitoPolar*, verificando si éstas cumplen con los principios de usabilidad, eficiencia y valor percibido.
+
+**Tipo de entrevista:**  
+Entrevista semiestructurada con enfoque cualitativo de validación funcional y de experiencia de usuario.
+
+**Participantes:**  
+- 2 usuarios representativos del segmento 1 (negocios que utilizan equipos de refrigeración).  
+- 2 usuarios representativos del segmento 2 (empresas proveedoras o técnicos de refrigeración).
+
+**Duración estimada:**  
+15–20 min por entrevista.
+
+**Medio de aplicación:**  
+Entrevistas presenciales o por videollamada, mostrando la página web y las funcionalidades implementadas.
+
+**Preguntas:**
+
+1. ¿La navegación dentro de la página le resultó clara y sencilla?  
+2. ¿Encontró fácilmente las funciones principales (registro, monitoreo, reportes, alertas, etc.)?  
+3. ¿Hubo algo que le confundiera o que sintiera poco intuitivo?  
+4. ¿Qué tan útil le resulta el módulo de *monitoreo en tiempo real* para su negocio?  
+5. ¿Considera eficiente el sistema de *alertas automáticas por fallas o mantenimientos*?  
+6. ¿Le parece relevante el *historial técnico y generación automática de reportes*?  
+7. ¿Cree que el *panel de control (dashboard)* muestra la información necesaria sin sobrecargarlo?  
+8. ¿Qué tan satisfecho está con la velocidad y respuesta de la plataforma?  
+9. ¿Siente que la plataforma le ayuda a prevenir pérdidas o mejorar su eficiencia?  
+10. En una escala del 1 al 5, ¿cuánto recomendaría *OsitoPolar* a otros negocios/técnicos?  
+11. ¿Qué funcionalidad eliminaría, mejoraría o agregaría para hacerlo más útil?  
+12. ¿Qué tan dispuesto estaría a pagar una suscripción si la plataforma mantiene estas funcionalidades?  
+13. ¿Qué le gustó más de la interfaz y la experiencia?  
+14. ¿Qué aspectos mejorarían su confianza o satisfacción al usar el sistema?
+
+
+
 ## Capítulo VII:DevOps Practices <a id="c5"></a>
 ### 7.1. Continuous Integration
 #### 7.1.1. Tools and Practices.
@@ -11356,6 +11397,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
