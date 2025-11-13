@@ -8421,7 +8421,45 @@ Entrevistas presenciales o por videollamada, mostrando la página web y las func
 
 Resumen breve:Gabriel Mamani (25, San Martín de Buenos Aires) encontró la plataforma clara y fácil de usar desde su iPhone 14; valora especialmente el monitoreo en tiempo real, las alertas automáticas y los reportes técnicos porque le permiten detectar fallas y prevenir pérdidas, considera el dashboard bien balanceado y la respuesta del sistema rápida; daría una recomendación de 5/5 y estaría dispuesto a pagar una suscripción si el precio es razonable; sugiere añadir personalización del dashboard, filtros avanzados y canal de soporte técnico con actualizaciones frecuentes.
 
+### 6.3.3. Evaluaciones según heurísticas
 
+Metodología  
+- Evaluación basada en las 10 heurísticas de Nielsen + principios de accesibilidad y prevención de errores.  
+- Fuentes: transcripciones y resúmenes de las entrevistas de validación (Entrevista A — Gabriel Mamani; Entrevista B — Letizia Aguilar).  
+- Objetivo: identificar problemas de usabilidad que impacten adopción, respuesta a alertas y flujo de solicitudes.
+
+Resumen ejecutivo (puntos clave)  
+- La navegación y el dashboard resultaron claros para los participantes, pero demandan personalización (widgets y filtros).  
+- Formularios de solicitud carecen de detalles técnicos obligatorios; provoca comunicación adicional entre proveedor y cliente.  
+- Sistema de alertas: funcional y apreciado, pero riesgo de fatiga y preferencia por canal WhatsApp/push.  
+- Reportes útiles pero falta exportación en PDF/Excel y recomendaciones automáticas (estimación de pérdidas).  
+- Soporte y canales comerciales poco visibles; usuarios piden demo y soporte directo.
+
+Tabla síntesis — problemas detectados y recomendaciones
+
+| # | Problema | Severidad (1–4) | Heurística violada | Recomendación |
+|---|----------|------------------:|---------------------|---------------|
+| 1 | Formularios de solicitud no requieren datos técnicos suficientes | 2 | Prevención de errores / Flexibilidad | Añadir campos obligatorios: modelo, fotos, síntoma, prioridad; validar antes de enviar. |
+| 2 | No hay exportación de reportes (PDF/Excel) | 2 | Control del usuario | Implementar exportar PDF/Excel con resumen e estimación de pérdidas. |
+| 3 | Falta priorización y multi‑canal en alertas → posible fatiga | 3 | Visibilidad del estado / Prevención de errores | Añadir niveles de severidad, canales configurables (WhatsApp, push, SMS) y opción snooze. |
+| 4 | Dashboard no personalizable (filtros/orden) | 2 | Flexibilidad y eficiencia de uso | Permitir widgets arrastrables y plantillas por rol (empresario/técnico). |
+| 5 | Ausencia de soporte visible y demo accesible | 2 | Ayuda y documentación | Añadir CTA visible para soporte (WhatsApp/chat) y botón “Solicitar demo 14 días”. |
+| 6 | Falta de agrupación por zonas/rutas para técnicos | 2 | Eficiencia operativa | Añadir campo de zona y generación automática de rutas/agrupación por proximidad. |
+| 7 | Reportes sin recomendaciones accionables | 3 | Ayuda y documentación / Personalización | Incluir recomendaciones automáticas basadas en historial (ej.: revisar motor, cambiar filtro). |
+
+Prioridad de acciones (rápida entrega)  
+1. Requerir campos técnicos en la creación de solicitudes y validar entradas (impacto alto, implementación rápida).  
+2. Implementar exportación PDF para reportes técnicos y añadir campo “estimación de pérdida”.  
+3. Diseñar sistema de alertas por severidad y habilitar envío por WhatsApp/push (prueba piloto).  
+4. Añadir personalización básica del dashboard (guardar vista) y filtros avanzados.  
+5. Exponer canal de soporte visible y CTA de demo 14 días en Landing/Dashboard.
+
+Criterios de aceptación sugeridos (mínimos)  
+- Formulario de solicitud: no se puede enviar sin modelo, fotos o síntoma (UI + backend).  
+- Reporte exportable: botón "Exportar PDF" genera documento con resumen, incidentes y estimación.  
+- Alertas: 3 niveles de severidad; envío por al menos 2 canales configurables; logs de entrega.  
+- Dashboard: guardar 2 vistas personalizadas por usuario; filtros por estado, zona, técnico.  
+- Soporte: botón WhatsApp activo y formulario de demo que crea lead en sistema.
 
 
 
@@ -11425,6 +11463,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
