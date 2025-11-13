@@ -8462,6 +8462,66 @@ Criterios de aceptación sugeridos (mínimos)
 - Soporte: botón WhatsApp activo y formulario de demo que crea lead en sistema.
 
 
+### 6.4. Auditoría de Experiencias de Usuario
+
+#### 6.4.1. Auditoría realizada
+
+##### 6.4.1.1. Información del grupo auditado
+
+Resumen ejecutivo  
+- Nombre del grupo auditado: Usuarios finales y proveedores del ecosistema OsitoPolar (Segmento 1 — Negocios que utilizan equipos de refrigeración; Segmento 2 — Empresas proveedoras de servicios y equipos).  
+- Objetivo de la auditoría: Evaluar la usabilidad, eficacia de alertas y calidad de la información en formularios/reportes para validar la propuesta de valor (reducción de pérdidas y mejora operativa).
+
+Criterios de inclusión / exclusión  
+- Inclusión: propietarios/encargados de negocio o responsables de mantenimiento, empresas proveedoras de refrigeración y técnicos con experiencia operativa; negocios con ≥1 equipo de refrigeración; disposición a participar en entrevista de validación.  
+- Exclusión: personal técnico sin rol de decisión comercial; participantes que no completaron el consentimiento o la sesión.
+
+Tamaño y composición de la muestra  
+- Nº total de participantes: 9  
+  - Segmento 1 (negocios): 6 (minimarkets, restaurantes, cafeterías)  
+  - Segmento 2 (proveedores / técnicos): 3 (empresas de refrigeración / técnicos)  
+- Rango de edad: 22–29 años (predominantemente 20s).  
+- Roles representados: dueño/administrador de negocio, encargado de compras, técnico/proveedor, operador.
+
+Contexto y condiciones de la prueba  
+- Fechas de realización: Septiembre — Octubre 2025.  
+- Modalidad: combinación de remotas (videollamadas) y presenciales según disponibilidad.  
+- Dispositivos observados: smartphones (iPhone 14, Galaxy A50) y PCs con Chrome/Safari.  
+- Escenario de pruebas: uso real o demo guiada de las pantallas clave (onboarding, dashboard, creación de solicitudes, centro de alertas y reportes).
+
+Método de reclutamiento y compensación  
+- Fuente de reclutamiento: base de leads del landing, clientes piloto y contactos de campo.  
+- Incentivo: gift card / compensación simbólica (según acuerdo con participante).  
+- Consentimiento y privacidad: se obtuvo consentimiento informado; grabaciones y citas se publican de forma anónima cuando corresponde (links a grabaciones incluidos en anexos).
+
+Métricas y evidencias recogidas  
+- Métricas cuantitativas: duración de sesión (tiempo por tarea), tasa de éxito en tareas críticas (registro de equipo, crear solicitud), número de errores/obstáculos, NPS/Tendencia de recomendación (cualitativo).  
+- Evidencias cualitativas: transcripciones, notas de observador, citas textuales, comentarios y sugerencias.  
+- Artefactos: grabaciones (URLs incluidas en 6.3.2.), capturas de pantalla, formularios completados, checklist de tareas.
+
+Observadores y facilitadores  
+- Equipo responsable (roles): Stephano Moscoso (moderador / diseño), Joseph Rodríguez (observador técnico), Hardie Holguín (analista UX).  
+- Número de sesiones observadas activamente: 9 (una por participante).  
+- Herramientas de registro: Zoom/Google Meet (grabación), hoja de observación estructurada (Excel/Notion), Mixpanel / analytics para eventos (instrumentación mínima).
+
+Limitaciones del grupo auditado  
+- Muestra pequeña y no aleatorizada → limita generalización estadística.  
+- Sesiones mayormente cortas (5–16 min) → posible falta de exploración profunda de funcionalidades avanzadas.  
+- Sesgo de selección: participantes con predisposición a probar digitalización (clientes piloto / leads).  
+- Predominio de dispositivos móviles recientes → observaciones sobre experiencia en dispositivos antiguos son limitadas.
+
+Impacto de las limitaciones en los resultados  
+- Los hallazgos son válidos para identificar problemas de usabilidad y priorizar mejoras rápidas, pero requieren validación cuantitativa adicional (experimentos a mayor escala) para confirmar impacto en métricas de negocio (churn, conversión, reducción de pérdidas).
+
+Recomendaciones de uso de los resultados  
+- Usar los hallazgos para priorizar correcciones de alto impacto (formularios, alertas multi‑canal, exportación de reportes).  
+- Planificar experimentos ampliados (sección 8) para validar hipótesis de negocio con mayor muestra.  
+- Mantener registro de cambios y repetir auditoría tras implementación de las mejoras para medir efecto.
+
+Citas y evidencias referenciadas  
+- Grabaciones y resúmenes de entrevistas: ver sección 6.3.2. (Entrevista A: Gabriel Mamani; Entrevista B: Letizia Aguilar; demás entrevistas listadas en 5.3.2).  
+- Instrumentación mínima usada: logs de sesión, hojas de observación y grabaciones — disponibles en anexos del repositorio.
+
 
 #### Entrevista B — Segmento 2: Empresas proveedoras de servicios y equipos
 - **Nombres y apellidos:** Letizia Aguilar  
@@ -11463,6 +11523,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
