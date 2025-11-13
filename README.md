@@ -8421,6 +8421,19 @@ Entrevistas presenciales o por videollamada, mostrando la página web y las func
 
 Resumen breve:Gabriel Mamani (25, San Martín de Buenos Aires) encontró la plataforma clara y fácil de usar desde su iPhone 14; valora especialmente el monitoreo en tiempo real, las alertas automáticas y los reportes técnicos porque le permiten detectar fallas y prevenir pérdidas, considera el dashboard bien balanceado y la respuesta del sistema rápida; daría una recomendación de 5/5 y estaría dispuesto a pagar una suscripción si el precio es razonable; sugiere añadir personalización del dashboard, filtros avanzados y canal de soporte técnico con actualizaciones frecuentes.
 
+#### Entrevista B — Segmento 2: Empresas proveedoras de servicios y equipos
+- **Nombres y apellidos:** Letizia Aguilar  
+- **Edad:** 23  
+- **Distrito:** Los Olivos  
+- **Dispositivo móvil:** Galaxy A50
+- **Navegador preferido:** Chrome  
+- **Marcas / Influencias:** Coldex, Miray, empresas de refrigeración comercial  
+- **Inicio:** 0:43  
+- **Duración:** 7:03  
+- **URL (grabación):** https://bit.ly/4jS816Q
+
+
+
 ### 6.3.3. Evaluaciones según heurísticas
 
 Metodología  
@@ -8523,16 +8536,138 @@ Citas y evidencias referenciadas
 - Instrumentación mínima usada: logs de sesión, hojas de observación y grabaciones — disponibles en anexos del repositorio.
 
 
-#### Entrevista B — Segmento 2: Empresas proveedoras de servicios y equipos
-- **Nombres y apellidos:** Letizia Aguilar  
-- **Edad:** 23  
-- **Distrito:** Los Olivos  
-- **Dispositivo móvil:** Galaxy A50
-- **Navegador preferido:** Chrome  
-- **Marcas / Influencias:** Coldex, Miray, empresas de refrigeración comercial  
-- **Inicio:** 0:43  
-- **Duración:** 7:03  
-- **URL (grabación):** https://bit.ly/4jS816Q  
+
+
+
+##### 6.4.1.2. Cronograma de auditoría realizada
+
+Resumen temporal  
+- Periodo de auditoría: 01/09/2025 — 31/10/2025.  
+- Modalidad: mixto (remoto + presencial).  
+- Objetivo: reclutamiento, ejecución de sesiones de validación, registro de evidencias y análisis de resultados para la auditoría UX.
+
+Cronograma (resumen por fases)
+
+- Fase 0 — Preparación (01/09/2025 — 07/09/2025)  
+  - Actividades: definición de objetivos, checklist de observación, templates de consentimiento, configuración de herramientas (Zoom, Mixpanel, hojas de observación).  
+  - Responsables: Stephano Moscoso (moderador), Joseph Rodríguez (técnico).  
+  - Entregable: Plan de auditoría y material de moderación.
+
+- Fase 1 — Reclutamiento y agenda (08/09/2025 — 14/09/2025)  
+  - Actividades: selección de participantes según criterios, confirmación de sesiones, envío de consentimientos.  
+  - Responsables: Hardie Holguín (analista UX) + equipo.  
+  - Entregable: Lista final de participantes (9) y calendario de sesiones.
+
+- Fase 2 — Ejecución de sesiones (15/09/2025 — 30/09/2025)  
+  - Actividades: 9 entrevistas observadas (5–16 min cada una), pruebas guiadas del dashboard, registro de métricas y capturas.  
+  - Responsables: Moderador + 1 observador técnico por sesión.  
+  - Entregables: Grabaciones, transcripciones, hojas de observación.
+
+- Fase 3 — Consolidación de datos (01/10/2025 — 10/10/2025)  
+  - Actividades: transcripción, etiquetado de citas, extracción de métricas (tiempos, tasa de éxito), carga de artefactos en repositorio.  
+  - Responsables: Hardie Holguín (analista) y Joseph Rodríguez.  
+  - Entregable: Dataset de evidencias y resumen cualitativo primario.
+
+- Fase 4 — Análisis heurístico y síntesis (11/10/2025 — 20/10/2025)  
+  - Actividades: evaluación según heurísticas de Nielsen, priorización de problemas, redacción de recomendaciones y criterios de aceptación.  
+  - Responsables: Equipo UX (Stephano, Hardie) con apoyo técnico.  
+  - Entregable: Tabla de problemas y plan de prioridades (ver 6.3.3).
+
+- Fase 5 — Revisión interna y validación del informe (21/10/2025 — 27/10/2025)  
+  - Actividades: revisión conjunta, incorporación de feedback, verificación de links y anexos.  
+  - Responsables: Todo el equipo.  
+  - Entregable: Versión candidata del capítulo de auditoría.
+
+- Fase 6 — Publicación y entrega (28/10/2025 — 31/10/2025)  
+  - Actividades: integración final en README.md, subida a repositorio, comunicación a stakeholders y backups.  
+  - Responsables: Stephano Moscoso (merge final).  
+  - Entregable: Auditoría publicada en repositorio y paquete de evidencias accesible.
+
+Hitos clave  
+- Hito 1: Confirmación de participantes — 14/09/2025.  
+- Hito 2: Fin de entrevistas y grabaciones — 30/09/2025.  
+- Hito 3: Entrega del análisis heurístico — 20/10/2025.  
+- Hito 4: Publicación de auditoría en repositorio — 31/10/2025.
+
+Observaciones operativas  
+- Las sesiones se agendaron en franjas de 30 min para permitir preparación y notas post‑sesión.  
+- Se estableció un canal Slack/WhatsApp para coordinación en tiempo real durante la ejecución.  
+- Se reservó un 20% de tiempo adicional en cada fase para imprevistos y validación de datos.
+
+
+
+##### 6.4.1.3. Contenido de la auditoría realizada
+
+Alcance de la auditoría  
+- Componentes evaluados: onboarding, dashboard, creación de solicitudes, centro de alertas, historial y reportes.  
+- Segmentos auditados: negocios (minimarkets, restaurantes, cafeterías) y proveedores/técnicos.  
+- Objetivo: identificar fricciones de UX que reduzcan adopción, demoren resolución de incidentes o incrementen costes operativos.
+
+Métodos y técnicas aplicadas  
+- Observación moderada en sesiones remotas/presenciales (n = 9).  
+- Entrevistas semiestructuradas y think‑aloud en tareas clave.  
+- Evaluación heurística (10 heurísticas de Nielsen + accesibilidad).  
+- Registro cuantitativo: tiempos por tarea, tasa de éxito, número de errores.  
+- Recolección de artefactos: grabaciones, transcripciones, capturas, formularios completados.
+
+Instrumentos y materiales usados  
+- Guía de moderación y checklist de observación (versión estructurada).  
+- Formularios de consentimiento y plantilla de registro de incidentes.  
+- Herramientas: Zoom/Google Meet (grabación), Mixpanel (eventos mínimos), hojas de observación (Excel/Notion).
+
+Actividades realizadas (resumen)  
+- Preparación: definición de objetivos, checklist y materiales (Fase 0).  
+- Reclutamiento: selección y confirmación de 9 participantes (Fase 1).  
+- Ejecución: 9 sesiones moderadas con tareas guiadas — registro de tiempos y errores (Fase 2).  
+- Consolidación: transcripción, etiquetado y carga de artefactos (Fase 3).  
+- Análisis: heurístico, síntesis de hallazgos y priorización (Fase 4).  
+- Revisión: validación interna y publicación (Fase 5–6).
+
+Resumen de hallazgos (puntos principales)  
+- Formularios de solicitud: faltan campos técnicos obligatorios → re‑trabajo de comunicación entre cliente y proveedor.  
+- Alertas: útiles pero riesgo de fatiga; falta priorización por severidad y canales alternativos (WhatsApp/push).  
+- Reportes: no existe exportación en PDF/Excel ni recomendaciones accionables automáticas.  
+- Dashboard: buena claridad inicial, requiere personalización (widgets, filtros guardables).  
+- Soporte/comercial: CTA de soporte y demo poco visibles → fricción en conversión/retención.  
+- Gestión técnica: ausencia de agrupación por zonas/rutas y rankings de desempeño.
+
+Evaluación cuantitativa (métricas recogidas)  
+- Tiempo medio por tarea crítica: 5–16 min (variabilidad por perfil).  
+- Tasa de éxito en crear solicitud sin ayuda: < esperado (problema por falta de campos).  
+- Frecuencia de interrupciones/consultas durante la tarea: indicador de campos confusos.  
+(Valores detallados en anexos y hojas de observación — ver 6.3.2 / 5.3.2).
+
+Severidad y priorización de problemas  
+- Criterio aplicado: impacto en negocio × frecuencia × esfuerzo de corrección.  
+- Prioridad alta: campos obligatorios en solicitud; exportar reportes en PDF.  
+- Prioridad media: alertas por severidad y multi‑canal; personalización básica del dashboard.  
+- Prioridad baja: rankings avanzados y carpetas/etiquetas para cartera.
+
+Evidencias vinculadas  
+- Grabaciones y transcripciones: sección 6.3.2 (links en anexos).  
+- Hojas de observación y dataset de métricas: anexos / carpeta evidence.  
+- Resultados heurísticos y tabla de problemas: ver 6.3.3.
+
+Recomendaciones inmediatas (quick wins)  
+1. Añadir campos obligatorios en formulario de solicitud: modelo, fotos, síntoma, prioridad.  
+2. Implementar botón “Exportar PDF” en reportes técnicos y campo “estimación de pérdida”.  
+3. Diseñar niveles de severidad en alertas y habilitar envío por al menos un canal adicional (WhatsApp/push).  
+4. Exponer CTA visible de soporte/solicitar demo en landing/dashboard.
+
+Plan de seguimiento y validación  
+- Implementar correcciones rápidas (sprints cortos) y repetir auditoría UX con la misma metodología tras despliegue.  
+- Ejecutar A/B testing para cambios en alertas y onboarding (medir tasa de conversión y tiempo de respuesta).  
+- Monitorizar indicadores clave (DAU, tasa de acción sobre alertas, tasa de conversión freemium → premium).
+
+Limitaciones metodológicas (a tener en cuenta)  
+- Muestra pequeña y no aleatorizada; hallazgos de carácter cualitativo y de priorización, no estrictamente estadísticos.  
+- Sesiones breves: posible sub‑exposición a funciones avanzadas.  
+- Sesgo de selección: participantes predispuestos a probar digitalización (clientes piloto).
+
+Conclusión breve  
+La auditoría identificó problemas de usabilidad con alto impacto en la eficacia operativa y en la propuesta de valor (prevención de pérdidas). Las correcciones propuestas son priorizables: varias son implementables en el corto plazo y deberían testearse con nuevos usuarios para verificar efecto en métricas de negocio.
+
+
 
 ## Capítulo VII:DevOps Practices <a id="c5"></a>
 ### 7.1. Continuous Integration
@@ -11523,6 +11658,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
