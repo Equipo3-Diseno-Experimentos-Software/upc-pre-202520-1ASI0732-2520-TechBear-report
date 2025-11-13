@@ -8406,7 +8406,35 @@ Entrevistas presenciales o por videollamada, mostrando la página web y las func
 13. ¿Qué le gustó más de la interfaz y la experiencia?  
 14. ¿Qué aspectos mejorarían su confianza o satisfacción al usar el sistema?
 
+### 6.3.2. Registro de Entrevistas.
 
+#### Entrevista A — Segmento 1: Negocios que utilizan equipos de refrigeración
+- **Nombres y apellidos:** Gabriel Mamani
+- **Edad:** 25  
+- **Distrito:** San Martín de Porres  
+- **Dispositivo móvil:** iPhone 14  
+- **Navegador preferido:** Google  
+- **Marcas / Influencias:** Apple y Lg  
+- **Inicio:** 0:03  
+- **Duración:** 5:05  
+- **URL (grabación):**   [Entrevista 1](https://drive.google.com/file/d/1VO7iudGx_0GehcO5jdSXgt8sPnRB_Qsa/view?usp=sharing)
+
+Resumen breve:Gabriel Mamani (25, San Martín de Buenos Aires) encontró la plataforma clara y fácil de usar desde su iPhone 14; valora especialmente el monitoreo en tiempo real, las alertas automáticas y los reportes técnicos porque le permiten detectar fallas y prevenir pérdidas, considera el dashboard bien balanceado y la respuesta del sistema rápida; daría una recomendación de 5/5 y estaría dispuesto a pagar una suscripción si el precio es razonable; sugiere añadir personalización del dashboard, filtros avanzados y canal de soporte técnico con actualizaciones frecuentes.
+
+
+
+
+
+#### Entrevista B — Segmento 2: Empresas proveedoras de servicios y equipos
+- **Nombres y apellidos:** Letizia Aguilar  
+- **Edad:** 23  
+- **Distrito:** Los Olivos  
+- **Dispositivo móvil:** Galaxy A50
+- **Navegador preferido:** Chrome  
+- **Marcas / Influencias:** Coldex, Miray, empresas de refrigeración comercial  
+- **Inicio:** 0:43  
+- **Duración:** 7:03  
+- **URL (grabación):** https://bit.ly/4jS816Q  
 
 ## Capítulo VII:DevOps Practices <a id="c5"></a>
 ### 7.1. Continuous Integration
@@ -11397,6 +11425,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
