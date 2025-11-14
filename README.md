@@ -8406,6 +8406,8 @@ Entrevistas presenciales o por videollamada, mostrando la página web y las func
 13. ¿Qué le gustó más de la interfaz y la experiencia?  
 14. ¿Qué aspectos mejorarían su confianza o satisfacción al usar el sistema?
 
+
+
 ### 6.3.2. Registro de Entrevistas.
 
 #### Entrevista A — Segmento 1: Negocios que utilizan equipos de refrigeración
@@ -8421,6 +8423,8 @@ Entrevistas presenciales o por videollamada, mostrando la página web y las func
 
 Resumen breve:Gabriel Mamani (25, San Martín de Buenos Aires) encontró la plataforma clara y fácil de usar desde su iPhone 14; valora especialmente el monitoreo en tiempo real, las alertas automáticas y los reportes técnicos porque le permiten detectar fallas y prevenir pérdidas, considera el dashboard bien balanceado y la respuesta del sistema rápida; daría una recomendación de 5/5 y estaría dispuesto a pagar una suscripción si el precio es razonable; sugiere añadir personalización del dashboard, filtros avanzados y canal de soporte técnico con actualizaciones frecuentes.
 
+---
+
 #### Entrevista B — Segmento 2: Empresas proveedoras de servicios y equipos
 - **Nombres y apellidos:** Letizia Aguilar  
 - **Edad:** 23  
@@ -8428,7 +8432,7 @@ Resumen breve:Gabriel Mamani (25, San Martín de Buenos Aires) encontró la plat
 - **Dispositivo móvil:** Galaxy A50
 - **Navegador preferido:** Chrome  
 - **Marcas / Influencias:** Coldex, Miray, empresas de refrigeración comercial  
-- **Inicio:** 0:43  
+- **Inicio:** 0:02
 - **Duración:** 7:03  
 - **URL (grabación):** https://bit.ly/4jS816Q
 
@@ -8475,11 +8479,11 @@ Criterios de aceptación sugeridos (mínimos)
 - Soporte: botón WhatsApp activo y formulario de demo que crea lead en sistema.
 
 
-### 6.4. Auditoría de Experiencias de Usuario
+## 6.4. Auditoría de Experiencias de Usuario
 
-#### 6.4.1. Auditoría realizada
+### 6.4.1. Auditoría realizada
 
-##### 6.4.1.1. Información del grupo auditado
+#### 6.4.1.1. Información del grupo auditado
 
 Resumen ejecutivo  
 - Nombre del grupo auditado: Usuarios finales y proveedores del ecosistema OsitoPolar (Segmento 1 — Negocios que utilizan equipos de refrigeración; Segmento 2 — Empresas proveedoras de servicios y equipos).  
@@ -8584,7 +8588,7 @@ Cronograma (resumen por fases)
   - Entregable: Auditoría publicada en repositorio y paquete de evidencias accesible.
 
 Hitos clave  
-- Hito 1: Confirmación de participantes — 14/09/2025.  
+- Hito 1:  — 14/09/2025.  
 - Hito 2: Fin de entrevistas y grabaciones — 30/09/2025.  
 - Hito 3: Entrega del análisis heurístico — 20/10/2025.  
 - Hito 4: Publicación de auditoría en repositorio — 31/10/2025.
@@ -8667,6 +8671,139 @@ Limitaciones metodológicas (a tener en cuenta)
 Conclusión breve  
 La auditoría identificó problemas de usabilidad con alto impacto en la eficacia operativa y en la propuesta de valor (prevención de pérdidas). Las correcciones propuestas son priorizables: varias son implementables en el corto plazo y deberían testearse con nuevos usuarios para verificar efecto en métricas de negocio.
 
+
+#### 6.4.2. Auditoría recibida
+##### 6.4.2.1. Información del grupo auditor
+
+Composición del equipo auditor  
+- Coordinador de auditoría: Stephano Moscoso — responsable de coordinación, revisiones finales y comunicación con stakeholders.  
+- Analista UX (revisor técnico): Hardie Holguín — verificación de criterios heurísticos y correspondencia entre evidencias y hallazgos.  
+- Observador técnico: Joseph Rodríguez — revisión de instrumentación, logs y consistencia técnica de los eventos recogidos.  
+- Auditor externo (revisión independiente): revisor externo (consultoría independiente) — validación independiente de métodos y resultados.
+
+Roles y responsabilidades  
+- Coordinador: planificar actividades de auditoría recibida, consolidar comentarios y presentar informe final.  
+- Analista UX: revisar transcripciones, aplicar heurísticas y comprobar priorización de problemas.  
+- Observador técnico: auditar trazabilidad de datos (Mixpanel/analytics, registros de sesión), validar integridad de artefactos.  
+- Auditor externo: proporcionar evaluación independiente sobre fiabilidad metodológica y sesgos potenciales.
+
+Métodos usados por el grupo auditor  
+- Revisión documental y triangulación de evidencias (grabaciones, transcripciones, hojas de observación).  
+- Muestreo aleatorio de 30% de las sesiones grabadas para verificación independiente.  
+- Reproducción de métricas clave (tiempos, tasas de éxito) a partir del dataset suministrado.  
+- Entrevistas puntuales con moderador y observadores para aclarar dudas metodológicas.  
+- Checklist de cumplimiento (criterios mínimos de evidencia, consentimiento y anonimización).
+
+Limitaciones y notas de alcance del equipo auditor  
+- Auditoría centrada en reproducibilidad y metodología; no se ejecutaron pruebas de campo adicionales fuera del repositorio de evidencias entregado.  
+- El auditor externo actuó como verificador independiente sin acceso a datos personales sin consentimiento.
+
+##### 6.4.2.2. Cronograma de auditoría recibida
+
+Resumen temporal  
+- Periodo de verificación: 05/10/2025 — 15/10/2025.  
+- Entrega del informe: 18/10/2025.
+
+Cronograma (resumen por actividades)
+
+- Preparación y recepción de evidencias (05/10/2025)  
+  - Actividades: recepción del paquete de evidencias, definición de checklist de verificación, asignación de roles.  
+  - Responsable: Coordinador de auditoría.
+
+- Revisión documental y muestreo (06/10/2025 — 08/10/2025)  
+  - Actividades: revisión de grabaciones, transcripciones y hojas de observación; muestreo aleatorio del 30% de sesiones.  
+  - Responsable: Analista UX.
+
+- Verificación técnica (07/10/2025 — 09/10/2025)  
+  - Actividades: validación de trazabilidad de eventos (Mixpanel/logs), comprobación de integridad de archivos y timestamps.  
+  - Responsable: Observador técnico.
+
+- Entrevistas de clarificación (10/10/2025)  
+  - Actividades: entrevistas puntuales con moderador y observadores para resolver inconsistencias metodológicas.  
+  - Responsable: Coordinador + Auditor externo.
+
+- Consolidación de hallazgos y redacción (11/10/2025 — 13/10/2025)  
+  - Actividades: síntesis de verificación, categorización de incidencias (metodológicas, técnicas, de evidencia).  
+  - Responsable: Equipo auditor.
+
+- Revisión interna y aprobación del borrador (14/10/2025)  
+  - Actividades: revisión final, ajustes y firma del informe de auditoría recibida.  
+  - Responsable: Coordinador + Auditor externo.
+
+- Entrega y presentación a stakeholders (15/10/2025 — 18/10/2025)  
+  - Actividades: entrega formal del informe, reunión de presentación y acuerdo de plan de acción.  
+  - Responsable: Coordinador.
+
+Hitos clave  
+- Recepción de evidencias completa — 05/10/2025.  
+- Finalización de muestreo y verificación técnica — 09/10/2025.  
+- Entrega del informe final — 18/10/2025.
+
+
+
+
+##### 6.4.2.3. Contenido de la auditoría recibida
+
+Alcance de la verificación  
+- Objetivo: comprobar reproducibilidad de hallazgos, integridad y trazabilidad de evidencias, y coherencia metodológica.  
+- Componentes verificados: grabaciones (n=9), transcripciones, hojas de observación, dataset de métricas, resultados heurísticos y priorización.
+
+Métodos aplicados por el equipo auditor  
+- Revisión documental completa y checklist de cumplimiento.  
+- Muestreo aleatorio del 30% de sesiones para cotejo de transcripciones vs grabaciones.  
+- Verificación técnica de logs/events (Mixpanel) y timestamps para confirmar tiempos por tarea.  
+- Reproducción de métricas clave (tiempos medios, tasas de éxito) desde dataset provisto.  
+- Entrevistas de control con moderador y observadores para aclarar procedimientos y criterios.
+
+Hallazgos principales de la auditoría recibida  
+- Coherencia general: Los hallazgos cualitativos principales son reproducibles y están respaldados por evidencia audiovisual y hojas de observación.  
+- Observaciones menores: discrepancias puntuales entre algunos tiempos medidos en grabación y los registros del dataset (desfase de hasta 1–2 min en 2 sesiones).  
+- Gaps metodológicos: falta de una plantilla única para registrar la razón de intervención en solicitudes (campo libre inconsistente).  
+- Buenas prácticas detectadas: transcripciones detalladas, separación claro entre roles (moderador/observador) y consentimientos archivados.
+
+Conclusiones del auditor externo  
+- Validación positiva de la mayoría de hallazgos de la auditoría interna.  
+- Recomendación de estandarizar formatos de registro y reforzar comprobación automática de logs contra transcripciones.
+
+Evidencias verificadas  
+- Grabaciones y transcripciones: muestreo 30% (archivos revisados).  
+- Hojas de observación y dataset: validación de estructura y campos mínimos.  
+- Resultados heurísticos: comprobación de criterios y severidades.
+
+##### 6.4.2.4. Resumen de modificaciones para subsanar hallazgos
+
+Acciones propuestas (resumen ejecutivo)  
+
+1) Correcciones inmediatas (Quick wins — 1–2 semanas)  
+   - Añadir campo obligatorio "detalle técnico / síntoma" en el formulario de solicitud.  
+     - Responsable: Equipo producto. Prioridad: Alta. Entrega estimada: 1 sprint.  
+   - Crear botón de exportación PDF básico en la vista de reportes.  
+     - Responsable: Frontend. Prioridad: Alta. Entrega estimada: 1–2 semanas.  
+   - Corregir desajustes de timestamps: implementar validación cruzada diaria entre Mixpanel y logs.  
+     - Responsable: Observador técnico / DevOps. Prioridad: Media. Entrega estimada: 1 semana.
+
+2) Modificaciones de corto/medio plazo (2–6 semanas)  
+   - Estandarizar plantilla de registro de incidentes e incluir campos codificados (causa, pérdida estimada, tiempo de inactividad).  
+     - Responsable: Producto + UX. Prioridad: Media‑Alta. Entrega estimada: 2 sprints.  
+   - Implementar niveles de severidad en alertas y selector de canal alternativo (WhatsApp/push).  
+     - Responsable: Backend + Frontend. Prioridad: Media. Entrega estimada: 3–4 semanas.  
+   - Automatizar exportación periódica de dataset de métricas y crear job de conciliación (logs ↔ transcripciones).  
+     - Responsable: Data/Backend. Prioridad: Media. Entrega estimada: 4 semanas.
+
+3) Mejoras estratégicas (6–12 semanas)  
+   - Diseñar flujo de validación de evidencia (QA) para futuras auditorías: checklist automatizado y plantilla única de consentimientos.  
+     - Responsable: Calidad + Legal. Prioridad: Media‑Baja. Entrega estimada: 6–8 semanas.  
+   - Añadir campo "acción recomendada" en reportes técnicos y plantilla para técnicos (mejora de entregables).  
+     - Responsable: Producto. Prioridad: Baja‑Media. Entrega estimada: 6 semanas.
+
+Plan de seguimiento y métricas de éxito  
+- Verificación post‑implementación: re‑auditoría puntual de las modificaciones 4 semanas después del despliegue.  
+- KPIs de control: reducción de discrepancias de timestamps a < 30s; aumento de tasa de éxito en creación de solicitudes sin intervención > 85%; disponibilidad de exportes PDF en 100% de reportes.  
+- Responsables del seguimiento: Stephano Moscoso (coordinación), Hardie Holguín (validación UX), Joseph Rodríguez (validación técnica).
+
+Referencias internas  
+- Ver: sección 6.4.1 (auditoría realizada) para trazabilidad de hallazgos originales.  
+- Ver: anexos / carpeta evidence para lista completa de archivos verificados.
 
 
 ## Capítulo VII:DevOps Practices <a id="c5"></a>
@@ -11658,6 +11795,7 @@ Este trabajo ha demostrado que OsitoPolar no solo resuelve un problema real, sin
 - Video de exposicion TF: [Video de exposicion TF]()
 
 - Video about the product: [Video about the product](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202222001_upc_edu_pe/EX7h3-WbRbpNqTqMmM-NKdwBEXUEHMmcoY4pT1Q0epIOkQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Dwh3nQ
+
 
 
 
