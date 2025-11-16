@@ -5952,7 +5952,18 @@ Durante este sprint se logró documentar un total de 25 endpoints correspondient
 
 
 ##### 5.2.4.7. Software Deployment Evidence for Sprint Review.
-(Por hacer)
+
+
+Azure Evidence deployment
+
+
+![Imagen de WhatsApp 2025-11-12 a las 19.47.21_32db6301.jpg](images/Imagen%20de%20WhatsApp%202025-11-12%20a%20las%2019.47.21_32db6301.jpg)
+
+![Imagen de WhatsApp 2025-11-12 a las 19.48.22_b41dbc37.jpg](images/Imagen%20de%20WhatsApp%202025-11-12%20a%20las%2019.48.22_b41dbc37.jpg)
+
+![Imagen de WhatsApp 2025-11-12 a las 20.09.59_db061299.jpg](images/Imagen%20de%20WhatsApp%202025-11-12%20a%20las%2020.09.59_db061299.jpg)
+
+![Imagen de WhatsApp 2025-11-12 a las 20.20.16_670866f4.jpg](images/Imagen%20de%20WhatsApp%202025-11-12%20a%20las%2020.20.16_670866f4.jpg)
 
 
 ##### 5.2.4.8. Team Collaboration Insights during Sprint.
